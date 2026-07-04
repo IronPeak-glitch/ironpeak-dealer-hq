@@ -1530,10 +1530,17 @@
     if (logoHandle && logoHandle.dispose) { try { logoHandle.dispose(); } catch (e) {} logoHandle = null; }
   }
   function setupMotion (routeName) {
-    /* ponystack: 3D spinning logo retired 2026-07-03 (SVG-extrusion could only
-       render half the mark). Static logo img ships in the home-view markup; when
-       Devan's Blender/GSAP mark lands, re-mount it here on routeName === 'home'. */
+    /* 3D spinning logo — Devan's full-mark GLB (2026-07-03). The static <img>
+       in the home-view markup is the poster + fallback; logo3d.js hides it once
+       the model mounts, and leaves it untouched on any failure. */
     if (routeName === 'home') {
+      var stage = $('#logo-stage');
+      if (stage) {
+        import('../../logo3d.js').then(function (mod) {
+          if ($('#logo-stage') !== stage) return; // view changed
+          try { logoHandle = mod.initLogo3D(stage, { spinSpeed: 0.55 }); } catch (e) {}
+        }).catch(function () { /* module/WebGL unavailable — static logo stays */ });
+      }
       mountHeroParticles();
       animateHomeRings();
       animateAscent();

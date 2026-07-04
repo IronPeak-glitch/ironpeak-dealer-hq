@@ -1,0 +1,251 @@
+{% layout none %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IronPeak Free Training — The Certification Curriculum</title>
+<meta name="description" content="IronPeak's free dealer training: six modules from buyer diagnosis to the referral flywheel. Complete the certification and it counts toward Certified Pro.">
+<meta name="theme-color" content="#0a0c10">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="IronPeak Lighting Systems">
+<meta property="og:title" content="IronPeak Free Training — The Certification Curriculum">
+<meta property="og:description" content="Six field-built modules, 39 lessons, free certification that counts toward Certified Pro dealer pricing. The training other brands sell for $700–$1,000.">
+<meta property="og:image" content="https://cdn.shopify.com/s/files/1/0753/7088/9387/files/Black_Product_kit_upscaled_d302d626-f324-4dcc-adc7-363580b6e76b.jpg?v=1774153606">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="{{ 'ip-hq-logo.svg' | asset_url }}" type="image/svg+xml">
+<script
+  src="https://link.msgsndr.com/js/external-tracking.js"
+  data-tracking-id="tk_0627744ee53e47fe9991a91ef1cbbdd0">
+</script>
+<script>
+/* When framed by the Shopify wrapper pages, absolute links escape the iframe */
+if (window.self !== window.top) {
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="http"]');
+    if (a) a.target = '_top';
+  });
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tomorrow:wght@500;600;700&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0c10; --bg-2:#0d1016; --bg-3:#10141c;
+    --ink:#ffffff; --body:#aab2bf; --dim:#6b7585;
+    --blue:#1E7FFF; --blue-deep:#155BF2; --ice-2:#7db8ff;
+    --silver:#c9d4e4; --line:#353535; --line-soft:#23272e;
+    --steel-1:#cfd6e2; --steel-3:#7087a5;
+    --disp:"Tomorrow",sans-serif; --txt:"Archivo",sans-serif;
+    --header-h:74px;
+  }
+  *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+  body{ background:var(--bg); color:var(--body); font-family:var(--txt); font-size:17px; line-height:1.6; -webkit-font-smoothing:antialiased; }
+  a{ color:var(--ice-2); }
+  .wrap{ max-width:1060px; margin:0 auto; padding:0 28px; }
+
+  .site-header{ position:sticky; top:0; z-index:1000; background:rgba(10,12,16,.9); backdrop-filter:blur(10px); border-bottom:1px solid var(--line-soft); }
+  .header-in{ max-width:1060px; margin:0 auto; padding:0 28px; height:var(--header-h); display:flex; align-items:center; justify-content:space-between; gap:1rem; }
+  .brand{ display:flex; align-items:center; gap:.7rem; text-decoration:none; }
+  .brand-name{ font-family:var(--disp); font-weight:700; font-size:1.05rem; letter-spacing:.06em; }
+  .brand-name .iron{ color:var(--ink); } .brand-name .peak{ color:var(--blue); }
+  .brand-sub{ display:block; font-size:.6rem; letter-spacing:.3em; text-transform:uppercase; color:var(--dim); }
+  .site-header nav ul{ display:flex; align-items:center; gap:1.4rem; list-style:none; }
+  .site-header nav a{ color:var(--body); text-decoration:none; font-size:.85rem; letter-spacing:.08em; text-transform:uppercase; font-family:var(--disp); }
+  .site-header nav a:hover{ color:var(--ink); }
+  .btn{ display:inline-flex; align-items:center; gap:.5rem; font-family:var(--disp); font-weight:600; letter-spacing:.06em; text-transform:uppercase; text-decoration:none; cursor:pointer; border:0; }
+  .btn-primary{ background:linear-gradient(135deg, var(--blue), var(--blue-deep)); color:#fff; padding:.8rem 1.4rem; font-size:.85rem; }
+  .btn-primary:hover{ filter:brightness(1.1); }
+  .btn-ghost{ border:1px solid var(--line); color:var(--ink); padding:.8rem 1.4rem; font-size:.85rem; background:transparent; }
+  .btn-ghost:hover{ border-color:var(--blue); }
+  .btn-sm{ padding:.55rem 1rem; font-size:.75rem; }
+
+  .skip{ position:absolute; left:-9999px; top:0; z-index:2000; background:var(--blue); color:#fff; padding:.7rem 1.2rem; font-family:var(--disp); }
+  .skip:focus{ left:0; }
+  .page-head{ padding:4.5rem 0 1rem; }
+  .kicker{ font-family:var(--disp); font-size:.7rem; letter-spacing:.32em; text-transform:uppercase; color:var(--blue); }
+  h1{ font-family:var(--disp); color:var(--ink); font-size:clamp(2rem,5vw,3.4rem); font-weight:600; line-height:1.08; margin:.8rem 0 1rem; }
+  .lede{ max-width:62ch; }
+  .lede b{ color:var(--steel-1); }
+
+  .cert-strip{ display:grid; grid-template-columns:repeat(3,1fr); gap:1rem; margin:2.6rem 0 0; }
+  .cert-step{ border:1px solid var(--line-soft); background:var(--bg-2); padding:1.3rem 1.4rem; }
+  .cert-step .n{ font-family:var(--disp); color:var(--blue); font-weight:700; font-size:.85rem; }
+  .cert-step h3{ font-family:var(--disp); color:var(--ink); font-size:1.02rem; margin:.4rem 0 .3rem; }
+  .cert-step p{ font-size:.88rem; }
+
+  .mods{ padding:3.5rem 0 4rem; display:grid; gap:.9rem; }
+  .mod{ border:1px solid var(--line-soft); background:linear-gradient(180deg, var(--bg-3), var(--bg-2)); padding:1.5rem 1.6rem; display:grid; grid-template-columns:auto 1fr auto; gap:1.2rem; align-items:start; }
+  .mod.avail{ border-color:rgba(30,127,255,.45); }
+  .mod-n{ font-family:var(--disp); font-weight:700; color:var(--blue); font-size:1.1rem; }
+  .mod h3{ font-family:var(--disp); color:var(--ink); font-size:1.15rem; font-weight:600; margin-bottom:.35rem; }
+  .mod p{ font-size:.93rem; }
+  .mod ul{ margin:.7rem 0 0 1.1rem; display:grid; gap:.35rem; font-size:.9rem; }
+  .mod ul b{ color:var(--steel-1); }
+  .status{ font-family:var(--disp); font-size:.66rem; letter-spacing:.18em; text-transform:uppercase; padding:.35rem .7rem; border-radius:99px; white-space:nowrap; }
+  .status.avail{ color:#8fe3a5; border:1px solid rgba(90,200,120,.4); }
+  .status.dev{ color:var(--steel-3); border:1px solid var(--line-soft); }
+
+  .video-note{ border:1px dashed var(--line); padding:1rem 1.2rem; font-size:.88rem; color:var(--dim); margin-top:.4rem; }
+  .video-note b{ color:var(--steel-1); }
+
+  .cta{ padding:0 0 5rem; display:flex; gap:1rem; flex-wrap:wrap; align-items:center; }
+  .cta .micro{ font-size:.82rem; color:var(--dim); flex-basis:100%; }
+
+  .site-footer{ border-top:1px solid var(--line-soft); padding:2rem 0 2.5rem; font-size:.85rem; color:var(--dim); }
+  .site-footer .wrap{ display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap; }
+  .site-footer a{ color:var(--body); text-decoration:none; }
+  .site-footer a:hover{ color:var(--ink); }
+
+  @media (max-width:760px){
+    .cert-strip{ grid-template-columns:1fr; }
+    .mod{ grid-template-columns:auto 1fr; }
+    .mod .status{ grid-column:1 / -1; justify-self:start; }
+  }
+</style>
+</head>
+<body>
+
+<a class="skip" href="#modules">Skip to content</a>
+
+<header class="site-header">
+  <div class="header-in">
+    <a class="brand" href="/pages/dealer-hq" aria-label="IronPeak Lighting Systems — home">
+      <img src="{{ 'ip-hq-logo.svg' | asset_url }}" alt="" width="34" height="31">
+      <span class="brand-text">
+        <span class="brand-name"><span class="iron">IRON</span><span class="peak">PEAK</span></span>
+        <span class="brand-sub">Free Training</span>
+      </span>
+    </a>
+    <nav aria-label="Primary">
+      <ul>
+        <li><a href="/pages/sales-vault">Vault</a></li>
+        <li><a class="btn btn-primary btn-sm" href="https://ironpeaklighting.com/pages/dealer-program">Apply →</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap page-head">
+    <p class="kicker">▲ Free Training — The Certification Curriculum</p>
+    <h1>The training other brands sell for $700–$1,000. Free.</h1>
+    <p class="lede">Six modules that take you from "which caller is a buyer" to a referral engine that sells for you — plus the philosophy spine and a field playbook, <b>39 lessons you can read, watch, or listen to</b> inside the interactive Sales Academy. Built from the field, not a marketing deck — <b>the same doctrine our own installs run on.</b> Complete the certification and it counts toward <b>Certified Pro</b> (with $10,000 in rolling 12-month volume, that's 10% off everything).</p>
+
+    <p style="margin-top:1.6rem"><a class="btn btn-primary" href="/pages/sales-academy">Enter the Sales Academy →</a></p>
+
+    <div class="cert-strip" aria-label="How certification works">
+      <div class="cert-step"><span class="n">STEP 1</span><h3>Become a dealer</h3><p>Sign up + your first order — you're a Base Camp Dealer, and every module here is open to you. $0, day one.</p></div>
+      <div class="cert-step"><span class="n">STEP 2</span><h3>Work the modules</h3><p>All six modules live in the interactive Academy — progress tracked, scripts drillable, certificate at the end. Costs nothing but an afternoon.</p></div>
+      <div class="cert-step"><span class="n">STEP 3</span><h3>Get certified</h3><p>Finish the curriculum and certification is on your account — the moment your volume hits the line, Certified Pro fires automatically.</p></div>
+    </div>
+  </div>
+
+  <div class="wrap mods" id="modules">
+
+    <article class="mod avail">
+      <span class="mod-n">M1</span>
+      <div>
+        <h3>Diagnosis — Who Buys &amp; Why</h3>
+        <p>Stop assuming, start diagnosing. Read the buyer from what they say — never from their age, gender, or house — then pull the matching lever.</p>
+        <ul>
+          <li><b>The five buyer types</b> — tell → lever → why, for each</li>
+          <li><b>Reading the decision-maker(s)</b> — and why "I'll ask my spouse" means book, don't close</li>
+          <li><b>Disqualifying fast</b> — who is not a buyer, and the one-in-a-hundred math of chasing them</li>
+        </ul>
+      </div>
+      <span class="status avail">Available now</span>
+    </article>
+
+    <article class="mod">
+      <span class="mod-n">M2</span>
+      <div>
+        <h3>Offer &amp; Positioning</h3>
+        <p>White-glove, one-stop, luxury-you-can-have: how to position a premium service so the price makes sense before you say it.</p>
+        <ul>
+          <li><b>The white-glove frame</b> — everything off their hands, one outcome</li>
+          <li><b>Insurance &amp; footage framing</b> — the answers to "why so expensive"</li>
+          <li><b>The Rolls-Royce / Lexus move</b> — luxury, self-placed</li>
+        </ul>
+      </div>
+      <span class="status avail">Available now</span>
+    </article>
+
+    <article class="mod">
+      <span class="mod-n">M3</span>
+      <div>
+        <h3>First Contact — The Phone Pitch</h3>
+        <p>The phone is the front door. Qualify hard so you only drive to buyers — and never give the number that kills the visit.</p>
+        <ul>
+          <li><b>The opener</b> — and the one question that reveals how to handle your range</li>
+          <li><b>Range, never per-foot</b> — qualify with a range + budget question</li>
+          <li><b>Pre-measure from the aerial</b> — arrive with the math done</li>
+        </ul>
+      </div>
+      <span class="status avail">Available now</span>
+    </article>
+
+    <article class="mod">
+      <span class="mod-n">M4</span>
+      <div>
+        <h3>Quoting &amp; the Profit Calculator</h3>
+        <p>Set a rate you can defend, quote by the foot, and keep your margin yours — IronPeak doesn't dictate your pricing, and this module is why you won't need anyone to.</p>
+        <ul>
+          <li><b>Building your rate</b> — the calculator, your market, your floor</li>
+          <li><b>One number, quoted clean</b> — scope reiteration → quote → silence</li>
+          <li><b>Kits &amp; add-ons</b> — sizing the job without re-engineering it</li>
+        </ul>
+      </div>
+      <span class="status avail">Available now</span>
+    </article>
+
+    <article class="mod">
+      <span class="mod-n">M5</span>
+      <div>
+        <h3>Closing &amp; Price Objections</h3>
+        <p>The centerpieces are field-proven: silence after the quote, the deposit-as-close, and the waffle ladder for the fence-sitters.</p>
+        <ul>
+          <li><b>Deposit-as-close</b> — "card or check?" and book them on the spot</li>
+          <li><b>The waffle ladder</b> — step down without discounting</li>
+          <li><b>The graceful disqualify</b> — walk away and keep the callback</li>
+        </ul>
+      </div>
+      <span class="status avail">Available now</span>
+    </article>
+
+    <article class="mod">
+      <span class="mod-n">M6</span>
+      <div>
+        <h3>The Referral Flywheel</h3>
+        <p>Ethics is the business model: the long game that turns one well-treated customer into a street's worth of installs.</p>
+        <ul>
+          <li><b>The yard-sign test</b> — every install is an ad you don't pay for</li>
+          <li><b>Referrals close themselves</b> — they already trust the price</li>
+          <li><b>Asking without chasing</b> — systemizing word of mouth</li>
+        </ul>
+      </div>
+      <span class="status avail">Available now</span>
+    </article>
+
+    <p class="video-note"><b>All six modules are live in the <a href="/pages/sales-academy">Sales Academy</a> now</b> — written-first, with watch/listen modes in the app. Recorded video lessons are the next addition; nothing here waits on a camera. The quick-reference version of the best material also lives in the <a href="/pages/sales-vault">Dealer Vault</a>.</p>
+  </div>
+
+  <div class="wrap cta">
+    <a class="btn btn-primary" href="/pages/sales-academy">Enter the Sales Academy →</a>
+    <a class="btn btn-ghost" href="https://ironpeaklighting.com/pages/dealer-program">Become a dealer — $0 →</a>
+    <a class="btn btn-ghost" href="/pages/sales-vault">Open the sales vault →</a>
+    <p class="micro">Zero buy-in. Free training. No territory restrictions.</p>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>© 2026 IronPeak Lighting Systems. Built by installers, priced for installers.</span>
+    <span><a href="/pages/dealer-hq">Home</a> · <a href="/pages/sales-vault">Vault</a> · <a href="https://ironpeaklighting.com/pages/dealer-program">Apply</a></span>
+  </div>
+</footer>
+
+</body>
+</html>

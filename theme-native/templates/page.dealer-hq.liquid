@@ -1,0 +1,2523 @@
+{% layout none %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IronPeak Lighting Systems — Permanent Lighting Without the $20,000 Gate</title>
+<meta name="description" content="Permanent roofline lighting dealer program. $0 buy-in. Free training. Tiered pricing that drops as you sell. Run the profit calculator.">
+<meta name="theme-color" content="#0a0c10">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="IronPeak Lighting Systems">
+<meta property="og:title" content="IronPeak — Permanent Lighting Without the $20,000 Gate">
+<meta property="og:description" content="Every other brand charges $20K+ to get in. IronPeak charges nothing: $0 buy-in, free training, and a dealer ladder where every discount is earned.">
+<meta property="og:image" content="https://cdn.shopify.com/s/files/1/0753/7088/9387/files/Black_Product_kit_upscaled_d302d626-f324-4dcc-adc7-363580b6e76b.jpg?v=1774153606">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="{{ 'ip-hq-logo.svg' | asset_url }}" type="image/svg+xml">
+<script
+  src="https://link.msgsndr.com/js/external-tracking.js"
+  data-tracking-id="tk_0627744ee53e47fe9991a91ef1cbbdd0">
+</script>
+<script>
+/* When framed by the Shopify wrapper pages, absolute links escape the iframe */
+if (window.self !== window.top) {
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="http"]');
+    if (a) a.target = '_top';
+  });
+}
+</script>
+
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tomorrow:wght@500;600;700&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+  }
+}
+</script>
+
+<style>
+  /* ============ TOKENS / RESET ============ */
+  :root{
+    --bg:        #0a0c10;
+    --bg-2:      #0d1016;
+    --bg-3:      #10141c;
+    --ink:       #ffffff;
+    --body:      #aab2bf;
+    --dim:       #6b7585;
+    --blue:      #1E7FFF;
+    --blue-deep: #155BF2;
+    --ice:       #b9d9ff;
+    --ice-2:     #7db8ff;
+    --silver:    #c9d4e4;
+    --line:      #353535;
+    --line-soft: #23272e;
+    --steel-1:   #cfd6e2;
+    --steel-2:   #8ea0b7;
+    --steel-3:   #7087a5;
+    --disp:      "Tomorrow", sans-serif;
+    --txt:       "Archivo", sans-serif;
+    --header-h:  74px;
+  }
+  *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:auto; }
+  html, body{ background:var(--bg); }
+  body{
+    font-family:var(--txt);
+    color:var(--body);
+    font-size:17px;
+    line-height:1.6;
+    overflow-x:clip;
+    -webkit-font-smoothing:antialiased;
+  }
+  /* film grain */
+  body::after{
+    content:"";
+    position:fixed; inset:0;
+    background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+    opacity:.045;
+    pointer-events:none;
+    z-index:2000;
+    mix-blend-mode:overlay;
+  }
+  img, video, svg{ display:block; max-width:100%; }
+  a{ color:inherit; text-decoration:none; }
+  :focus-visible{ outline:2px solid var(--blue); outline-offset:3px; border-radius:2px; }
+  ::selection{ background:var(--blue); color:#fff; }
+
+  .skip{
+    position:fixed; left:1rem; top:-4rem; z-index:3000;
+    background:var(--blue); color:#fff; font-family:var(--disp);
+    text-transform:uppercase; letter-spacing:.08em; font-size:.8rem;
+    padding:.7rem 1.2rem; transition:top .25s;
+  }
+  .skip:focus-visible{ top:1rem; }
+
+  .wrap{ width:min(1320px, 92vw); margin-inline:auto; }
+
+  /* ============ TYPE ============ */
+  h1,h2,h3{ font-family:var(--disp); color:var(--ink); text-transform:uppercase; font-weight:600; }
+  .sec-label{
+    display:flex; align-items:center; gap:1rem;
+    font-family:var(--txt); font-size:.72rem; font-weight:600;
+    letter-spacing:.38em; text-transform:uppercase; color:var(--steel-3);
+    margin-bottom:2.4rem;
+  }
+  .sec-label::after{ content:""; flex:1; height:1px; background:var(--line); }
+  .sec-label .lab-n{ color:var(--blue); }
+  .lead{ max-width:62ch; font-size:clamp(1rem, 1.5vw, 1.18rem); }
+
+  /* ============ BUTTONS / LINKS ============ */
+  .btn{
+    position:relative; display:inline-flex; align-items:center; gap:.65rem;
+    font-family:var(--disp); font-weight:600; font-size:.92rem;
+    text-transform:uppercase; letter-spacing:.1em;
+    padding:1.05rem 1.7rem; border:1px solid transparent;
+    white-space:nowrap; cursor:pointer;
+    transition:background-color .3s, border-color .3s, box-shadow .3s, color .3s;
+  }
+  .btn .arr{ transition:transform .3s; display:inline-block; }
+  .btn:hover .arr{ transform:translateX(5px); }
+  .btn-primary{
+    background:var(--blue); color:#fff;
+    box-shadow:0 0 0 0 rgba(30,127,255,0), 0 8px 34px -10px rgba(30,127,255,.55);
+  }
+  .btn-primary:hover{
+    background:var(--blue-deep);
+    box-shadow:0 0 0 1px rgba(30,127,255,.6), 0 10px 44px -8px rgba(30,127,255,.8);
+  }
+  .btn-ghost{
+    border-color:var(--line); color:var(--ink); background:rgba(13,16,22,.4);
+  }
+  .btn-ghost:hover{
+    border-color:rgba(30,127,255,.8);
+    box-shadow:0 0 26px -8px rgba(30,127,255,.5), inset 0 0 18px -10px rgba(30,127,255,.4);
+  }
+  .ulink{
+    position:relative; font-weight:500; color:var(--ink); padding-bottom:.15rem;
+  }
+  .ulink::after{
+    content:""; position:absolute; left:0; bottom:0; width:100%; height:1px;
+    background:var(--blue); transform:scaleX(0); transform-origin:right;
+    transition:transform .4s cubic-bezier(.65,0,.35,1);
+  }
+  .ulink:hover::after{ transform:scaleX(1); transform-origin:left; }
+
+  /* ============ CURSOR ============ */
+  .cursor{
+    position:fixed; left:0; top:0; width:30px; height:30px;
+    margin:-15px 0 0 -15px; border-radius:50%;
+    border:1px solid rgba(30,127,255,.75);
+    background:radial-gradient(circle, rgba(30,127,255,.22), transparent 68%);
+    pointer-events:none; z-index:2500; opacity:0;
+    mix-blend-mode:screen; will-change:transform;
+    transition:opacity .35s, width .25s, height .25s, margin .25s;
+  }
+  .cursor.on{ opacity:1; }
+  .cursor.grow{ width:62px; height:62px; margin:-31px 0 0 -31px; }
+  @media (pointer:coarse){ .cursor{ display:none; } }
+
+  /* ============ HEADER ============ */
+  .site-header{
+    position:fixed; inset:0 0 auto 0; z-index:1000; height:var(--header-h);
+    display:flex; align-items:center;
+    transition:background-color .4s, border-color .4s, backdrop-filter .4s;
+    border-bottom:1px solid transparent;
+  }
+  .site-header.scrolled{
+    background:rgba(10,12,16,.82);
+    backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border-bottom-color:var(--line-soft);
+  }
+  .header-in{ display:flex; align-items:center; justify-content:space-between; width:min(1320px,92vw); margin-inline:auto; }
+  .brand{ display:flex; align-items:center; gap:.8rem; }
+  .brand img{ width:38px; height:35px; }
+  .brand-name{ font-family:var(--disp); font-weight:700; font-size:1.25rem; letter-spacing:.04em; line-height:1; display:block; }
+  .brand-name .iron{
+    background:linear-gradient(180deg, var(--steel-1), var(--steel-3));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .brand-name .peak{
+    background:linear-gradient(180deg, #5ea2ff, var(--blue-deep));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .brand-sub{ display:block; font-size:.52rem; letter-spacing:.46em; color:var(--steel-3); text-transform:uppercase; margin-top:.22rem; font-weight:600; }
+  .nav-links{ display:flex; gap:2.2rem; align-items:center; list-style:none; }
+  .nav-links a:not(.btn){ font-size:.82rem; font-weight:500; letter-spacing:.12em; text-transform:uppercase; color:var(--body); }
+  .nav-links a:not(.btn):hover{ color:var(--ink); }
+  .btn-sm{ padding:.72rem 1.25rem; font-size:.8rem; }
+  @media (max-width:900px){ .nav-links li:not(.nav-cta){ display:none; } }
+
+  /* ============ HERO ============ */
+  .hero{
+    position:relative; min-height:100vh; min-height:100svh;
+    display:flex; align-items:center;
+    background:
+      radial-gradient(120% 70% at 50% 110%, rgba(21,91,242,.16), transparent 60%),
+      linear-gradient(180deg, #07090d 0%, #0a0e16 55%, #0b1220 100%);
+    overflow:hidden;
+  }
+  #heroCanvas{
+    position:absolute; inset:0; width:100%;
+    height:100vh; height:100svh;
+    opacity:0; transition:opacity 1.4s ease .15s;
+  }
+  .hero.webgl-ready #heroCanvas{ opacity:1; }
+  .hero-fallback{
+    position:absolute; inset:0; display:none;
+    background:url("{{ 'ip-hq-install-1.jpg' | asset_url }}") center 30%/cover no-repeat;
+    opacity:.35;
+    -webkit-mask-image:linear-gradient(180deg, transparent, #000 30%, #000 70%, transparent);
+    mask-image:linear-gradient(180deg, transparent, #000 30%, #000 70%, transparent);
+  }
+  .hero.no-webgl .hero-fallback{ display:block; }
+  .hero-vignette{
+    position:absolute; inset:0; pointer-events:none;
+    background:
+      radial-gradient(90% 90% at 50% 50%, transparent 45%, rgba(5,7,10,.66) 100%),
+      linear-gradient(180deg, rgba(10,12,16,.55) 0%, transparent 22%, transparent 72%, var(--bg) 100%);
+  }
+  .hero-content{
+    position:relative; z-index:5;
+    width:min(1320px,92vw); margin-inline:auto;
+    padding-top:calc(var(--header-h) + 3vh);
+    padding-bottom:4.5rem;
+  }
+  .hero-label{
+    display:inline-flex; align-items:center; gap:.7rem;
+    font-size:.72rem; font-weight:600; letter-spacing:.38em; text-transform:uppercase;
+    color:var(--steel-2); margin-bottom:2rem;
+  }
+  .hero-label .pk{ color:var(--blue); font-size:.6rem; }
+  .hero-h1{
+    font-size:clamp(2.7rem, 7.7vw, 8.3rem);
+    line-height:.96; letter-spacing:-.012em; font-weight:600;
+    max-width:14ch;
+  }
+  .hero-h1 .h1-line{ display:block; }
+  .hero-h1 .gate-x{ color:var(--steel-2); position:relative; display:inline-block; }
+  .strike-line{
+    position:absolute; left:-2%; right:-2%; top:50%; height:.07em; min-height:4px;
+    background:var(--blue);
+    box-shadow:0 0 18px rgba(30,127,255,.9), 0 0 40px rgba(30,127,255,.5);
+    transform:scaleX(1); transform-origin:left;
+    pointer-events:none;
+  }
+  .hero-sub{
+    max-width:54ch; margin-top:2.2rem;
+    font-size:clamp(1rem, 1.4vw, 1.15rem);
+  }
+  .hero-ctas{ display:flex; flex-wrap:wrap; gap:1rem; margin-top:2.6rem; }
+  .hero-meta{
+    display:flex; flex-wrap:wrap; gap:.6rem 1.8rem; margin-top:2.4rem;
+    font-family:var(--disp); font-size:.78rem; font-weight:500;
+    letter-spacing:.16em; text-transform:uppercase; color:var(--dim);
+  }
+  .hero-meta span b{ color:var(--steel-1); font-weight:600; }
+  .hero-scroll{
+    position:absolute; left:50%; bottom:2rem; transform:translateX(-50%);
+    z-index:5; font-size:.65rem; letter-spacing:.4em; text-transform:uppercase;
+    color:var(--dim); display:flex; flex-direction:column; align-items:center; gap:.5rem;
+  }
+  .hero-scroll::after{
+    content:""; width:1px; height:34px;
+    background:linear-gradient(180deg, var(--blue), transparent);
+    animation:scrollPulse 2.2s ease-in-out infinite;
+  }
+  @keyframes scrollPulse{ 0%,100%{ opacity:.25; transform:scaleY(.6); transform-origin:top; } 50%{ opacity:1; transform:scaleY(1); } }
+
+  /* ============ TICKER ============ */
+  .ticker{
+    border-block:1px solid var(--line-soft);
+    background:var(--bg-2);
+    overflow:hidden; padding:1.05rem 0;
+    position:relative; z-index:6;
+  }
+  .ticker-track{ display:flex; width:max-content; will-change:transform; animation:tick 30s linear infinite; }
+  @keyframes tick{ to{ transform:translateX(-50%); } }
+  .ticker-group{ display:flex; align-items:center; flex-shrink:0; }
+  .ti{
+    font-family:var(--disp); font-weight:500; font-size:.85rem;
+    letter-spacing:.22em; text-transform:uppercase; color:var(--steel-2);
+    padding:0 1.6rem; white-space:nowrap;
+  }
+  .ti.hot{ color:var(--ink); }
+  .tsep{ color:var(--blue); font-size:.7rem; text-shadow:0 0 12px rgba(30,127,255,.8); }
+
+  /* ============ SECTION SHELL ============ */
+  section{ position:relative; }
+  .sec-pad{ padding:clamp(5.5rem, 12vh, 9.5rem) 0; }
+  .h2{
+    font-size:clamp(2.1rem, 4.6vw, 4.6rem);
+    line-height:1.02; letter-spacing:-.01em;
+    max-width:18ch;
+  }
+  .h2 .accent{ color:var(--blue); text-shadow:0 0 38px rgba(30,127,255,.45); }
+
+  /* ============ IGNITION v2 ============ */
+  .ignite{ background:linear-gradient(180deg, var(--bg) 0%, #090c14 100%); overflow:hidden; }
+  .ignite-stage{
+    min-height:100vh; min-height:100svh;
+    display:flex; flex-direction:column; justify-content:center; align-items:center;
+    padding:calc(var(--header-h) + 2vh) 0 4vh;
+  }
+  .ignite-svg{ width:min(980px, 94vw); height:auto; max-height:50vh; }
+  .led-core{ animation:ledPulse 2.6s ease-in-out infinite alternate; }
+  @keyframes ledPulse{ from{ opacity:.78; } to{ opacity:1; } }
+  .ignite-copy{ text-align:center; margin-top:1rem; padding-inline:4vw; }
+  .ignite-h{
+    font-size:clamp(1.8rem, 4.2vw, 4rem); line-height:1.02;
+    text-shadow:0 0 60px rgba(30,127,255,.35);
+  }
+  .ignite-sub{ max-width:56ch; margin:1.2rem auto 0; font-size:clamp(.95rem, 1.3vw, 1.1rem); }
+  .ignite-sub b{ color:var(--steel-1); font-weight:600; }
+  .mode-row{
+    display:flex; gap:.6rem; flex-wrap:wrap; justify-content:center; margin-top:1.7rem;
+  }
+  .chip{
+    font-family:var(--disp); font-weight:600; font-size:.68rem;
+    letter-spacing:.22em; text-transform:uppercase;
+    padding:.6rem 1.05rem; cursor:pointer;
+    color:var(--steel-2); background:rgba(13,16,22,.6);
+    border:1px solid var(--line);
+    transition:border-color .3s, color .3s, box-shadow .3s, background-color .3s;
+  }
+  .chip:hover{ border-color:rgba(30,127,255,.7); color:var(--ink); }
+  .chip[aria-pressed="true"]{
+    border-color:var(--blue); color:#fff; background:rgba(21,91,242,.16);
+    box-shadow:0 0 18px -6px rgba(30,127,255,.65), inset 0 0 14px -8px rgba(30,127,255,.6);
+  }
+  .mode-cap{
+    margin-top:1rem; font-family:var(--disp); font-size:.66rem; font-weight:500;
+    letter-spacing:.28em; text-transform:uppercase; color:var(--dim); text-align:center;
+  }
+  .mode-cap b{ color:var(--steel-1); font-weight:600; }
+  #apexLabel text{
+    font-family:var(--txt); font-size:15px; font-weight:600;
+    letter-spacing:.08em; fill:var(--steel-1);
+  }
+  #apexLabel .lab-hot{ fill:#eaf3ff; }
+
+  /* ============ THE PRODUCT, DOING THE WORK ============ */
+  .work{ background:var(--bg); border-top:1px solid var(--line-soft); }
+  .work-grid{
+    display:grid; grid-template-columns:repeat(12,1fr); gap:2.4rem;
+    align-items:center; margin-top:3.4rem;
+  }
+  .video-frame{
+    grid-column:1 / span 7;
+    position:relative; transform:rotate(-1.6deg);
+    background:var(--bg-2); border:1px solid var(--line);
+    padding:clamp(.5rem, 1.2vw, .9rem);
+    box-shadow:0 30px 80px -30px rgba(0,0,0,.9), 0 0 60px -30px rgba(30,127,255,.35);
+    transition:transform .6s cubic-bezier(.22,1,.36,1), box-shadow .6s;
+  }
+  .video-frame:hover{
+    transform:rotate(0deg) scale(1.012);
+    box-shadow:0 30px 80px -30px rgba(0,0,0,.9), 0 0 80px -24px rgba(30,127,255,.55);
+  }
+  .video-frame video{ width:100%; aspect-ratio:16/9; object-fit:cover; }
+  .vf-tag{
+    position:absolute; top:-0.9rem; left:1.2rem;
+    background:var(--bg); border:1px solid var(--line);
+    font-family:var(--disp); font-size:.62rem; font-weight:600;
+    letter-spacing:.3em; text-transform:uppercase; color:var(--steel-2);
+    padding:.35rem .8rem;
+  }
+  .vf-status{
+    position:absolute; bottom:1.4rem; right:1.6rem;
+    display:flex; align-items:center; gap:.5rem;
+    font-family:var(--disp); font-size:.6rem; letter-spacing:.28em;
+    text-transform:uppercase; color:rgba(255,255,255,.75);
+    background:rgba(10,12,16,.55); padding:.35rem .7rem;
+    backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
+  }
+  .vf-status i{
+    width:7px; height:7px; border-radius:50%; background:var(--blue);
+    box-shadow:0 0 10px rgba(30,127,255,.9);
+    animation:ledPulse 1.6s ease-in-out infinite alternate;
+  }
+  .work-aside{ grid-column:9 / span 4; }
+  .work-aside h3{
+    font-size:clamp(1.3rem, 2vw, 1.8rem); letter-spacing:.02em; line-height:1.15;
+    margin-bottom:1.1rem;
+  }
+  .work-aside h3 .accent{ color:var(--blue); }
+  .spec-list{ list-style:none; margin-top:1.8rem; border-top:1px solid var(--line); }
+  .spec-list li{
+    display:flex; justify-content:space-between; gap:1rem;
+    padding:.85rem 0; border-bottom:1px solid var(--line-soft);
+    font-size:.85rem;
+  }
+  .spec-list .k{ letter-spacing:.18em; text-transform:uppercase; font-size:.7rem; color:var(--dim); font-weight:600; align-self:center; }
+  .spec-list .v{ font-family:var(--disp); color:var(--ink); font-weight:600; text-align:right; }
+  .spec-list .v em{ font-style:normal; color:var(--blue); }
+
+  .work-photos{
+    display:grid; grid-template-columns:repeat(12,1fr); gap:2rem;
+    margin-top:5.5rem; align-items:start;
+  }
+  .ph{ position:relative; }
+  .plx{ position:relative; overflow:hidden; border:1px solid var(--line-soft); }
+  .plx img{ position:absolute; left:0; top:-7.5%; width:100%; height:115%; object-fit:cover; }
+  .ph-day{ grid-column:1 / span 5; margin-top:4.5rem; }
+  .ph-day .plx{ aspect-ratio:4/3; }
+  .ph-night{ grid-column:6 / span 7; }
+  .ph-night .plx{ aspect-ratio:16/10; }
+  .ph-install{ grid-column:3 / span 5; margin-top:-2.1rem; z-index:2; }
+  .ph-install .plx{ aspect-ratio:4/3; box-shadow:0 30px 90px -20px rgba(0,0,0,.85); }
+  .ph-cap{
+    display:flex; align-items:baseline; gap:.7rem; margin-top:.9rem;
+    font-family:var(--disp); font-size:.72rem; font-weight:500;
+    letter-spacing:.24em; text-transform:uppercase; color:var(--dim);
+    position:relative; z-index:3; /* stay readable above the overlapping install photo */
+    text-shadow:0 1px 8px rgba(0,0,0,.9);
+  }
+  .ph-cap::before{ content:"▲"; color:var(--blue); font-size:.55rem; }
+  .ph-cap b{ color:var(--steel-1); font-weight:600; }
+
+  /* ============ SPOTLIGHT REVEAL ============ */
+  .spot-section{ position:relative; background:#010206; }
+  .spot-stage{
+    position:relative; height:100vh; height:100svh; overflow:hidden;
+    background:#010206;
+  }
+  .spot-dark, .spot-mask, .spot-bloom, .spot-glow{ position:absolute; inset:0; }
+  .spot-dark img, .spot-mask img, .spot-bloom img{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+  }
+  .spot-dark img{ filter:brightness(.13) saturate(.5) hue-rotate(8deg); }
+  .spot-mask img{ filter:saturate(1.06) brightness(1.02); }
+  .spot-bloom{ opacity:0; pointer-events:none; }
+  .spot-bloom img{ filter:blur(24px) brightness(1.5) saturate(1.3); mix-blend-mode:screen; }
+  .spot-glow{ pointer-events:none; mix-blend-mode:screen; }
+  .spot-copy{
+    position:absolute; left:max(4vw, calc((100vw - 1320px)/2)); bottom:clamp(2.5rem,7vh,5.5rem); z-index:3;
+    max-width:38rem; opacity:.16;
+  }
+  .spot-copy h3{
+    font-size:clamp(2rem,4.4vw,4.2rem); line-height:1.04; margin-bottom:1.1rem;
+    text-shadow:0 2px 30px rgba(0,0,0,.75);
+  }
+  .spot-copy h3 .accent{ color:var(--ice-2); }
+  .spot-copy p{ color:#cfd9ea; max-width:48ch; text-shadow:0 1px 18px rgba(0,0,0,.85); }
+  .spot-hint{
+    position:absolute; top:50%; left:50%; transform:translate(-50%,-50%); z-index:3;
+    font-family:var(--disp); font-size:.64rem; letter-spacing:.4em; text-transform:uppercase;
+    color:rgba(207,217,234,.6); pointer-events:none; text-align:center;
+  }
+
+  /* ============ THE TRUECENTER APEX IN 3D ============ */
+  .apex{ background:linear-gradient(180deg, var(--bg) 0%, #080b12 100%); border-top:1px solid var(--line-soft); }
+  .apex-lead{ margin-top:1.6rem; }
+  .apex-lead b{ color:var(--steel-1); font-weight:600; }
+  .apex-stage-wrap{
+    position:relative; margin-top:3.4rem;
+    border-block:1px solid var(--line-soft);
+    background:radial-gradient(60% 80% at 50% 62%, rgba(21,91,242,.10), transparent 70%), #07090d;
+  }
+  /* ponystack: 3D viewer removed 2026-07-02 (model wasn't faithful to the product);
+     Blender-built replacement lands here later. Static product photo until then. */
+  #apex-stage{
+    position:relative; height:min(80vh, 780px); width:100%;
+    background:#07090d url("{{ 'ip-hq-apex-product.jpg' | asset_url }}") center/contain no-repeat;
+  }
+  .apex-annos{ list-style:none; pointer-events:none; }
+  .anno{
+    position:absolute; z-index:4;
+    font-family:var(--disp); font-size:.66rem; font-weight:600;
+    letter-spacing:.2em; text-transform:uppercase; color:var(--steel-1);
+    background:rgba(10,12,16,.6); border:1px solid var(--line);
+    border-left:2px solid var(--blue);
+    padding:.55rem .9rem;
+    backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
+  }
+  .anno-1{ top:9%;  left:4%; }
+  .anno-2{ top:9%;  right:4%; }
+  .anno-3{ top:46%; left:4%; }
+  .anno-4{ top:46%; right:4%; }
+  .anno-5{ bottom:9%; left:4%; }
+  .apex-buy{
+    display:flex; flex-wrap:wrap; gap:1rem 1.2rem; align-items:center;
+    margin-top:2.6rem;
+  }
+  .buy-opt{
+    display:flex; flex-direction:column; gap:.15rem;
+    border:1px solid var(--line); background:var(--bg-2);
+    padding:1rem 1.5rem; min-width:150px;
+    transition:border-color .3s, box-shadow .3s, transform .3s;
+  }
+  .buy-opt:hover{
+    transform:translateY(-4px); border-color:rgba(30,127,255,.75);
+    box-shadow:0 0 30px -10px rgba(30,127,255,.45);
+  }
+  .buy-opt .bo-k{ font-family:var(--disp); font-size:.66rem; font-weight:600; letter-spacing:.26em; text-transform:uppercase; color:var(--steel-3); }
+  .buy-opt .bo-v{ font-family:var(--disp); font-size:1.35rem; font-weight:700; color:var(--ink); }
+  .buy-opt .bo-v em{ font-style:normal; color:var(--blue); }
+  .apex-buy .micro{ font-size:.82rem; color:var(--dim); max-width:34ch; }
+
+  /* ============ THE MATH ============ */
+  .math{
+    background:linear-gradient(180deg, var(--bg) 0%, #0b1018 55%, var(--bg) 100%);
+    border-top:1px solid var(--line-soft);
+    overflow:hidden;
+  }
+  .math-head{ display:grid; grid-template-columns:repeat(12,1fr); gap:2rem; align-items:end; }
+  .math-head .h2{ grid-column:1 / span 8; }
+  .math-note{ grid-column:9 / span 4; padding-bottom:.6rem; }
+  .math-note p{ font-size:.92rem; color:var(--dim); border-left:2px solid var(--blue); padding-left:1.1rem; }
+  .math-grid{
+    display:grid; grid-template-columns:repeat(12,1fr); gap:3rem 2.5rem;
+    margin-top:4rem; align-items:start;
+  }
+  .ledger{ grid-column:1 / span 6; }
+  .lrow{
+    padding:1.5rem 0 1.4rem; border-top:1px solid var(--line);
+    display:flex; flex-direction:column; gap:.3rem;
+  }
+  .lrow .lk{
+    font-size:.7rem; font-weight:600; letter-spacing:.32em;
+    text-transform:uppercase; color:var(--steel-3);
+  }
+  .lrow .lv{
+    font-family:var(--disp); font-weight:700; color:var(--ink);
+    font-size:clamp(2.5rem, 4.6vw, 4.4rem); line-height:1; letter-spacing:-.01em;
+    font-variant-numeric:tabular-nums;
+  }
+  .lrow .ls{ font-size:.85rem; color:var(--dim); }
+  .lrow.is-neg .lv{ color:var(--steel-2); }
+  .lrow.is-hero .lv{
+    font-size:clamp(3.4rem, 6.4vw, 6.2rem);
+    color:var(--blue); text-shadow:0 0 70px rgba(30,127,255,.4);
+  }
+  .season-line{
+    margin-top:2.6rem; padding-top:2.2rem; border-top:1px solid var(--line);
+    font-family:var(--disp); font-weight:500; text-transform:uppercase;
+    font-size:clamp(1.1rem, 2vw, 1.6rem); line-height:1.35; color:var(--steel-1);
+    letter-spacing:.04em; max-width:24ch;
+  }
+  .season-line .big{
+    color:var(--blue); font-weight:700; font-size:1.55em;
+    text-shadow:0 0 40px rgba(30,127,255,.45); white-space:nowrap;
+  }
+
+  .ws-col{ grid-column:7 / span 6; }
+  .ws-panel{
+    position:relative; border:1px solid var(--line);
+    background:linear-gradient(180deg, var(--bg-2), var(--bg-3));
+    padding:2.4rem 2rem 1.8rem;
+    box-shadow:0 30px 80px -40px rgba(0,0,0,.9), 0 0 60px -38px rgba(30,127,255,.5);
+  }
+  .ws-panel::before{
+    content:"WORKSHEET — JOB ECONOMICS"; position:absolute; top:-0.85rem; left:1.4rem;
+    background:var(--bg); border:1px solid var(--line);
+    font-family:var(--disp); font-size:.6rem; font-weight:600;
+    letter-spacing:.3em; text-transform:uppercase; color:var(--steel-2);
+    padding:.35rem .8rem;
+  }
+  .ws-row{
+    display:flex; align-items:baseline; gap:.8rem;
+    padding:.85rem 0; border-bottom:1px solid var(--line-soft);
+  }
+  .ws-row .lbl{
+    font-size:.66rem; font-weight:600; letter-spacing:.2em;
+    text-transform:uppercase; color:var(--dim); flex-shrink:0;
+  }
+  .ws-row .lbl b{ color:var(--steel-2); font-weight:600; }
+  .ws-row .dots{ flex:1; border-bottom:1px dotted #2a3140; transform:translateY(-4px); min-width:1rem; }
+  .ws-row .val{
+    font-family:var(--disp); font-weight:600; color:var(--ink);
+    font-size:1.02rem; font-variant-numeric:tabular-nums; white-space:nowrap;
+  }
+  .ws-row.is-total .val{
+    color:var(--blue); font-size:1.5rem; font-weight:700;
+    text-shadow:0 0 24px rgba(30,127,255,.45);
+  }
+  .ws-combo{
+    display:block; font-family:var(--txt); font-size:.66rem; font-weight:500;
+    letter-spacing:.14em; color:var(--steel-3); text-align:right; margin-top:.15rem;
+  }
+  .ws-slider{ padding:.7rem 0 1.1rem; border-bottom:1px solid var(--line-soft); }
+  .ws-slider input[type=range]{
+    -webkit-appearance:none; appearance:none; width:100%; height:26px;
+    background:transparent; cursor:pointer;
+  }
+  .ws-slider input[type=range]::-webkit-slider-runnable-track{
+    height:2px; background:linear-gradient(90deg, var(--blue), #2a3140);
+  }
+  .ws-slider input[type=range]::-moz-range-track{ height:2px; background:#2a3140; }
+  .ws-slider input[type=range]::-webkit-slider-thumb{
+    -webkit-appearance:none; appearance:none; width:18px; height:18px; border-radius:50%;
+    background:var(--blue); margin-top:-8px;
+    box-shadow:0 0 14px rgba(30,127,255,.9), 0 0 0 4px rgba(30,127,255,.18);
+  }
+  .ws-slider input[type=range]::-moz-range-thumb{
+    width:18px; height:18px; border-radius:50%; border:none;
+    background:var(--blue);
+    box-shadow:0 0 14px rgba(30,127,255,.9), 0 0 0 4px rgba(30,127,255,.18);
+  }
+  .ws-slider .minmax{
+    display:flex; justify-content:space-between;
+    font-family:var(--disp); font-size:.6rem; font-weight:500;
+    letter-spacing:.2em; color:var(--steel-3); margin-top:.3rem;
+  }
+  .stepper{ display:inline-flex; align-items:center; gap:.8rem; }
+  .stepper button{
+    width:34px; height:34px; display:grid; place-items:center;
+    border:1px solid var(--line); background:var(--bg-2); color:var(--ink);
+    font-family:var(--disp); font-weight:600; font-size:1.05rem; line-height:1;
+    cursor:pointer; transition:border-color .25s, box-shadow .25s;
+  }
+  .stepper button:hover{ border-color:var(--blue); box-shadow:0 0 14px -4px rgba(30,127,255,.6); }
+  .stepper .stp-v{
+    font-family:var(--disp); font-weight:700; font-size:1.2rem; color:var(--ink);
+    min-width:4.6ch; text-align:center; font-variant-numeric:tabular-nums;
+  }
+  .ws-fine{
+    margin-top:1.1rem; font-family:var(--disp); font-size:.62rem; font-weight:500;
+    letter-spacing:.18em; text-transform:uppercase; color:var(--dim); line-height:1.9;
+  }
+  .ws-cta{ margin-top:1.8rem; display:flex; align-items:center; gap:1.4rem; flex-wrap:wrap; }
+
+  /* ============ THE PROGRAM ============ */
+  .program{ background:var(--bg); border-top:1px solid var(--line-soft); overflow:hidden; }
+  .zero-stage{
+    min-height:100vh; min-height:100svh;
+    display:flex; flex-direction:column; justify-content:center; align-items:center;
+    text-align:center; padding:calc(var(--header-h) + 2vh) 4vw 6vh;
+    overflow:hidden;
+  }
+  .zero-label{
+    font-family:var(--disp); font-size:.72rem; font-weight:600;
+    letter-spacing:.4em; text-transform:uppercase; color:var(--steel-3);
+  }
+  .zero-old{
+    margin-top:1.6rem;
+    font-family:var(--disp); font-weight:500; text-transform:uppercase;
+    font-size:clamp(1.3rem, 3.4vw, 3rem); line-height:1.2; color:var(--steel-2);
+    max-width:26ch;
+  }
+  .zero-old .strike-wrap{ position:relative; display:inline-block; white-space:nowrap; }
+  .zero-old .gate-strike{
+    position:absolute; left:-2%; top:54%; width:104%; height:.09em; min-height:4px;
+    background:var(--blue); transform:scaleX(0); transform-origin:left center;
+    box-shadow:0 0 18px rgba(30,127,255,.85), 0 0 44px rgba(30,127,255,.45);
+  }
+  .zero-num{
+    font-family:var(--disp); font-weight:700; line-height:.9; letter-spacing:-.03em;
+    font-size:clamp(9rem, 34vw, 30rem);
+    margin-top:1rem;
+    background:linear-gradient(180deg, #ffffff 8%, var(--ice) 48%, var(--ice-2) 100%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+    filter:drop-shadow(0 0 50px rgba(125,184,255,.45)) drop-shadow(0 0 130px rgba(30,127,255,.3));
+  }
+  .zero-sub{
+    margin-top:1.4rem; max-width:52ch;
+    font-size:clamp(1rem, 1.6vw, 1.2rem); color:var(--steel-1);
+  }
+  .zero-sub b{ color:var(--ink); font-weight:600; }
+
+  .tiers-wrap{ padding-bottom:clamp(5.5rem, 12vh, 9.5rem); }
+  .program-sub{
+    font-family:var(--disp); font-weight:500; text-transform:uppercase;
+    letter-spacing:.14em; color:var(--blue); margin-top:1.2rem;
+    font-size:clamp(.95rem, 1.6vw, 1.25rem);
+  }
+  .tiers{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:1.4rem;
+    align-items:end; margin-top:4.2rem;
+  }
+  .tier{
+    border:1px solid var(--line); background:linear-gradient(180deg, var(--bg-2), var(--bg));
+    padding:1.8rem 1.6rem 1.6rem; position:relative;
+    transition:border-color .35s, box-shadow .35s, transform .35s;
+  }
+  .tier:hover{ transform:translateY(-6px); }
+  .tier-0{ min-height:340px; }
+  .tier-1{ min-height:405px; }
+  .tier-2{ min-height:470px; }
+  .tier-3{ min-height:535px; border-color:rgba(30,127,255,.45);
+    box-shadow:0 0 50px -18px rgba(30,127,255,.35), inset 0 0 40px -28px rgba(30,127,255,.5); }
+  .tier:hover{ border-color:rgba(30,127,255,.75);
+    box-shadow:0 0 50px -12px rgba(30,127,255,.45), inset 0 0 30px -20px rgba(30,127,255,.5); }
+  .tier-tag{
+    font-family:var(--disp); font-size:.66rem; font-weight:600;
+    letter-spacing:.3em; text-transform:uppercase; color:var(--steel-3);
+  }
+  .tier h3{ font-size:clamp(1.4rem, 2.2vw, 2rem); margin:.6rem 0 .9rem; }
+  .tier p{ font-size:.92rem; }
+  .tier-price{
+    position:absolute; right:1.4rem; top:1.5rem;
+    font-family:var(--disp); font-weight:700; color:var(--blue);
+    font-size:1.05rem; letter-spacing:.04em;
+  }
+  .tier-bars{ display:flex; gap:4px; margin-top:1.2rem; }
+  .tier-bars i{ width:18px; height:4px; background:var(--line); }
+  .tier-bars i.on{ background:var(--blue); box-shadow:0 0 8px rgba(30,127,255,.8); }
+  .tiers-foot{
+    margin-top:2.6rem; display:flex; align-items:center; gap:1.8rem; flex-wrap:wrap;
+  }
+  .tiers-foot .micro{ font-size:.82rem; color:var(--dim); }
+  .founder-note{
+    display:flex; gap:1.3rem; align-items:center;
+    margin-top:4rem; max-width:720px;
+    border:1px solid var(--line-soft);
+    background:radial-gradient(80% 140% at 0% 50%, rgba(21,91,242,.12), transparent 55%), var(--bg-2);
+    padding:1.5rem 1.7rem;
+  }
+  .founder-note img{
+    width:64px; height:64px; border-radius:50%; object-fit:cover; flex-shrink:0;
+    border:1px solid var(--line); background:#10141c;
+  }
+  .founder-note blockquote{ font-size:1rem; color:var(--steel-1); }
+  .founder-note blockquote b{ color:var(--ink); font-weight:600; }
+  .founder-note cite{
+    display:block; margin-top:.4rem; font-style:normal;
+    font-family:var(--disp); font-size:.66rem; font-weight:600;
+    letter-spacing:.26em; text-transform:uppercase; color:var(--steel-3);
+  }
+
+  /* ============ TRADES ============ */
+  .trades{ background:linear-gradient(180deg, var(--bg) 0%, #0a0d14 100%); border-top:1px solid var(--line-soft); }
+  .trades-grid{ display:grid; grid-template-columns:repeat(12,1fr); gap:1.6rem; margin-top:3.6rem; }
+  .trade{
+    position:relative; border:1px solid var(--line); background:var(--bg-2);
+    padding:2.2rem 2rem 2rem; overflow:hidden;
+    transition:border-color .35s, box-shadow .35s, transform .35s;
+  }
+  .trade:hover{
+    border-color:rgba(30,127,255,.7); transform:translateY(-6px);
+    box-shadow:0 0 44px -12px rgba(30,127,255,.4), inset 0 0 34px -24px rgba(30,127,255,.6);
+  }
+  .trade-n{
+    position:absolute; top:.6rem; right:1rem;
+    font-family:var(--disp); font-weight:700; font-size:4.6rem; line-height:1;
+    color:transparent; -webkit-text-stroke:1px #39414f;
+    transition:-webkit-text-stroke-color .35s;
+  }
+  .trade:hover .trade-n{ -webkit-text-stroke-color:rgba(30,127,255,.8); color:rgba(30,127,255,.16); }
+  .trade .trade-n{ transition:-webkit-text-stroke-color .35s, color .35s; }
+  .trade h3{ font-size:clamp(1.2rem, 1.8vw, 1.55rem); max-width:12ch; line-height:1.15; margin-bottom:1rem; }
+  .trade p{ font-size:.95rem; max-width:38ch; }
+  .trade p b{ color:var(--steel-1); font-weight:600; }
+  .trade-1{ grid-column:1 / span 6; }
+  .trade-2{ grid-column:7 / span 6; transform:translateY(70px); }
+  .trade-2:hover{ transform:translateY(64px); }
+  .trade-3{ grid-column:1 / span 6; margin-top:-1.5rem; }
+  .trade-4{ grid-column:7 / span 6; transform:translateY(70px); }
+  .trade-4:hover{ transform:translateY(64px); }
+  .trades-foot{ margin-top:8rem; display:flex; justify-content:flex-end; }
+
+  /* ============ KITS ============ */
+  .kits{ background:var(--bg); border-top:1px solid var(--line-soft); }
+  .kits-head{ display:grid; grid-template-columns:repeat(12,1fr); gap:2rem; align-items:end; }
+  .kits-head .h2{ grid-column:1 / span 8; }
+  .kits-note{ grid-column:9 / span 4; font-size:.95rem; color:var(--dim); padding-bottom:.4rem; }
+  .kits-note a{ color:var(--steel-1); }
+  .kit-row{ display:grid; grid-template-columns:repeat(4,1fr); gap:1.4rem; margin-top:3.6rem; }
+  .kit{
+    position:relative; display:flex; flex-direction:column;
+    border:1px solid var(--line); background:linear-gradient(180deg, var(--bg-2), var(--bg));
+    transition:border-color .35s, box-shadow .35s, transform .35s;
+  }
+  .kit:hover{
+    transform:translateY(-7px); border-color:rgba(30,127,255,.75);
+    box-shadow:0 0 0 1px rgba(30,127,255,.35), 0 18px 60px -18px rgba(30,127,255,.4), inset 0 0 36px -22px rgba(30,127,255,.55);
+  }
+  .kit-img{ overflow:hidden; border-bottom:1px solid var(--line-soft); aspect-ratio:1/1; }
+  .kit-img img{
+    width:100%; height:100%; object-fit:cover;
+    transition:transform .6s cubic-bezier(.22,1,.36,1), filter .6s;
+    filter:saturate(1.02);
+  }
+  .kit:hover .kit-img img{ transform:scale(1.05); filter:saturate(1.1); }
+  .kit-body{
+    display:flex; flex-direction:column; flex:1;
+    padding:1.5rem 1.5rem 1.5rem;
+  }
+  .kit-ft{
+    font-family:var(--disp); font-weight:700; color:var(--ink);
+    font-size:clamp(2.4rem, 3.8vw, 3.6rem); line-height:1; letter-spacing:-.01em;
+    transition:color .35s, text-shadow .35s;
+  }
+  .kit-ft small{ font-size:.36em; font-weight:600; letter-spacing:.12em; color:var(--steel-3); }
+  .kit:hover .kit-ft{ color:var(--blue); text-shadow:0 0 34px rgba(30,127,255,.55); }
+  .kit-name{
+    font-family:var(--disp); font-weight:600; text-transform:uppercase;
+    letter-spacing:.16em; font-size:.74rem; color:var(--steel-2); margin-top:.55rem;
+  }
+  .kit-price{
+    font-family:var(--disp); font-weight:700; font-size:1.15rem; color:var(--steel-1);
+    margin-top:.7rem;
+  }
+  .kit p{ font-size:.86rem; margin-top:.8rem; }
+  .kit-variants{
+    margin-top:.9rem; font-family:var(--disp); font-size:.6rem; font-weight:500;
+    letter-spacing:.18em; text-transform:uppercase; color:var(--dim);
+  }
+  .kit-go{
+    margin-top:auto; padding-top:1.4rem;
+    font-family:var(--disp); font-size:.74rem; font-weight:600;
+    letter-spacing:.26em; text-transform:uppercase; color:var(--ink);
+    display:flex; align-items:center; gap:.5rem;
+  }
+  .kit-go .arr{ color:var(--blue); transition:transform .3s; }
+  .kit:hover .kit-go .arr{ transform:translateX(5px); }
+  .addons{
+    margin-top:2.4rem; border:1px solid var(--line-soft);
+    background:radial-gradient(70% 160% at 0% 50%, rgba(21,91,242,.1), transparent 55%), var(--bg-2);
+    padding:1.6rem 1.8rem;
+    display:flex; flex-wrap:wrap; gap:1.2rem 2.4rem; align-items:center;
+  }
+  .addons p{ font-size:.92rem; max-width:52ch; }
+  .addons p b{ color:var(--steel-1); font-weight:600; }
+  .addon-links{ display:flex; gap:.9rem; flex-wrap:wrap; }
+  .addon-pill{
+    display:inline-flex; align-items:baseline; gap:.55rem;
+    border:1px solid var(--line); background:var(--bg);
+    font-family:var(--disp); font-size:.72rem; font-weight:600;
+    letter-spacing:.16em; text-transform:uppercase; color:var(--steel-1);
+    padding:.65rem 1rem;
+    transition:border-color .3s, box-shadow .3s, transform .3s;
+  }
+  .addon-pill em{ font-style:normal; color:var(--blue); }
+  .addon-pill:hover{
+    transform:translateY(-3px); border-color:rgba(30,127,255,.75);
+    box-shadow:0 0 22px -8px rgba(30,127,255,.5);
+  }
+  .kits-foot{ margin-top:3.2rem; display:flex; gap:1.6rem; align-items:center; flex-wrap:wrap; }
+
+  /* ============ FINALE ============ */
+  .final{
+    position:relative; overflow:hidden;
+    background:
+      radial-gradient(70% 90% at 50% 115%, rgba(21,91,242,.22), transparent 62%),
+      linear-gradient(180deg, var(--bg) 0%, #090d15 100%);
+    border-top:1px solid var(--line-soft);
+    text-align:center;
+  }
+  .final .sec-pad{ padding-block:clamp(7rem, 16vh, 12rem); }
+  .final-h{
+    font-size:clamp(3rem, 9.4vw, 9.4rem); line-height:.95; letter-spacing:-.014em;
+    margin-inline:auto; max-width:12ch;
+  }
+  .final-h .dim{
+    background:linear-gradient(180deg, var(--steel-1), var(--steel-3));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .final-sub{ max-width:54ch; margin:2.2rem auto 0; }
+  .final-ctas{ display:flex; gap:1.1rem; justify-content:center; flex-wrap:wrap; margin-top:3rem; }
+  .final-brand{
+    margin-top:5rem; display:flex; flex-direction:column; align-items:center; gap:1.7rem;
+  }
+  .final-brand img{
+    width:86px; height:auto;
+    filter:drop-shadow(0 0 22px rgba(30,127,255,.6)) drop-shadow(0 0 64px rgba(30,127,255,.3));
+  }
+  .final-line{
+    font-family:var(--disp); font-weight:500; text-transform:uppercase;
+    letter-spacing:.16em; font-size:clamp(.95rem, 1.7vw, 1.3rem);
+    color:var(--ice); text-shadow:0 0 30px rgba(30,127,255,.4);
+    max-width:34ch;
+  }
+  .final-micro{ margin-top:2.6rem; font-family:var(--disp); font-size:.74rem; letter-spacing:.3em; text-transform:uppercase; color:var(--dim); }
+  .final-micro b{ color:var(--steel-1); font-weight:600; }
+
+  /* ============ FOOTER ============ */
+  .site-footer{ background:#07090d; border-top:1px solid var(--line-soft); }
+  .footer-in{
+    width:min(1320px,92vw); margin-inline:auto;
+    display:flex; flex-wrap:wrap; gap:2.5rem 4rem; justify-content:space-between; align-items:flex-start;
+    padding:3.6rem 0 2rem;
+  }
+  .footer-nav{ display:flex; gap:3.5rem; flex-wrap:wrap; }
+  .fcol{ list-style:none; display:flex; flex-direction:column; gap:.7rem; }
+  .fcol-t{ font-family:var(--disp); font-size:.68rem; font-weight:600; letter-spacing:.3em; text-transform:uppercase; color:var(--steel-3); margin-bottom:.4rem; }
+  .fcol a{ font-size:.9rem; color:var(--body); }
+  .fcol a:hover{ color:var(--ink); }
+  .socials{ display:flex; gap:.9rem; }
+  .socials a{
+    width:40px; height:40px; display:grid; place-items:center;
+    border:1px solid var(--line); color:var(--steel-2);
+    transition:border-color .3s, color .3s, box-shadow .3s;
+  }
+  .socials a:hover{ border-color:rgba(30,127,255,.8); color:var(--ink); box-shadow:0 0 18px -6px rgba(30,127,255,.6); }
+  .socials svg{ width:18px; height:18px; }
+  .footer-bottom{
+    border-top:1px solid var(--line-soft);
+    width:min(1320px,92vw); margin-inline:auto;
+    display:flex; flex-wrap:wrap; gap:.6rem 2rem; justify-content:space-between;
+    padding:1.4rem 0 2rem;
+    font-size:.78rem; color:var(--dim);
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width:1024px){
+    .work-grid{ gap:1.8rem; }
+    .video-frame{ grid-column:1 / -1; }
+    .work-aside{ grid-column:1 / -1; max-width:60ch; }
+    .ledger{ grid-column:1 / -1; }
+    .ws-col{ grid-column:1 / -1; }
+    .anno-3, .anno-4{ display:none; }
+  }
+  @media (max-width:880px){
+    .math-head .h2{ grid-column:1 / -1; }
+    .math-note{ grid-column:1 / -1; }
+    .trade-1,.trade-2,.trade-3,.trade-4{ grid-column:1 / -1; transform:none; margin-top:0; }
+    .trade-2:hover,.trade-4:hover{ transform:translateY(-6px); }
+    .trades-foot{ margin-top:3rem; justify-content:flex-start; }
+    .kit-row{ grid-template-columns:repeat(2,1fr); }
+    .kits-head .h2{ grid-column:1 / -1; }
+    .kits-note{ grid-column:1 / -1; }
+    .ph-day{ grid-column:1 / span 6; margin-top:0; }
+    .ph-night{ grid-column:1 / -1; }
+    .ph-install{ grid-column:4 / -1; margin-top:-1.4rem; }
+    .tiers{ grid-template-columns:1fr; align-items:stretch; }
+    .tier-0,.tier-1,.tier-2,.tier-3{ min-height:0; }
+    #apex-stage{ height:60vh; }
+    .apex-annos{ position:static; display:flex; flex-wrap:wrap; gap:.6rem; padding:1rem 4vw 1.4rem; }
+    .anno{ position:static; display:inline-block; }
+    .anno-3, .anno-4{ display:inline-block; }
+    .founder-note{ flex-direction:row; }
+  }
+  @media (max-width:560px){
+    body{ font-size:16px; }
+    .kit-row{ grid-template-columns:1fr; }
+    .ph-day{ grid-column:1 / -1; }
+    .ph-install{ grid-column:2 / -1; }
+    .hero-meta{ gap:.5rem 1.2rem; }
+    .footer-nav{ gap:2rem; }
+    .ws-panel{ padding:2.2rem 1.2rem 1.5rem; }
+    .zero-old{ font-size:clamp(1.05rem, 5.4vw, 1.5rem); }
+    .buy-opt{ min-width:124px; padding:.85rem 1.1rem; }
+    .founder-note{ flex-direction:column; align-items:flex-start; }
+  }
+
+  /* ============ REDUCED MOTION ============ */
+  @media (prefers-reduced-motion: reduce){
+    .ticker-track{ animation:none; }
+    .led-core, .vf-status i{ animation:none; }
+    .hero-scroll::after{ animation:none; opacity:.6; }
+    #heroCanvas{ transition:none; }
+    *{ scroll-behavior:auto !important; }
+  }
+  html.reduced .spot-copy{ opacity:1; }
+  html.reduced .spot-hint{ display:none; }
+  html.reduced .spot-dark img{ filter:brightness(.95) saturate(1.05); }
+  html.reduced .spot-mask, html.reduced .spot-glow{ display:none; }
+  html.reduced .zero-num{ filter:drop-shadow(0 0 40px rgba(125,184,255,.4)); }
+  html.reduced .zero-old .gate-strike{ transform:scaleX(1); }
+</style>
+<style id="vault-styles">
+  /* ============ 7B. THE VAULT — email-gated dealer sales modules ============ */
+  .vault{ background:linear-gradient(180deg, var(--bg) 0%, #0c1119 50%, var(--bg) 100%); }
+  .vault-sub{ margin-top:1.4rem; max-width:60ch; }
+  .vault-stage{ position:relative; margin-top:3rem; }
+  .vault-grid{ display:grid; gap:.9rem; transition:filter .6s ease, opacity .6s ease; }
+  .vault-grid.locked{ filter:blur(15px) saturate(.55); opacity:.5; pointer-events:none; user-select:none; }
+  .vmod{ border:1px solid var(--line-soft); background:linear-gradient(180deg, var(--bg-3), var(--bg-2)); transition:border-color .3s; }
+  .vmod[open], .vmod:hover{ border-color:var(--blue); }
+  .vmod summary{ list-style:none; cursor:pointer; display:flex; align-items:baseline; gap:1.2rem; padding:1.35rem 1.5rem; }
+  .vmod summary::-webkit-details-marker{ display:none; }
+  .vmod summary:focus-visible{ outline:2px solid var(--blue); outline-offset:-2px; }
+  .vm-n{ font-family:var(--disp); font-weight:700; color:var(--blue); font-size:.95rem; }
+  .vm-t{ font-family:var(--disp); font-weight:600; color:var(--ink); font-size:1.15rem; letter-spacing:.02em; }
+  .vm-d{ margin-left:auto; color:var(--dim); font-size:.85rem; display:flex; align-items:center; gap:.9rem; white-space:nowrap; }
+  .vm-d::after{ content:"+"; font-family:var(--disp); color:var(--blue); font-size:1.2rem; }
+  .vmod[open] .vm-d::after{ content:"−"; }
+  .vm-body{ padding:.2rem 1.5rem 1.6rem; border-top:1px solid var(--line-soft); }
+  .vm-body p, .vm-body li{ font-size:.95rem; }
+  .vm-body ul, .vm-body ol{ margin:.9rem 0 0 1.2rem; display:grid; gap:.55rem; }
+  .vm-body b{ color:var(--steel-1); }
+  .vm-body p{ margin-top:.9rem; }
+  .vm-script{ margin-top:1rem; padding:1rem 1.2rem; background:var(--bg); border-left:2px solid var(--blue); color:var(--silver); font-size:.92rem; line-height:1.65; }
+  .vm-script i{ color:var(--dim); font-style:normal; font-size:.8rem; display:block; margin-bottom:.35rem; letter-spacing:.12em; text-transform:uppercase; font-family:var(--disp); }
+  .vault-gate{ position:absolute; inset:0; z-index:2; display:flex; align-items:center; justify-content:center; padding:1.5rem; transition:opacity .45s ease; }
+  .vault-gate.gone{ opacity:0; pointer-events:none; }
+  .vg-card{ background:rgba(13,16,22,.92); border:1px solid var(--line); padding:2.4rem 2.2rem; max-width:480px; width:100%; text-align:center; box-shadow:0 30px 80px -20px rgba(0,0,0,.7); backdrop-filter:blur(4px); }
+  .vg-card svg{ color:var(--blue); }
+  .vg-card h3{ font-family:var(--disp); color:var(--ink); font-size:1.4rem; font-weight:600; margin-top:.9rem; }
+  .vg-card p{ font-size:.95rem; margin-top:.7rem; }
+  .vg-form{ display:flex; gap:.6rem; margin-top:1.4rem; flex-wrap:wrap; }
+  .vg-form input{ flex:1 1 200px; min-width:0; background:var(--bg); border:1px solid var(--line); color:var(--ink); font-family:var(--txt); font-size:.95rem; padding:.85rem 1rem; }
+  .vg-form input:focus{ outline:2px solid var(--blue); outline-offset:1px; border-color:var(--blue); }
+  .vg-micro{ color:var(--dim); font-size:.78rem; margin-top:1rem; }
+  .vault-success{ display:none; margin-top:1.1rem; color:var(--ice-2); font-size:.9rem; }
+  .vault-success.show{ display:block; }
+  @media(max-width:680px){
+    .vmod summary{ flex-wrap:wrap; gap:.5rem .9rem; }
+    .vm-d{ margin-left:0; flex-basis:100%; justify-content:space-between; }
+    .vg-card{ padding:1.8rem 1.4rem; }
+  }
+  html.reduced .vault-grid, html.reduced .vault-gate{ transition:none; }
+
+  /* ============ HERO 3D MARK — beside the $20,000 headline ============ */
+  .hero-logo{
+    position:absolute; z-index:4; right:1vw; top:50%;
+    transform:translateY(-52%);
+    width:min(400px, 30vw); aspect-ratio:1/1;
+    pointer-events:none;   /* never blocks hero CTAs */
+  }
+  .hero-logo img{ width:100%; height:100%; object-fit:contain; filter:drop-shadow(0 20px 60px rgba(30,127,255,.3)); }
+  @media (max-width:1023px){ .hero-logo{ display:none; } }
+</style>
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+<div class="cursor" aria-hidden="true"></div>
+
+<!-- ============ 0. HEADER ============ -->
+<header class="site-header">
+  <div class="header-in">
+    <a class="brand" href="#top" aria-label="IronPeak Lighting Systems — back to top">
+      <img src="{{ 'ip-hq-logo.svg' | asset_url }}" alt="" width="38" height="35">
+      <span class="brand-text">
+        <span class="brand-name"><span class="iron">IRON</span><span class="peak">PEAK</span></span>
+        <span class="brand-sub">Lighting Systems</span>
+      </span>
+    </a>
+    <nav aria-label="Primary">
+      <ul class="nav-links">
+        <li><a href="#proof">Proof</a></li>
+        <li><a href="#math">The Math</a></li>
+        <li><a href="#program">Program</a></li>
+        <li><a href="#vault">Vault</a></li>
+        <li><a href="#kits">Kits</a></li>
+        <li class="nav-cta"><a class="btn btn-primary btn-sm" href="https://ironpeaklighting.com/pages/dealer-program">Apply <span class="arr">→</span></a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+<!-- ============ 1. HERO ============ -->
+<section class="hero" id="top" aria-label="Intro">
+  <div class="hero-fallback" aria-hidden="true"></div>
+  <canvas id="heroCanvas" aria-hidden="true"></canvas>
+  <div class="hero-vignette" aria-hidden="true"></div>
+
+  <div class="hero-content">
+    <div class="hero-logo" id="heroLogo3d" role="img" aria-label="The IronPeak mark">
+      <img src="{{ 'ip-hq-logo.svg' | asset_url }}" alt="" loading="eager" decoding="async">
+    </div>
+    <p class="hero-label"><span class="pk">▲</span> Dealer Program — Permanent Roofline Lighting <span class="pk">▲</span></p>
+    <h1 class="hero-h1" id="heroH1">
+      <span class="h1-line">Permanent lighting</span>
+      <span class="h1-line">without the</span>
+      <span class="h1-line"><span class="gate-x" id="gateX">$20,000</span> gate.</span>
+    </h1>
+    <p class="hero-sub">Every other brand charges $20K+ to get in, then sells you the training on top. We charge nothing, train you free, and let the margins do the talking.</p>
+    <div class="hero-ctas">
+      <a class="btn btn-primary mag" href="https://ironpeaklighting.com/pages/profit-calculator">Run the profit calculator <span class="arr">→</span></a>
+      <a class="btn btn-ghost mag" href="https://ironpeaklighting.com/pages/dealer-program">Apply to become a dealer <span class="arr">→</span></a>
+    </div>
+    <p class="hero-meta">
+      <span><b>$0</b> buy-in</span>
+      <span><b>Free</b> training</span>
+      <span><b>$30+/ft</b> installed</span>
+      <span><b>No</b> lock-in</span>
+    </p>
+  </div>
+
+  <p class="hero-scroll" aria-hidden="true">Scroll</p>
+</section>
+
+<!-- ============ TICKER ============ -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-track">
+    <div class="ticker-group">
+      <span class="ti">Christmas-light installers</span><span class="tsep">▲</span>
+      <span class="ti">Security &amp; low-voltage</span><span class="tsep">▲</span>
+      <span class="ti">Window cleaning &amp; exterior</span><span class="tsep">▲</span>
+      <span class="ti">Landscape lighting</span><span class="tsep">▲</span>
+      <span class="ti hot">$0 buy-in</span><span class="tsep">▲</span>
+      <span class="ti hot">Free training</span><span class="tsep">▲</span>
+      <span class="ti">No lock-in</span><span class="tsep">▲</span>
+      <span class="ti hot">TrueCenter Apex — patent pending</span><span class="tsep">▲</span>
+    </div>
+    <div class="ticker-group">
+      <span class="ti">Christmas-light installers</span><span class="tsep">▲</span>
+      <span class="ti">Security &amp; low-voltage</span><span class="tsep">▲</span>
+      <span class="ti">Window cleaning &amp; exterior</span><span class="tsep">▲</span>
+      <span class="ti">Landscape lighting</span><span class="tsep">▲</span>
+      <span class="ti hot">$0 buy-in</span><span class="tsep">▲</span>
+      <span class="ti hot">Free training</span><span class="tsep">▲</span>
+      <span class="ti">No lock-in</span><span class="tsep">▲</span>
+      <span class="ti hot">TrueCenter Apex — patent pending</span><span class="tsep">▲</span>
+    </div>
+  </div>
+</div>
+
+<!-- ============ 2. ROOFLINE IGNITION v2 (pinned scrub) ============ -->
+<section class="ignite" id="proof" aria-label="Roofline ignition">
+  <div class="ignite-stage">
+    <svg class="ignite-svg" id="houseSvg" viewBox="0 0 1000 460" fill="none" role="img" aria-label="A symmetric three-gable house roofline lighting up, with an LED landing dead center on every peak">
+      <defs>
+        <radialGradient id="g-blue">
+          <stop offset="0%"  stop-color="#eaf3ff" stop-opacity="0.95"/>
+          <stop offset="30%" stop-color="#1E7FFF" stop-opacity="0.5"/>
+          <stop offset="100%" stop-color="#1E7FFF" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="g-white">
+          <stop offset="0%"  stop-color="#ffffff" stop-opacity="0.95"/>
+          <stop offset="30%" stop-color="#cfe2ff" stop-opacity="0.5"/>
+          <stop offset="100%" stop-color="#cfe2ff" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="g-silver">
+          <stop offset="0%"  stop-color="#f2f5fa" stop-opacity="0.95"/>
+          <stop offset="30%" stop-color="#c9d4e4" stop-opacity="0.5"/>
+          <stop offset="100%" stop-color="#c9d4e4" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="g-red">
+          <stop offset="0%"  stop-color="#ffe2e6" stop-opacity="0.95"/>
+          <stop offset="30%" stop-color="#ff2d3f" stop-opacity="0.5"/>
+          <stop offset="100%" stop-color="#ff2d3f" stop-opacity="0"/>
+        </radialGradient>
+        <radialGradient id="bloomGrad" cx="50%" cy="50%" r="50%">
+          <stop offset="0%"  stop-color="#1E7FFF" stop-opacity="0.32"/>
+          <stop offset="55%" stop-color="#155BF2" stop-opacity="0.12"/>
+          <stop offset="100%" stop-color="#155BF2" stop-opacity="0"/>
+        </radialGradient>
+      </defs>
+
+      <!-- bloom under the roof -->
+      <ellipse id="bloomGlow" cx="500" cy="265" rx="470" ry="195" fill="url(#bloomGrad)" opacity="0"/>
+
+      <!-- faint structure -->
+      <g stroke="#2a3140" stroke-width="1.5">
+        <line x1="0" y1="420" x2="1000" y2="420" opacity="0.35"/>
+        <line x1="60"  y1="362" x2="60"  y2="418" opacity="0.3"/>
+        <line x1="940" y1="362" x2="940" y2="418" opacity="0.3"/>
+        <line x1="355" y1="302" x2="355" y2="418" opacity="0.16"/>
+        <line x1="645" y1="302" x2="645" y2="418" opacity="0.16"/>
+        <rect x="478" y="352" width="44" height="66" opacity="0.3"/>
+        <rect class="win" x="160" y="348" width="58" height="42" opacity="0.35" fill="#cfe2ff" fill-opacity="0"/>
+        <rect class="win" x="782" y="348" width="58" height="42" opacity="0.35" fill="#cfe2ff" fill-opacity="0"/>
+        <rect class="win" x="384" y="346" width="50" height="44" opacity="0.3"  fill="#cfe2ff" fill-opacity="0"/>
+        <rect class="win" x="566" y="346" width="50" height="44" opacity="0.3"  fill="#cfe2ff" fill-opacity="0"/>
+      </g>
+
+      <!-- the roofline: eave → gable apex → valley → CENTER apex (x=500) → valley → gable apex → eave -->
+      <path id="roofPath" d="M 60 360 L 230 215 L 355 300 L 500 130 L 645 300 L 770 215 L 940 360"
+            stroke="#3a4a6b" stroke-width="2.5" stroke-linejoin="round" stroke-linecap="round"/>
+
+      <!-- LEDs injected by JS (per-segment spacing — every apex gets a bulb) -->
+      <g id="ledLayer"></g>
+
+      <!-- TrueCenter callout -->
+      <g id="apexLabel" opacity="0">
+        <line x1="514" y1="118" x2="610" y2="64" stroke="#1E7FFF" stroke-width="1.5" opacity="0.85"/>
+        <circle cx="514" cy="118" r="2.5" fill="#1E7FFF"/>
+        <text x="620" y="56" class="lab-hot">TrueCenter Apex — dead center.</text>
+        <text x="620" y="78">Every time.</text>
+      </g>
+    </svg>
+
+    <div class="ignite-copy">
+      <h2 class="ignite-h" id="igniteH">Make every roofline look like this.</h2>
+      <p class="ignite-sub">A perfect, symmetrical peak in under 5 minutes — <b>and 16 million colors once it's up.</b> One system, every holiday.</p>
+      <div class="mode-row" role="group" aria-label="LED color modes" id="modeRow">
+        <button class="chip" type="button" data-mode="white" aria-pressed="false">Arctic White</button>
+        <button class="chip" type="button" data-mode="blue" aria-pressed="false">IronPeak Blue</button>
+        <button class="chip" type="button" data-mode="chase" aria-pressed="false">Chase</button>
+        <button class="chip" type="button" data-mode="gameday" aria-pressed="false">Game Day</button>
+      </div>
+      <p class="mode-cap">RGBW — <b>16M colors and a true white.</b> One system, every holiday.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 3. THE PRODUCT, DOING THE WORK ============ -->
+<section class="work sec-pad" id="work" aria-label="The product">
+  <div class="wrap">
+    <p class="sec-label"><span class="lab-n">01</span> The Product</p>
+    <h2 class="h2">The product, <span class="accent">doing the work.</span></h2>
+
+    <div class="work-grid">
+      <div class="video-frame" data-reveal>
+        <p class="vf-tag">Field footage</p>
+        <video src="{{ 'ip-hq-hero-video.mp4' | asset_url }}" muted autoplay loop playsinline preload="metadata" aria-label="IronPeak permanent roofline lighting in action"></video>
+        <p class="vf-status"><i></i> Live loop</p>
+      </div>
+      <aside class="work-aside" data-reveal>
+        <h3>TrueCenter <span class="accent">Apex Track</span></h3>
+        <p>Pre-made, pitch-matched peak components. A perfect symmetrical peak goes up in <b style="color:var(--steel-1)">under 5 minutes</b> — not 25 of cutting and guessing on a ladder.</p>
+        <ul class="spec-list">
+          <li><span class="k">Peak install</span><span class="v"><em>&lt;5</em> min</span></li>
+          <li><span class="k">Splicing</span><span class="v">None</span></li>
+          <li><span class="k">Fit</span><span class="v">Pitch-matched</span></li>
+          <li><span class="k">Connection</span><span class="v">Plug-and-play</span></li>
+        </ul>
+      </aside>
+    </div>
+
+    <div class="work-photos">
+      <figure class="ph ph-day" data-reveal>
+        <div class="plx"><img src="{{ 'ip-hq-install-2.jpg' | asset_url }}" alt="Daytime gable peak with track installed — virtually invisible from the street" loading="lazy"></div>
+        <figcaption class="ph-cap"><b>Day</b> — invisible from the curb</figcaption>
+      </figure>
+      <figure class="ph ph-night" data-reveal>
+        <div class="plx"><img src="{{ 'ip-hq-house-lit.jpg' | asset_url }}" alt="A home at night with red, white and blue RGBW roofline lighting on every gable" loading="lazy"></div>
+        <figcaption class="ph-cap"><b>Game Day mode</b> — 16M colors on tap</figcaption>
+      </figure>
+      <figure class="ph ph-install" data-reveal>
+        <div class="plx"><img src="{{ 'ip-hq-install-1.jpg' | asset_url }}" alt="Looking up a ladder at a gable glowing electric blue, mid-install" loading="lazy"></div>
+        <figcaption class="ph-cap"><b>Tuesday, 9:14 PM</b> — peak goes up</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 4. SPOTLIGHT REVEAL ============ -->
+<section class="spot-section" id="spotSection" aria-label="Night reveal">
+  <div class="spot-stage" id="spotStage">
+    <div class="spot-dark" aria-hidden="true"><img src="{{ 'ip-hq-hero-roofline.jpg' | asset_url }}" alt=""></div>
+    <div class="spot-mask" id="spotMask">
+      <img id="spotImg" src="{{ 'ip-hq-hero-roofline.jpg' | asset_url }}" alt="A large home at dusk, every roofline traced in blue-white permanent LED lighting">
+    </div>
+    <div class="spot-glow" id="spotGlow" aria-hidden="true"></div>
+    <div class="spot-bloom" id="spotBloom" aria-hidden="true"><img src="{{ 'ip-hq-hero-roofline.jpg' | asset_url }}" alt=""></div>
+    <div class="spot-copy" id="spotCopy">
+      <h3>This is what the <span class="accent">street sees.</span></h3>
+      <p>Every install lights up your next three leads — it sells the whole street.</p>
+    </div>
+    <p class="spot-hint" id="spotHint">Sweep the light · scroll to switch it on</p>
+  </div>
+</section>
+
+<!-- ============ 5. THE TRUECENTER APEX ============ -->
+<section class="apex sec-pad" id="apex3d" aria-label="The TrueCenter Apex">
+  <div class="wrap">
+    <p class="sec-label"><span class="lab-n">02</span> The Apex</p>
+    <h2 class="h2">The TrueCenter Apex. <span class="accent">Patent pending.</span></h2>
+    <p class="lead apex-lead">The piece that ends 25 minutes of cutting and guessing on a ladder. <b>Look at it. That's the whole trick — there isn't one.</b></p>
+  </div>
+
+  <div class="apex-stage-wrap" data-reveal>
+    <div id="apex-stage" role="img" aria-label="The TrueCenter Apex Track — pre-built, pitch-matched peak piece"></div>
+    <ul class="apex-annos" aria-label="TrueCenter Apex Track highlights">
+      <li class="anno anno-1">Pitch-matched 4/12–12/12</li>
+      <li class="anno anno-2">LED puck seats dead center</li>
+      <li class="anno anno-3">Plug-and-play — no splicing</li>
+      <li class="anno anno-4">Hidden by day</li>
+      <li class="anno anno-5">$60 — or in every kit</li>
+    </ul>
+  </div>
+
+  <div class="wrap">
+    <div class="apex-buy" data-reveal>
+      <a class="buy-opt" href="https://ironpeaklighting.com/products/truecenter-apex-track-single"><span class="bo-k">Single</span><span class="bo-v"><em>$60</em></span></a>
+      <a class="buy-opt" href="https://ironpeaklighting.com/products/truecenter-apex-track-2-pack"><span class="bo-k">2-Pack</span><span class="bo-v"><em>$120</em></span></a>
+      <a class="buy-opt" href="https://ironpeaklighting.com/products/truecenter-apex-track-3-pack"><span class="bo-k">3-Pack</span><span class="bo-v"><em>$180</em></span></a>
+      <p class="micro">Pitch-matched 4/12 · 6/12 · 9/12 · 12/12. Already included in every kit.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 6. THE MATH ============ -->
+<section class="math sec-pad" id="math" aria-label="The math">
+  <div class="wrap">
+    <p class="sec-label"><span class="lab-n">03</span> The Math</p>
+    <div class="math-head">
+      <h2 class="h2">How much can permanent lighting <span class="accent">actually make you?</span></h2>
+      <div class="math-note" data-reveal>
+        <p>Numbers on the left are one real job at list pricing. The worksheet on the right is yours — drag it.</p>
+      </div>
+    </div>
+
+    <div class="math-grid">
+      <div class="ledger" aria-label="Per-job economics at list pricing">
+        <div class="lrow" data-reveal>
+          <span class="lk">The job — 150 ft × $30/ft</span>
+          <span class="lv counter" data-target="4500" data-prefix="$">$4,500</span>
+          <span class="ls">gross, one typical American home</span>
+        </div>
+        <div class="lrow is-neg" data-reveal>
+          <span class="lk">Materials — 150 ft kit at list</span>
+          <span class="lv counter" data-target="1762" data-prefix="−$">−$1,762</span>
+          <span class="ls">tier pricing only drops it from here</span>
+        </div>
+        <div class="lrow is-hero" data-reveal>
+          <span class="lk">Profit per job</span>
+          <span class="lv counter" data-target="2737" data-prefix="$">$2,737</span>
+          <span class="ls">one crew, one day on the wall</span>
+        </div>
+        <div class="lrow" data-reveal>
+          <span class="lk">Margin</span>
+          <span class="lv counter" data-target="61" data-suffix="%">61%</span>
+          <span class="ls">before you've climbed a single tier</span>
+        </div>
+        <p class="season-line" data-reveal>40 installs in a season = <span class="big counter" data-target="109" data-prefix="$" data-suffix="K+">$109K+</span> from work your crew already knows how to do.</p>
+      </div>
+
+      <div class="ws-col">
+        <div class="ws-panel" data-reveal>
+          <div class="ws-row">
+            <span class="lbl">[A] Roofline length</span><span class="dots"></span>
+            <span class="val" id="wsFt">150 FT</span>
+          </div>
+          <div class="ws-slider">
+            <input type="range" id="ftRange" min="80" max="400" step="10" value="150" aria-label="Roofline length in feet">
+            <div class="minmax"><span>80 FT</span><span>400 FT</span></div>
+          </div>
+          <div class="ws-row">
+            <span class="lbl">[B] Your rate, installed</span><span class="dots"></span>
+            <span class="stepper">
+              <button type="button" id="rateDown" aria-label="Decrease rate per foot">−</button>
+              <span class="stp-v" id="wsRate">$30</span>
+              <button type="button" id="rateUp" aria-label="Increase rate per foot">+</button>
+            </span>
+          </div>
+          <div class="ws-row">
+            <span class="lbl">[C] Gross per job <b>= A × B</b></span><span class="dots"></span>
+            <span class="val" id="wsGross">$4,500</span>
+          </div>
+          <div class="ws-row">
+            <span class="lbl">[D] Materials at list</span><span class="dots"></span>
+            <span class="val" id="wsMat">−$1,763<span class="ws-combo" id="wsCombo">150 ft kit</span></span>
+          </div>
+          <div class="ws-row is-total">
+            <span class="lbl"><b>[E] Profit per job</b></span><span class="dots"></span>
+            <span class="val" id="wsProfit">$2,737</span>
+          </div>
+          <div class="ws-row">
+            <span class="lbl">[F] Margin</span><span class="dots"></span>
+            <span class="val" id="wsMargin">61%</span>
+          </div>
+          <div class="ws-row is-total">
+            <span class="lbl"><b>[G] × 52 — one install a week</b></span><span class="dots"></span>
+            <span class="val" id="wsAnnual">$142,350</span>
+          </div>
+          <p class="ws-fine">Worksheet runs Tier-1 list pricing. Dealer tiers drop it from there.</p>
+        </div>
+        <div class="ws-cta" data-reveal>
+          <a class="btn btn-primary mag" href="https://ironpeaklighting.com/pages/profit-calculator">Run the full calculator <span class="arr">→</span></a>
+          <p class="micro" style="font-size:.82rem; color:var(--dim);">Your footage. Your rate. Your numbers — not ours.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7. THE PROGRAM ============ -->
+<section class="program" id="program" aria-label="Dealer program">
+  <div class="zero-stage" id="zeroStage">
+    <p class="zero-label">What this industry charges to let you in</p>
+    <p class="zero-old" id="zeroOld"><span class="strike-wrap"><span class="gate-strike" id="gateStrike" aria-hidden="true"></span>$20,000 dealer buy-in</span><br><span class="strike-wrap"><span class="gate-strike gate-strike-2" id="gateStrike2" aria-hidden="true"></span>+ $700–$1,000 for training</span></p>
+    <p class="zero-num" id="zeroNum">$0</p>
+    <p class="zero-sub" id="zeroSub"><b>Zero buy-in. Free training. No territory restrictions.</b> We have to keep earning you — every single year.</p>
+  </div>
+
+  <div class="wrap tiers-wrap">
+    <p class="sec-label"><span class="lab-n">04</span> The Program</p>
+    <h2 class="h2">A business you can run — not just a box of parts.</h2>
+    <p class="program-sub">Buy more, earn more — starting at $0.</p>
+
+    <div class="tiers">
+      <div class="tier tier-0" data-reveal>
+        <span class="tier-price">$0 in</span>
+        <p class="tier-tag">Tier 01</p>
+        <h3>Base Camp Dealer</h3>
+        <p>Sign up + your first order. Badge, directory listing, free training — day one. You buy at list: your discounts start when your volume does.</p>
+        <div class="tier-bars" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i></div>
+      </div>
+      <div class="tier tier-1" data-reveal>
+        <span class="tier-price">5% off</span>
+        <p class="tier-tag">Tier 02</p>
+        <h3>Authorized Dealer</h3>
+        <p>$5,000 in purchases over your rolling 12 months — about three jobs. Your first earned discount: 5% off everything, automatically.</p>
+        <div class="tier-bars" aria-hidden="true"><i class="on"></i><i class="on"></i><i></i><i></i></div>
+      </div>
+      <div class="tier tier-2" data-reveal>
+        <span class="tier-price">10% off</span>
+        <p class="tier-tag">Tier 03</p>
+        <h3>Certified Pro</h3>
+        <p>$10,000 over your rolling 12 months, plus the free certification. Priority directory placement, phone &amp; text support, early access to new products.</p>
+        <div class="tier-bars" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div>
+      </div>
+      <div class="tier tier-3" data-reveal>
+        <span class="tier-price">15% off</span>
+        <p class="tier-tag">Tier 04</p>
+        <h3>Summit Partner</h3>
+        <p>$35,000 over your rolling 12 months, certification included on the way. Featured placement, a dedicated contact, first access to new gear — and an annual planning call.</p>
+        <div class="tier-bars" aria-hidden="true"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></div>
+      </div>
+    </div>
+
+    <div class="tiers-foot" data-reveal>
+      <a class="btn btn-primary mag" href="https://ironpeaklighting.com/pages/dealer-program">Apply to become a dealer <span class="arr">→</span></a>
+      <p class="micro">Every discount is earned — that's why the badge means something. Rolling 12-month window, no January reset. Climbs are instant; dips get a 90-day grace window. No codes, no territory restrictions.</p>
+    </div>
+
+    <div class="founder-note" data-reveal>
+      <img src="{{ 'ip-hq-founder.png' | asset_url }}" alt="Portrait of the IronPeak founder" loading="lazy">
+      <blockquote>
+        The install knowledge other companies paywall for $700–$1,000, <b>we give away.</b>
+        <cite>— Founder, IronPeak</cite>
+      </blockquote>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 7B. THE VAULT — email-gated sales modules ============ -->
+<section class="vault sec-pad" id="vault" aria-label="Dealer sales vault">
+  <div class="wrap">
+    <p class="sec-label"><span class="lab-n">05</span> The Vault</p>
+    <h2 class="h2">The sales playbook other brands <span class="accent">charge for.</span></h2>
+    <p class="vault-sub">Five modules — the pitch, the pricing, the objections, the badge, the templates. Same deal as the training: free. The only price is an email, and it unlocks once on this device.</p>
+
+    <div class="vault-stage">
+      <div class="vault-grid locked" id="vaultGrid" inert aria-hidden="true">
+
+        <details class="vmod" name="vault">
+          <summary><span class="vm-n">M1</span><span class="vm-t">The 10-Minute Homeowner Pitch</span><span class="vm-d">Talk track, curb to close</span></summary>
+          <div class="vm-body">
+            <ol>
+              <li><b>Start at the curb, not the catalog.</b> Walk the roofline with them from the street — that's where the product lives. Point at their peaks: "That's what lights up."</li>
+              <li><b>Sell the last time, not the lights.</b> "You'll never hang, untangle, or take down another strand. This goes up once — then it's an app." That one sentence closes more jobs than any spec.</li>
+              <li><b>Show the year, not December.</b> Game day colors, Halloween, Fourth of July, a warm white for every other night. One product, twelve months of reasons to own it.</li>
+              <li><b>Handle the daytime question before they ask.</b> Show the daytime photo: color-matched track, tight to the fascia, invisible from the curb.</li>
+              <li><b>Close on the visit.</b> Measure the roofline while you're there, quote from your rate per foot, and leave the number with them. A same-visit quote beats a follow-up email every time.</li>
+            </ol>
+            <p class="vm-script"><i>The one-liner</i>"You're not buying lights — you're buying the last time anyone gets on that roof to hang them."</p>
+          </div>
+        </details>
+
+        <details class="vmod" name="vault">
+          <summary><span class="vm-n">M2</span><span class="vm-t">Pricing &amp; Bid Playbook</span><span class="vm-d">Your rate, your margin, the tier math</span></summary>
+          <div class="vm-body">
+            <ul>
+              <li><b>Anchor at $30+ per foot installed.</b> That's the going rate for permanent roofline work. Quote by the foot — homeowners understand it and it scales cleanly with the house.</li>
+              <li><b>The bread-and-butter job:</b> 150 ft at $30/ft is $4,500 gross. The 150 ft kit runs $1,763 at list — before labor, that's about $2,737 staying with you. <a class="ulink" href="#math">Run your own numbers in the worksheet above.</a></li>
+              <li><b>Every tier is margin on the same quote.</b> A 200 ft kit lists at $2,399 — that's your Base Camp price. As an Authorized Dealer you pay $2,279.05, as a Certified Pro $2,159.10, as a Summit Partner $2,039.15. Your quote to the homeowner didn't change — the difference is yours.</li>
+              <li><b>Don't bid against string lights.</b> Different product, different math. If the homeowner is comparing you to seasonal installs, quote the five-year cost of re-hanging every winter next to one permanent install.</li>
+              <li><b>Quote the whole roofline.</b> Add-on segments (25 ft / 50 ft, no extra power supply) let you say yes to the garage wing or the detached shop without re-engineering the job.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="vmod" name="vault">
+          <summary><span class="vm-n">M3</span><span class="vm-t">Objection Handling</span><span class="vm-d">The five you'll actually hear</span></summary>
+          <div class="vm-body">
+            <ul>
+              <li><b>"That's a lot more than Christmas lights."</b> — "It's the last lighting bill for this roofline. Seasonal installs charge you every single year, and you still own nothing in January."</li>
+              <li><b>"I could do a strip kit from the big-box store myself."</b> — "The peak is the tell. Ours is a pre-built, pitch-matched piece with the LED landing dead-center — that's the difference you see from the driveway."</li>
+              <li><b>"What does it look like in the daytime?"</b> — Don't describe it, show it: the daytime photo. Powder-coated, color-matched track in four colors, tight to the fascia.</li>
+              <li><b>"My HOA is strict."</b> — "The track matches your trim and the lights are off until you turn them on. Bring the daytime photo to the board — that's usually the whole conversation." Never promise approval; offer the photo.</li>
+              <li><b>"Let me think about it."</b> — "Take your time — the quote holds for 30 days. While you decide, look me up in the IronPeak dealer directory." The badge and directory do the trust work so you don't have to chase.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="vmod" name="vault">
+          <summary><span class="vm-n">M4</span><span class="vm-t">The Badge Playbook</span><span class="vm-d">Where it goes, how it works for you</span></summary>
+          <div class="vm-body">
+            <p>The badge sells when you're not in the room. Homeowners are handing a stranger their roofline — the badge plus the dealer directory is how they check you out and relax.</p>
+            <ul>
+              <li><b>Put it everywhere you're allowed:</b> your website, vehicle wrap, yard signs, uniforms, printed quotes, social profiles, local ads — for your current tier.</li>
+              <li><b>Use the artwork as supplied.</b> Scale it, don't restyle it — no recoloring, stretching, cropping, or effects. When IronPeak issues updated files, swap within 60 days.</li>
+              <li><b>Keep it truthful.</b> The badge never implies you work for IronPeak, hold an exclusive area, or hold a tier you don't currently have.</li>
+              <li><b>Tier changes:</b> upgrade and the new badge is yours immediately. If a tier lapses, retire that badge within 30 days — yard signs and brochures already in the field are fine until naturally replaced.</li>
+            </ul>
+          </div>
+        </details>
+
+        <details class="vmod" name="vault">
+          <summary><span class="vm-n">M5</span><span class="vm-t">Quote &amp; Follow-Up Templates</span><span class="vm-d">Copy, paste, close</span></summary>
+          <div class="vm-body">
+            <p><b>The quote skeleton</b> — one page, five lines: measured roofline footage · kit + add-on segments · peak count · install labor · total. Footer: your badge, "IronPeak Authorized Dealer," and the dealer directory link so they can verify you.</p>
+            <p class="vm-script"><i>Next-day text</i>"Hi [name] — [your name] from yesterday. Sent the quote for the [ft] ft roofline install to your email. Happy to walk through it — and if you want to see the colors live, I can pull up a house on the app in 2 minutes."</p>
+            <p class="vm-script"><i>Day-3 email</i>"Subject: Your roofline quote — good for 30 days. [Name], quote's attached. Two things worth knowing: it goes up once and you own it, and you can check me out in the IronPeak dealer directory here: [link]. When's a good time for a 10-minute call?"</p>
+            <p class="vm-script"><i>Seasonal re-approach</i>"Getting the fall calendar together — install slots before the holidays are filling. Your quote from [month] still stands. Want one?"</p>
+          </div>
+        </details>
+
+      </div>
+
+      <div class="vault-gate" id="vaultGate">
+        <div class="vg-card">
+          <svg width="34" height="34" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4.5" y="10" width="15" height="10.5" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M8 10V7.5a4 4 0 0 1 8 0V10" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="15.2" r="1.6" fill="currentColor"/></svg>
+          <h3 id="vaultGateH">Unlock the vault</h3>
+          <p>Other brands sell this playbook as a "dealer package." We ask for an email. That's the whole gate — it opens once and stays open on this device.</p>
+          <form class="vg-form" id="vaultForm">
+            <input type="email" id="vaultEmail" name="email" autocomplete="email" required placeholder="you@yourcompany.com" aria-label="Email address">
+            <button class="btn btn-primary" type="submit">Unlock <span class="arr">→</span></button>
+          </form>
+          <p class="vg-micro">Dealer resources and program updates only. No spam, unsubscribe anytime.</p>
+        </div>
+      </div>
+
+      <p class="vault-success" id="vaultSuccess" role="status">Vault unlocked — it stays open on this device.</p>
+    </div>
+
+    <div class="tiers-foot">
+      <a class="btn btn-ghost mag" href="/pages/sales-vault">Open the full sales vault <span class="arr">→</span></a>
+      <p class="micro">These five are the greatest hits — the full vault is a click-around library: buyer types, phone scripts, closing frameworks, and the do-nots.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 8. TRADES ============ -->
+<section class="trades sec-pad" id="trades" aria-label="Trades fit">
+  <div class="wrap">
+    <p class="sec-label"><span class="lab-n">06</span> Your Trade</p>
+    <h2 class="h2">Already in the trades? <span class="accent">You're closer than you think.</span></h2>
+
+    <div class="trades-grid">
+      <article class="trade trade-1" data-reveal>
+        <span class="trade-n" aria-hidden="true">01</span>
+        <h3>Christmas-light installers</h3>
+        <p>You already own the ladders, the crew, and the customer list. Turn a <b>6-week season</b> into <b>year-round recurring revenue</b>.</p>
+      </article>
+      <article class="trade trade-2" data-reveal>
+        <span class="trade-n" aria-hidden="true">02</span>
+        <h3>Security &amp; low-voltage</h3>
+        <p>Same fascia, same drills, same low-voltage runs you do every day — sold at <b>$30+/ft installed</b>.</p>
+      </article>
+      <article class="trade trade-3" data-reveal>
+        <span class="trade-n" aria-hidden="true">03</span>
+        <h3>Window cleaning &amp; exterior</h3>
+        <p>Your customers already trust you on their roofline. <b>One permanent install can out-earn a month of routes.</b></p>
+      </article>
+      <article class="trade trade-4" data-reveal>
+        <span class="trade-n" aria-hidden="true">04</span>
+        <h3>Landscape lighting</h3>
+        <p>You already sell the nightscape. Add the roofline and <b>quote the whole house in one visit</b>.</p>
+      </article>
+    </div>
+
+    <div class="trades-foot" data-reveal>
+      <a class="btn btn-primary mag" href="https://ironpeaklighting.com/pages/dealer-program">Apply to become a dealer <span class="arr">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 9. KITS ============ -->
+<section class="kits sec-pad" id="kits" aria-label="Kits">
+  <div class="wrap">
+    <p class="sec-label"><span class="lab-n">07</span> The Kits</p>
+    <div class="kits-head">
+      <h2 class="h2">Browse kits by roofline length.</h2>
+      <p class="kits-note">Not sure how much you need? <a class="ulink" href="https://ironpeaklighting.com/pages/profit-calculator">The calculator sizes it for you.</a> Otherwise — pick your footage and go.</p>
+    </div>
+
+    <div class="kit-row">
+      <a class="kit" href="https://ironpeaklighting.com/products/residential-starter-kit-100ft" data-reveal>
+        <div class="kit-img"><img src="{{ 'ip-hq-kit-100.jpg' | asset_url }}" alt="100 ft Roofline Kit — white controller box, black track and LED pucks on a dark studio background" loading="lazy"></div>
+        <div class="kit-body">
+          <p class="kit-ft">100<small> FT</small></p>
+          <p class="kit-name">Roofline Kit</p>
+          <p class="kit-price">$1,299</p>
+          <p>Your first IronPeak job starts here.</p>
+          <p class="kit-variants">Pitch-matched 4/12–12/12 · 4 colors</p>
+          <span class="kit-go">Shop kit <span class="arr">→</span></span>
+        </div>
+      </a>
+      <a class="kit" href="https://ironpeaklighting.com/products/residential-starter-kit-150ft" data-reveal>
+        <div class="kit-img"><img src="{{ 'ip-hq-kit-150.jpg' | asset_url }}" alt="150 ft Roofline Kit — controller, track runs and LED pucks laid out on a dark studio background" loading="lazy"></div>
+        <div class="kit-body">
+          <p class="kit-ft">150<small> FT</small></p>
+          <p class="kit-name">Roofline Kit</p>
+          <p class="kit-price">$1,762.50</p>
+          <p>The size you'll install most — covers a typical American home end-to-end.</p>
+          <p class="kit-variants">Pitch-matched 4/12–12/12 · 4 colors</p>
+          <span class="kit-go">Shop kit <span class="arr">→</span></span>
+        </div>
+      </a>
+      <a class="kit" href="https://ironpeaklighting.com/products/large-home-kit-200ft" data-reveal>
+        <div class="kit-img"><img src="{{ 'ip-hq-kit-200.jpg' | asset_url }}" alt="200 ft Roofline Kit — controller, track and two pre-built Apex peaks on a dark studio background" loading="lazy"></div>
+        <div class="kit-body">
+          <p class="kit-ft">200<small> FT</small></p>
+          <p class="kit-name">Roofline Kit</p>
+          <p class="kit-price">$2,399</p>
+          <p>Two pre-built Apex peaks. Multi-gable and two-story jobs.</p>
+          <p class="kit-variants">Pitch-matched 4/12–12/12 · 4 colors</p>
+          <span class="kit-go">Shop kit <span class="arr">→</span></span>
+        </div>
+      </a>
+      <a class="kit" href="https://ironpeaklighting.com/products/full-perimeter-kit-300ft" data-reveal>
+        <div class="kit-img"><img src="{{ 'ip-hq-kit-300.jpg' | asset_url }}" alt="300 ft Full-Perimeter Kit — controller, track runs and three pre-built Apex peaks on a dark studio background" loading="lazy"></div>
+        <div class="kit-body">
+          <p class="kit-ft">300<small> FT</small></p>
+          <p class="kit-name">Full-Perimeter Kit</p>
+          <p class="kit-price">$3,499</p>
+          <p>Three Apex peaks. Your highest-ticket install.</p>
+          <p class="kit-variants">Pitch-matched 4/12–12/12 · 4 colors</p>
+          <span class="kit-go">Shop kit <span class="arr">→</span></span>
+        </div>
+      </a>
+    </div>
+
+    <div class="addons" data-reveal>
+      <p><b>Job runs long?</b> 25 ft and 50 ft add-ons extend the run off the power supply you already installed — no second kit. Need more peaks? TrueCenter Apex packs: single, 2-pack, or 3-pack.</p>
+      <div class="addon-links">
+        <a class="addon-pill" href="https://ironpeaklighting.com/products/25ft-add-on-kit-no-psu">25 ft add-on <em>+$299</em></a>
+        <a class="addon-pill" href="https://ironpeaklighting.com/products/50ft-add-on-kit-no-psu">50 ft add-on <em>+$499</em></a>
+        <a class="addon-pill" href="https://ironpeaklighting.com/products/truecenter-apex-track-single">Apex packs <em>from $60</em></a>
+      </div>
+    </div>
+
+    <div class="kits-foot" data-reveal>
+      <a class="btn btn-ghost mag" href="https://ironpeaklighting.com/collections/all">See all products <span class="arr">→</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ 10. FINALE ============ -->
+<section class="final" id="apply" aria-label="Apply">
+  <div class="sec-pad wrap">
+    <h2 class="final-h" id="finalH">The gate <span class="dim">is gone.</span></h2>
+    <p class="final-sub lead">What's left is the work — and the margin. Run your numbers, then put your name in. It costs exactly nothing to find out.</p>
+    <div class="final-ctas">
+      <a class="btn btn-primary mag" href="https://ironpeaklighting.com/pages/dealer-program">Apply to become a dealer <span class="arr">→</span></a>
+      <a class="btn btn-ghost mag" href="https://ironpeaklighting.com/pages/profit-calculator">Run the profit calculator <span class="arr">→</span></a>
+    </div>
+    <div class="final-brand">
+      <img src="{{ 'ip-hq-logo.svg' | asset_url }}" alt="" id="finalMark" width="86" height="79" aria-hidden="true">
+      <p class="final-line">An hour after sunset, your work is the best ad on the street.</p>
+    </div>
+    <p class="final-micro"><b>$0</b> buy-in &nbsp;▲&nbsp; <b>Free</b> training &nbsp;▲&nbsp; <b>No</b> lock-in</p>
+  </div>
+</section>
+
+</main>
+
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="footer-in">
+    <a class="brand" href="#top" aria-label="IronPeak Lighting Systems — back to top">
+      <img src="{{ 'ip-hq-logo.svg' | asset_url }}" alt="" width="38" height="35">
+      <span class="brand-text">
+        <span class="brand-name"><span class="iron">IRON</span><span class="peak">PEAK</span></span>
+        <span class="brand-sub">Lighting Systems</span>
+      </span>
+    </a>
+    <nav class="footer-nav" aria-label="Footer">
+      <ul class="fcol">
+        <li class="fcol-t">Dealers</li>
+        <li><a href="https://ironpeaklighting.com/pages/profit-calculator">Profit calculator</a></li>
+        <li><a href="https://ironpeaklighting.com/pages/dealer-program">Dealer program</a></li>
+        <li><a href="/pages/sales-vault">Sales vault</a></li>
+        <li><a href="/pages/free-training">Free training</a></li>
+      </ul>
+      <ul class="fcol">
+        <li class="fcol-t">Shop</li>
+        <li><a href="https://ironpeaklighting.com/collections/all">All kits</a></li>
+        <li><a href="https://ironpeaklighting.com/products/truecenter-apex-track-single">TrueCenter Apex Track</a></li>
+      </ul>
+    </nav>
+    <div class="socials">
+      <a href="https://www.instagram.com/ironpeaklighting" aria-label="IronPeak on Instagram">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.8"/><circle cx="17.2" cy="6.8" r="1.3" fill="currentColor"/></svg>
+      </a>
+      <a href="https://www.facebook.com/ironpeaklighting" aria-label="IronPeak on Facebook">
+        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M14 8h2.5V5H14c-2.2 0-4 1.8-4 4v2H7.5v3H10v7h3v-7h2.5l.5-3H13V9c0-.6.4-1 1-1z" fill="currentColor"/></svg>
+      </a>
+      <a href="https://www.youtube.com/@ironpeaklighting" aria-label="IronPeak on YouTube">
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="2.5" y="6" width="19" height="13" rx="3.5" stroke="currentColor" stroke-width="1.8"/><path d="M10.5 9.8v5.4l4.6-2.7-4.6-2.7z" fill="currentColor"/></svg>
+      </a>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 IronPeak Lighting Systems. Built by installers, priced for installers.</span>
+    <span>Flagship — v1</span>
+  </div>
+</footer>
+
+<!-- ============ LIBRARIES ============ -->
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/DrawSVGPlugin.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/lenis@1.1.14/dist/lenis.min.js"></script>
+
+<!-- ============ MAIN MOTION LAYER ============ -->
+<script>
+(function () {
+  'use strict';
+
+  var reduced     = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var touch       = window.matchMedia('(hover: none), (pointer: coarse)').matches;
+  var finePointer = window.matchMedia('(pointer: fine)').matches;
+  var isMobile    = window.matchMedia('(max-width: 768px)').matches;
+  var $  = function (s, c) { return (c || document).querySelector(s); };
+  var $$ = function (s, c) { return Array.prototype.slice.call((c || document).querySelectorAll(s)); };
+
+  document.documentElement.classList.toggle('reduced', reduced);
+
+  var hasGsap = (typeof gsap !== 'undefined') && (typeof ScrollTrigger !== 'undefined');
+  if (hasGsap) {
+    gsap.registerPlugin(ScrollTrigger, SplitText, DrawSVGPlugin);
+    ScrollTrigger.config({ ignoreMobileResize: true });
+  }
+
+  /* ---------------- header state (all modes) ---------------- */
+  var header = $('.site-header');
+  function headState () { if (header) header.classList.toggle('scrolled', window.scrollY > 70); }
+  window.addEventListener('scroll', headState, { passive: true });
+  headState();
+
+  /* ---------------- Lenis smooth scroll (motion mode only) ---------------- */
+  var lenis = null;
+  if (!reduced && hasGsap && typeof Lenis !== 'undefined') {
+    lenis = new Lenis({ duration: 1.1 });
+    window.lenis = lenis; /* QA hook — required */
+    lenis.on('scroll', ScrollTrigger.update);
+    gsap.ticker.add(function (t) { lenis.raf(t * 1000); });
+    gsap.ticker.lagSmoothing(0);
+  }
+
+  /* in-page anchors play nice with Lenis */
+  $$('a[href^="#"]').forEach(function (a) {
+    a.addEventListener('click', function (e) {
+      var id = a.getAttribute('href');
+      if (!id || id.length < 2) return;
+      var target = $(id);
+      if (!target) return;
+      e.preventDefault();
+      if (lenis) lenis.scrollTo(target, { offset: -70 });
+      else target.scrollIntoView({ behavior: reduced ? 'auto' : 'smooth' });
+    });
+  });
+
+  /* ---------------- video plate: plays only in view, never dimmed ---------------- */
+  var vid = $('.video-frame video');
+  if (vid) {
+    if (reduced) {
+      vid.removeAttribute('autoplay');
+      vid.pause();
+      vid.controls = true;
+    } else if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) { var p = vid.play(); if (p && p.catch) p.catch(function () {}); }
+          else vid.pause();
+        });
+      }, { threshold: 0.15 }).observe(vid);
+    }
+  }
+
+  /* ---------------- hero strikethrough span (injected; CSS shows it struck by default) ---------------- */
+  function injectStrike () {
+    var gate = $('#gateX');
+    if (!gate || gate.querySelector('.strike-line')) return null;
+    var s = document.createElement('span');
+    s.className = 'strike-line';
+    s.setAttribute('aria-hidden', 'true');
+    gate.appendChild(s);
+    return s;
+  }
+
+  /* ================================================================
+     IGNITION v2 — LED build (per-segment spacing: a bulb lands EXACTLY
+     on every gable apex; the center-gable bulb sits at (500,130))
+  ================================================================ */
+  var SVG_NS    = 'http://www.w3.org/2000/svg';
+  var LED_GRADS = { blue: 'url(#g-blue)', white: 'url(#g-white)', silver: 'url(#g-silver)', red: 'url(#g-red)' };
+  var CORE_COLS = { blue: '#eaf3ff', white: '#ffffff', silver: '#f2f5fa', red: '#ffd9de' };
+  var leds = [];
+  var centerIdx = -1;
+
+  function buildLeds () {
+    var path = $('#roofPath'), layer = $('#ledLayer');
+    if (!path || !layer || !hasGsap) return;
+    /* vertices of #roofPath: eave → apex → valley → CENTER apex → valley → apex → eave */
+    var V = [[60, 360], [230, 215], [355, 300], [500, 130], [645, 300], [770, 215], [940, 360]];
+    var SPACING = 46;
+    var pts = [V[0]];
+    for (var s = 0; s < V.length - 1; s++) {
+      var a = V[s], b = V[s + 1];
+      var len = Math.hypot(b[0] - a[0], b[1] - a[1]);
+      var n = Math.max(1, Math.round(len / SPACING));
+      for (var k = 1; k <= n; k++) {
+        pts.push([a[0] + (b[0] - a[0]) * k / n, a[1] + (b[1] - a[1]) * k / n]);
+      }
+    }
+    pts.forEach(function (p, i) {
+      if (Math.abs(p[0] - 500) < 0.5 && Math.abs(p[1] - 130) < 0.5) centerIdx = i;
+    });
+
+    pts.forEach(function (p, i) {
+      var isCenter = (i === centerIdx);
+      var g = document.createElementNS(SVG_NS, 'g');
+      g.setAttribute('class', 'led' + (isCenter ? ' led-center' : ''));
+      g.setAttribute('opacity', '0');
+      var halos = {};
+      ['blue', 'white', 'silver', 'red'].forEach(function (cName) {
+        var h = document.createElementNS(SVG_NS, 'circle');
+        h.setAttribute('cx', p[0].toFixed(1)); h.setAttribute('cy', p[1].toFixed(1));
+        h.setAttribute('r', isCenter ? '24' : '13');
+        h.setAttribute('fill', LED_GRADS[cName]);
+        h.setAttribute('opacity', cName === 'blue' ? '1' : '0');
+        g.appendChild(h);
+        halos[cName] = h;
+      });
+      var core = document.createElementNS(SVG_NS, 'circle');
+      core.setAttribute('class', 'led-core');
+      core.setAttribute('cx', p[0].toFixed(1)); core.setAttribute('cy', p[1].toFixed(1));
+      core.setAttribute('r', isCenter ? '4.6' : '3');
+      core.setAttribute('fill', isCenter ? '#ffffff' : CORE_COLS.blue);
+      core.style.animationDelay = (Math.random() * -2.6).toFixed(2) + 's';
+      g.appendChild(core);
+      layer.appendChild(g);
+      leds.push({ g: g, halos: halos, core: core, isCenter: isCenter, order: 0 });
+    });
+    leds.forEach(function (L, i) { L.order = Math.abs(i - centerIdx); });
+  }
+  buildLeds();
+
+  /* ---------------- LED color modes + chase ---------------- */
+  var chaseTls = [];
+  function killChase () { chaseTls.forEach(function (t) { t.kill(); }); chaseTls = []; }
+
+  function tintLed (L, cName, dur, delay) {
+    ['blue', 'white', 'silver', 'red'].forEach(function (n) {
+      gsap.to(L.halos[n], { opacity: n === cName ? 1 : 0, duration: dur, delay: delay || 0, ease: 'sine.inOut', overwrite: 'auto' });
+    });
+    var col = (L.isCenter && cName !== 'red') ? '#ffffff' : CORE_COLS[cName];
+    gsap.to(L.core, { fill: col, duration: dur, delay: delay || 0, ease: 'sine.inOut', overwrite: 'auto' });
+  }
+
+  function setMode (mode) {
+    if (!hasGsap || !leds.length) return;
+    killChase();
+    var animate = !reduced;
+    if (mode === 'chase') {
+      if (!animate) { /* static chase representation */
+        leds.forEach(function (L, i) { tintLed(L, ['blue', 'white', 'silver'][i % 3], 0); });
+        return;
+      }
+      var PH = ['blue', 'white', 'silver'];
+      var STEP = 0.6;
+      leds.forEach(function (L, i) {
+        var tl = gsap.timeline({ repeat: -1 });
+        PH.forEach(function (ph, k) {
+          ['blue', 'white', 'silver', 'red'].forEach(function (n) {
+            tl.to(L.halos[n], { opacity: n === ph ? 1 : 0, duration: STEP * 0.85, ease: 'sine.inOut' }, k * STEP);
+          });
+          tl.to(L.core, { fill: L.isCenter ? '#ffffff' : CORE_COLS[ph], duration: STEP * 0.85, ease: 'sine.inOut' }, k * STEP);
+        });
+        tl.progress((i * 0.055) % 1); /* phase offset = the wave flows along the roofline */
+        chaseTls.push(tl);
+      });
+      return;
+    }
+    leds.forEach(function (L, i) {
+      var cName = (mode === 'gameday') ? ['red', 'white', 'blue'][i % 3] : mode;
+      tintLed(L, cName, animate ? 0.55 : 0, animate ? i * 0.018 : 0);
+    });
+  }
+
+  var chips = $$('#modeRow .chip');
+  var userPicked = false;
+  function pressChip (mode) {
+    chips.forEach(function (c) { c.setAttribute('aria-pressed', c.dataset.mode === mode ? 'true' : 'false'); });
+  }
+  chips.forEach(function (chip) {
+    chip.addEventListener('click', function () {
+      userPicked = true;
+      pressChip(chip.dataset.mode);
+      setMode(chip.dataset.mode);
+    });
+  });
+
+  var chaseStarted = false;
+  function autoChase () {
+    if (chaseStarted || userPicked) return;
+    chaseStarted = true;
+    pressChip('chase');
+    setMode('chase');
+  }
+
+  /* ================================================================
+     WORKSHEET — real kit pricing, cheapest kit+add-on combo
+  ================================================================ */
+  var KITS = [
+    { ft: 100, price: 1299,   label: '100 ft kit' },
+    { ft: 150, price: 1762.5, label: '150 ft kit' },
+    { ft: 200, price: 2399,   label: '200 ft kit' },
+    { ft: 300, price: 3499,   label: '300 ft kit' }
+  ];
+  function bestAddons (need) {
+    if (need <= 0) return { cost: 0, n50: 0, n25: 0 };
+    var best = null;
+    var max50 = Math.ceil(need / 50);
+    for (var n50 = 0; n50 <= max50; n50++) {
+      var rem = need - n50 * 50;
+      var n25 = rem > 0 ? Math.ceil(rem / 25) : 0;
+      var cost = n50 * 499 + n25 * 299;
+      if (!best || cost < best.cost || (cost === best.cost && (n50 + n25) < (best.n50 + best.n25))) {
+        best = { cost: cost, n50: n50, n25: n25 };
+      }
+    }
+    return best;
+  }
+  function cheapestCombo (ft) {
+    /* exact kit sizes sell the kit, not a patchwork of add-ons */
+    for (var k = 0; k < KITS.length; k++) {
+      if (KITS[k].ft === ft) return { total: KITS[k].price, pieces: 1, label: KITS[k].label };
+    }
+    var best = null;
+    KITS.forEach(function (kit) {
+      var add = bestAddons(ft - kit.ft);
+      var total = kit.price + add.cost;
+      var pieces = 1 + add.n50 + add.n25;
+      if (!best || total < best.total - 0.001 || (Math.abs(total - best.total) < 0.001 && pieces < best.pieces)) {
+        var label = kit.label;
+        if (add.n50) label += ' + ' + (add.n50 > 1 ? add.n50 + '× ' : '') + '50 ft add-on';
+        if (add.n25) label += ' + ' + (add.n25 > 1 ? add.n25 + '× ' : '') + '25 ft add-on';
+        best = { total: total, pieces: pieces, label: label };
+      }
+    });
+    return best;
+  }
+
+  var wsEls = {
+    ft: $('#wsFt'), rate: $('#wsRate'), gross: $('#wsGross'), mat: $('#wsMat'),
+    combo: $('#wsCombo'), profit: $('#wsProfit'), margin: $('#wsMargin'), annual: $('#wsAnnual'),
+    range: $('#ftRange'), up: $('#rateUp'), down: $('#rateDown')
+  };
+  var WS = { ft: 150, rate: 30 };
+  var wsCur = { ft: 150, rate: 30, gross: 4500, mat: 1762.5, profit: 2737.5, margin: 60.83, annual: 142350 };
+  function nfmt (n) { return Math.round(n).toLocaleString('en-US'); }
+  function wsCompute () {
+    var combo = cheapestCombo(WS.ft);
+    var gross = WS.ft * WS.rate;
+    var profit = Math.max(0, gross - combo.total);
+    return {
+      ft: WS.ft, rate: WS.rate, gross: gross, mat: combo.total, profit: profit,
+      margin: gross > 0 ? (profit / gross) * 100 : 0,
+      annual: profit * 52, label: combo.label
+    };
+  }
+  function wsRender () {
+    if (wsEls.ft)     wsEls.ft.textContent     = Math.round(wsCur.ft) + ' FT';
+    if (wsEls.rate)   wsEls.rate.textContent   = '$' + Math.round(wsCur.rate);
+    if (wsEls.gross)  wsEls.gross.textContent  = '$' + nfmt(wsCur.gross);
+    if (wsEls.mat && wsEls.mat.firstChild) wsEls.mat.firstChild.nodeValue = '−$' + nfmt(Math.floor(wsCur.mat));
+    if (wsEls.profit) wsEls.profit.textContent = '$' + nfmt(Math.floor(wsCur.profit));
+    if (wsEls.margin) wsEls.margin.textContent = Math.round(wsCur.margin) + '%';
+    if (wsEls.annual) wsEls.annual.textContent = '$' + nfmt(wsCur.annual);
+  }
+  function wsApply (dur) {
+    var t = wsCompute();
+    if (wsEls.combo) wsEls.combo.textContent = t.label;
+    var vals = { ft: t.ft, rate: t.rate, gross: t.gross, mat: t.mat, profit: t.profit, margin: t.margin, annual: t.annual };
+    if (!reduced && hasGsap && dur) {
+      gsap.to(wsCur, Object.assign({}, vals, {
+        duration: dur, ease: 'power2.out', overwrite: true, onUpdate: wsRender, onComplete: wsRender
+      }));
+    } else {
+      Object.assign(wsCur, vals);
+      wsRender();
+    }
+  }
+  if (wsEls.range) {
+    wsEls.range.addEventListener('input', function () { WS.ft = +wsEls.range.value; wsApply(0.45); });
+  }
+  function nudgeRate (d) { WS.rate = Math.min(60, Math.max(20, WS.rate + d)); wsApply(0.45); }
+  if (wsEls.up)   wsEls.up.addEventListener('click',   function () { nudgeRate(5); });
+  if (wsEls.down) wsEls.down.addEventListener('click', function () { nudgeRate(-5); });
+  wsApply(0); /* sync render with computed defaults */
+
+  /* ================================================================
+     REDUCED MOTION — full static path. No pins, no scrubs, no parallax.
+     Markup already carries final copy + counter values.
+  ================================================================ */
+  if (reduced || !hasGsap) {
+    injectStrike(); /* CSS default = struck through */
+    if (hasGsap && leds.length) {
+      leds.forEach(function (L) { gsap.set(L.g, { opacity: 1 }); });
+      gsap.set('#bloomGlow', { opacity: 0.55 });
+      gsap.set('#apexLabel', { opacity: 1 });
+      gsap.set('.win', { fillOpacity: 0.22 });
+      pressChip('blue');
+      setMode('blue');
+    }
+    return;
+  }
+
+  /* ================================================================
+     FULL MOTION ORCHESTRATION (after fonts, so SplitText measures right)
+  ================================================================ */
+  document.fonts.ready.then(function () {
+
+    var fmt = function (el, v) {
+      return (el.dataset.prefix || '') + Math.round(v).toLocaleString('en-US') + (el.dataset.suffix || '');
+    };
+
+    /* ---------- hero intro ---------- */
+    var heroSplit = null;
+    try { heroSplit = new SplitText('#heroH1', { type: 'words,chars', mask: 'chars' }); } catch (e) { heroSplit = null; }
+    var strike = injectStrike();
+
+    var intro = gsap.timeline({ defaults: { ease: 'power4.out' } });
+    intro.from('.site-header', { y: -40, autoAlpha: 0, duration: 1 }, 0.1);
+    if (heroSplit && heroSplit.chars && heroSplit.chars.length) {
+      intro.from(heroSplit.chars, { yPercent: 120, duration: 1.15, stagger: { amount: 0.55 } }, 0.25);
+    }
+    if (strike) {
+      intro.fromTo(strike, { scaleX: 0 }, { scaleX: 1, duration: 0.55, ease: 'power3.inOut' }, 1.05);
+    }
+    intro
+      .from('.hero-label', { autoAlpha: 0, y: 16, duration: 0.7 }, 0.45)
+      .from(['.hero-sub', '.hero-ctas', '.hero-meta'], { autoAlpha: 0, y: 28, duration: 0.9, stagger: 0.12 }, 0.95)
+      .from('.hero-scroll', { autoAlpha: 0, duration: 0.8 }, 1.5);
+
+    /* ---------- IGNITION v2 — pinned scrub ---------- */
+    if (leds.length) {
+      var igniteSplit = null;
+      try { igniteSplit = new SplitText('#igniteH', { type: 'words,chars', mask: 'chars' }); } catch (e) { igniteSplit = null; }
+
+      var ledGs = leds.map(function (L) { return L.g; });
+      gsap.set(ledGs, { scale: 0, opacity: 0, transformOrigin: '50% 50%' });
+      gsap.set('#roofPath', { drawSVG: '0%' });
+      gsap.set(['.ignite-sub', '.mode-row', '.mode-cap'], { autoAlpha: 0 });
+      gsap.set('.ignite-sub', { y: 26 });
+      if (igniteSplit && igniteSplit.chars.length) gsap.set(igniteSplit.chars, { yPercent: 115 });
+
+      var maxOrder = 0;
+      leds.forEach(function (L) { maxOrder = Math.max(maxOrder, L.order); });
+      var LED_T0 = 1.0, LED_STEP = 0.085;
+      var centerAt = LED_T0 + (maxOrder + 1) * LED_STEP + 0.18;
+      var centerLed = leds[centerIdx] || leds[0];
+
+      var ign = gsap.timeline({
+        scrollTrigger: {
+          trigger: '.ignite', start: 'top top',
+          end: isMobile ? '+=1800' : '+=2600',
+          pin: true, scrub: 1, anticipatePin: 1
+        },
+        defaults: { ease: 'none' }
+      });
+      ign.to('#roofPath', { drawSVG: '100%', duration: 2 }, 0);
+      /* symmetric outside-in: both eaves first, the CENTER apex bulb lands LAST */
+      leds.forEach(function (L) {
+        if (L.isCenter) return;
+        ign.to(L.g, { scale: 1, opacity: 1, duration: 0.26, ease: 'back.out(2.6)' },
+          LED_T0 + (maxOrder - L.order) * LED_STEP);
+      });
+      ign.to(centerLed.g, { scale: 1, opacity: 1, duration: 0.42, ease: 'back.out(3)' }, centerAt)
+        .to('#bloomGlow', { opacity: 0.6, duration: 0.9, ease: 'power2.inOut' }, centerAt + 0.08)
+        .to('#apexLabel', { opacity: 1, duration: 0.5, ease: 'power2.out' }, centerAt + 0.32)
+        .to('.win', { fillOpacity: 0.22, duration: 0.7, ease: 'power2.inOut' }, centerAt + 0.3)
+        .call(autoChase, null, centerAt + 0.8);
+      if (igniteSplit && igniteSplit.chars.length) {
+        ign.to(igniteSplit.chars, { yPercent: 0, duration: 0.8, ease: 'power3.out', stagger: { amount: 0.5 } }, centerAt + 0.8);
+      }
+      ign.to('.ignite-sub', { autoAlpha: 1, y: 0, duration: 0.6, ease: 'power2.out' }, centerAt + 1.1)
+        .to(['.mode-row', '.mode-cap'], { autoAlpha: 1, duration: 0.5, ease: 'power2.out' }, centerAt + 1.3)
+        .to({}, { duration: 0.8 }); /* hold the lit house */
+    }
+
+    /* ---------- generic reveals (clearProps keeps CSS hover transforms alive) ---------- */
+    $$('[data-reveal]').forEach(function (el) {
+      gsap.from(el, {
+        autoAlpha: 0, y: '+=44', duration: 1.05, ease: 'power3.out',
+        clearProps: 'transform,opacity,visibility',
+        scrollTrigger: { trigger: el, start: 'top 88%', once: true }
+      });
+    });
+
+    /* ---------- section headline splits ---------- */
+    $$('.h2').forEach(function (h) {
+      try {
+        var sp = new SplitText(h, { type: 'lines', mask: 'lines' });
+        gsap.from(sp.lines, {
+          yPercent: 110, duration: 1, ease: 'power4.out', stagger: 0.09,
+          scrollTrigger: { trigger: h, start: 'top 86%', once: true }
+        });
+      } catch (e) { /* headline stays visible */ }
+    });
+
+    /* ---------- counters ---------- */
+    $$('.counter').forEach(function (el) {
+      var target = parseFloat(el.dataset.target);
+      if (isNaN(target)) return;
+      el.textContent = fmt(el, 0);
+      ScrollTrigger.create({
+        trigger: el, start: 'top 86%', once: true,
+        onEnter: function () {
+          var o = { v: 0 };
+          gsap.to(o, {
+            v: target, duration: 2.4, ease: 'power3.out',
+            onUpdate: function () { el.textContent = fmt(el, o.v); }
+          });
+        }
+      });
+    });
+
+    /* ---------- worksheet count-in on first sight ---------- */
+    if ($('.ws-panel')) {
+      ScrollTrigger.create({
+        trigger: '.ws-panel', start: 'top 80%', once: true,
+        onEnter: function () {
+          var t = wsCompute();
+          gsap.fromTo(wsCur, { gross: 0, mat: 0, profit: 0, margin: 0, annual: 0 }, {
+            gross: t.gross, mat: t.mat, profit: t.profit, margin: t.margin, annual: t.annual,
+            duration: 1.6, ease: 'power2.out', onUpdate: wsRender, onComplete: wsRender
+          });
+        }
+      });
+    }
+
+    /* ---------- image parallax ---------- */
+    $$('.plx').forEach(function (wrapEl) {
+      var img = wrapEl.querySelector('img');
+      if (!img) return;
+      gsap.fromTo(img, { yPercent: -6 }, {
+        yPercent: 6, ease: 'none',
+        scrollTrigger: { trigger: wrapEl, start: 'top bottom', end: 'bottom top', scrub: true }
+      });
+    });
+
+    /* ---------- SPOTLIGHT REVEAL — cursor sweeps the light, scroll switches it on ---------- */
+    (function () {
+      var section = $('#spotSection'), stage = $('#spotStage'), maskEl = $('#spotMask');
+      var bloom = $('#spotBloom'), glow = $('#spotGlow'), copy = $('#spotCopy'), hint = $('#spotHint');
+      if (!section || !stage || !maskEl) return;
+
+      var sx = 0, sy = 0, tx = 0, ty = 0, progress = 0, lit = false, inView = false;
+      var t0 = performance.now();
+
+      function vmax () { return Math.max(window.innerWidth, window.innerHeight); }
+      function easeInOut (p) { return p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2; }
+      function applyLight () {
+        var radius = (0.11 + easeInOut(progress) * 1.65) * vmax();
+        var m = 'radial-gradient(circle ' + radius.toFixed(1) + 'px at ' + sx.toFixed(1) + 'px ' + sy.toFixed(1) +
+                'px, rgba(0,0,0,1) 30%, rgba(0,0,0,.45) 62%, rgba(0,0,0,0) 100%)';
+        maskEl.style.webkitMaskImage = m;
+        maskEl.style.maskImage = m;
+        if (glow) {
+          var gr = Math.max(120, radius * 0.5);
+          glow.style.background = 'radial-gradient(circle ' + gr.toFixed(1) + 'px at ' + sx.toFixed(1) + 'px ' + sy.toFixed(1) +
+            'px, rgba(125,184,255,' + (0.15 * Math.max(0, 1 - progress * 0.8)).toFixed(3) + '), rgba(30,127,255,0.04) 55%, rgba(0,0,0,0) 78%)';
+        }
+      }
+      function resetCenter () {
+        var r = stage.getBoundingClientRect();
+        tx = sx = r.width * 0.5; ty = sy = r.height * 0.45;
+        applyLight();
+      }
+      resetCenter();
+      window.addEventListener('resize', resetCenter);
+
+      if (!touch) {
+        stage.addEventListener('mousemove', function (e) {
+          var r = stage.getBoundingClientRect();
+          tx = e.clientX - r.left; ty = e.clientY - r.top;
+        });
+      }
+
+      ScrollTrigger.create({
+        trigger: section, start: 'top top', end: '+=170%',
+        pin: true, scrub: 0.4, anticipatePin: 1,
+        onUpdate: function (self) { progress = self.progress; },
+        onToggle: function (self) { inView = self.isActive; }
+      });
+
+      /* slow Ken Burns drift on the photo */
+      gsap.fromTo('#spotImg', { scale: 1.06 }, { scale: 1.14, duration: 22, ease: 'sine.inOut', yoyo: true, repeat: -1 });
+
+      gsap.ticker.add(function () {
+        if (!inView) return;
+        if (touch) { /* automatic slow sweep on touch devices */
+          var r = stage.getBoundingClientRect();
+          var t = (performance.now() - t0) / 1000;
+          tx = r.width  * (0.5  + 0.36 * Math.sin(t * 0.45));
+          ty = r.height * (0.42 + 0.20 * Math.sin(t * 0.3 + 1.7));
+        }
+        sx += (tx - sx) * 0.085;
+        sy += (ty - sy) * 0.085;
+        applyLight();
+        if (copy) copy.style.opacity = Math.min(1, 0.16 + progress * 1.25);
+        if (hint) hint.style.opacity = Math.max(0, 1 - progress * 2.4);
+
+        var nowLit = progress > 0.82;
+        if (nowLit && !lit) {
+          lit = true;
+          if (bloom) gsap.timeline()
+            .fromTo(bloom, { opacity: 0 }, { opacity: 0.5, duration: 0.55, ease: 'power2.out' })
+            .to(bloom, { opacity: 0.16, duration: 1.1, ease: 'power2.inOut' });
+        } else if (!nowLit && lit) {
+          lit = false;
+          if (bloom) gsap.to(bloom, { opacity: 0, duration: 0.5, overwrite: true });
+        }
+      });
+    })();
+
+    /* ---------- THE PROGRAM — $20K strike → page-filling $0 (pinned scrub) ---------- */
+    (function () {
+      var zs = $('#zeroStage');
+      if (!zs) return;
+      gsap.set('.zero-label', { autoAlpha: 0, y: 18 });
+      gsap.set('#zeroOld',    { autoAlpha: 0, y: 24 });
+      gsap.set('#zeroNum',    { autoAlpha: 0, scale: 0.32, transformOrigin: '50% 60%' });
+      gsap.set('#zeroSub',    { autoAlpha: 0, y: 26 });
+
+      gsap.timeline({
+        scrollTrigger: { trigger: zs, start: 'top top', end: '+=1800', pin: true, scrub: 0.8, anticipatePin: 1 },
+        defaults: { ease: 'none' }
+      })
+        .to('.zero-label', { autoAlpha: 1, y: 0, duration: 0.35 }, 0)
+        .to('#zeroOld', { autoAlpha: 1, y: 0, duration: 0.45 }, 0.15)
+        .to('#gateStrike', { scaleX: 1, duration: 0.5, ease: 'power2.inOut' }, 0.75)
+        .to('#gateStrike2', { scaleX: 1, duration: 0.45, ease: 'power2.inOut' }, 0.95)
+        .to('#zeroNum', { autoAlpha: 1, scale: 1, duration: 1.3, ease: 'power2.out' }, 1.15)
+        .to('#zeroOld', { autoAlpha: 0.3, duration: 0.4 }, 1.3)
+        .to('#zeroSub', { autoAlpha: 1, y: 0, duration: 0.5, ease: 'power2.out' }, 2.2)
+        .to({}, { duration: 0.6 });
+    })();
+
+    /* ---------- finale ---------- */
+    try {
+      var finSplit = new SplitText('#finalH', { type: 'chars', mask: 'chars' });
+      gsap.from(finSplit.chars, {
+        yPercent: 120, duration: 1.1, ease: 'power4.out', stagger: { amount: 0.5 },
+        scrollTrigger: { trigger: '#finalH', start: 'top 82%', once: true }
+      });
+    } catch (e) { /* headline stays visible */ }
+
+    gsap.from(['.final-sub', '.final-ctas', '.final-brand', '.final-micro'], {
+      autoAlpha: 0, y: 30, duration: 1, ease: 'power3.out', stagger: 0.12,
+      scrollTrigger: { trigger: '.final', start: 'top 70%', once: true }
+    });
+    if ($('#finalMark')) {
+      gsap.to('#finalMark', { y: -12, duration: 3, yoyo: true, repeat: -1, ease: 'sine.inOut' });
+    }
+
+    /* ---------- magnetic buttons ---------- */
+    if (finePointer) {
+      $$('.mag').forEach(function (btn) {
+        btn.addEventListener('mousemove', function (e) {
+          var r = btn.getBoundingClientRect();
+          gsap.to(btn, {
+            x: (e.clientX - r.left - r.width / 2) * 0.32,
+            y: (e.clientY - r.top - r.height / 2) * 0.32,
+            duration: 0.4, ease: 'power3.out'
+          });
+        });
+        btn.addEventListener('mouseleave', function () {
+          gsap.to(btn, { x: 0, y: 0, duration: 0.7, ease: 'elastic.out(1, 0.45)' });
+        });
+      });
+    }
+
+    /* ---------- custom cursor ---------- */
+    if (finePointer) {
+      var cur = $('.cursor');
+      if (cur) {
+        var ctx = innerWidth / 2, cty = innerHeight / 2, cpx = ctx, cpy = cty;
+        window.addEventListener('mousemove', function (e) {
+          ctx = e.clientX; cty = e.clientY; cur.classList.add('on');
+        }, { passive: true });
+        document.addEventListener('mouseover', function (e) {
+          cur.classList.toggle('grow', !!(e.target.closest && e.target.closest('a, button, input')));
+        });
+        gsap.ticker.add(function () {
+          cpx += (ctx - cpx) * 0.2; cpy += (cty - cpy) * 0.2;
+          cur.style.transform = 'translate3d(' + cpx + 'px, ' + cpy + 'px, 0)';
+        });
+      }
+    }
+
+    ScrollTrigger.refresh();
+  });
+
+  /* settle layout once images/video have real dimensions */
+  window.addEventListener('load', function () {
+    if (hasGsap && !reduced) ScrollTrigger.refresh();
+  });
+})();
+</script>
+
+<!-- ============ HERO — THREE.JS PARTICLE RIDGE (module: importmap resolves 'three') ============ -->
+<script type="module">
+const heroEl = document.querySelector('.hero');
+const heroCanvas = document.getElementById('heroCanvas');
+const heroReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const heroMobile = window.matchMedia('(max-width: 768px)').matches;
+const heroFine = window.matchMedia('(pointer: fine)').matches;
+
+async function initHeroRidge() {
+  let THREE;
+  try { THREE = await import('three'); }
+  catch (e) { heroEl.classList.add('no-webgl'); return; }
+
+  let renderer;
+  try {
+    renderer = new THREE.WebGLRenderer({ canvas: heroCanvas, alpha: true, antialias: false, powerPreference: 'high-performance' });
+  } catch (e) { heroEl.classList.add('no-webgl'); return; }
+
+  const PR = Math.min(window.devicePixelRatio || 1, 2);
+  renderer.setPixelRatio(PR);
+
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(55, 1, 0.1, 220);
+  camera.position.set(0, 0, 52);
+
+  /* ridge shape: triple peak echoing the 3-peak logo mark */
+  const PEAKS = [[-34, 9.5, 17], [0, 15.5, 23], [34, 9.5, 17]];
+  const ridgeY = (x) => {
+    let y = 0.6;
+    for (const [cx, h, w] of PEAKS) y = Math.max(y, h * (1 - Math.abs(x - cx) / w));
+    return y;
+  };
+
+  const COUNT = heroMobile ? 2200 : 9000;
+  const pos = new Float32Array(COUNT * 3);
+  const col = new Float32Array(COUNT * 3);
+  const siz = new Float32Array(COUNT);
+  const pha = new Float32Array(COUNT);
+
+  for (let i = 0; i < COUNT; i++) {
+    const x = (Math.random() * 2 - 1) * 62;
+    const ry = ridgeY(x) + (Math.random() - 0.5) * 0.5;
+    const onEdge = Math.random() < 0.38;
+    let y;
+    if (onEdge) {
+      y = ry + (Math.random() - 0.5) * 0.9;            // dense glowing ridge line
+    } else {
+      const t = Math.pow(Math.random(), 1.7);          // body fading downward
+      y = ry - t * (ry + 9);
+    }
+    const z = (Math.random() * 2 - 1) * 9;
+    pos[i * 3] = x; pos[i * 3 + 1] = y; pos[i * 3 + 2] = z;
+
+    /* blue / ice / white only — no warm tones */
+    const ice = Math.random() < 0.12;
+    const m = onEdge ? 0.75 + Math.random() * 0.45 : 0.35 + Math.random() * 0.5;
+    if (ice) { col[i * 3] = 0.85 * m; col[i * 3 + 1] = 0.92 * m; col[i * 3 + 2] = 1.0 * m; }
+    else     { col[i * 3] = 0.12 * m; col[i * 3 + 1] = 0.5 * m;  col[i * 3 + 2] = 1.0 * m; }
+
+    siz[i] = (onEdge ? 1.9 + Math.random() * 2.3 : 0.8 + Math.random() * 1.5) * (ice ? 1.3 : 1);
+    pha[i] = Math.random() * Math.PI * 2;
+  }
+
+  const geo = new THREE.BufferGeometry();
+  geo.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+  geo.setAttribute('aColor', new THREE.BufferAttribute(col, 3));
+  geo.setAttribute('aSize', new THREE.BufferAttribute(siz, 1));
+  geo.setAttribute('aPhase', new THREE.BufferAttribute(pha, 1));
+
+  const mat = new THREE.ShaderMaterial({
+    uniforms: { uTime: { value: 0 }, uPR: { value: PR } },
+    vertexShader: `
+      attribute float aSize;
+      attribute float aPhase;
+      attribute vec3  aColor;
+      uniform float uTime;
+      uniform float uPR;
+      varying vec3  vColor;
+      varying float vTw;
+      void main(){
+        vec3 p = position;
+        p.y += sin(uTime * 0.55 + aPhase) * 0.4;
+        p.x += cos(uTime * 0.35 + aPhase * 1.71) * 0.3;
+        vec4 mv = modelViewMatrix * vec4(p, 1.0);
+        gl_PointSize = aSize * uPR * (320.0 / -mv.z);
+        vColor = aColor;
+        vTw = 0.72 + 0.28 * sin(uTime * 0.9 + aPhase * 2.7);
+        gl_Position = projectionMatrix * mv;
+      }`,
+    fragmentShader: `
+      precision mediump float;
+      varying vec3  vColor;
+      varying float vTw;
+      void main(){
+        float d = length(gl_PointCoord - vec2(0.5));
+        float a = smoothstep(0.5, 0.04, d);
+        a *= a;
+        gl_FragColor = vec4(vColor * (1.05 + 0.5 * vTw), a * (0.45 + 0.55 * vTw));
+      }`,
+    transparent: true,
+    depthWrite: false,
+    blending: THREE.AdditiveBlending
+  });
+
+  const points = new THREE.Points(geo, mat);
+  points.position.y = -22;
+  scene.add(points);
+
+  function size() {
+    const w = heroCanvas.clientWidth, h = heroCanvas.clientHeight;
+    renderer.setSize(w, h, false);
+    camera.aspect = w / h;
+    camera.updateProjectionMatrix();
+  }
+  size();
+
+  /* mouse parallax — deliberately more pronounced than concept 1, still smooth */
+  let mx = 0, my = 0, cx = 0, cy = 0;
+  if (!heroReduced && !heroMobile && heroFine) {
+    window.addEventListener('mousemove', (e) => {
+      mx = (e.clientX / window.innerWidth) * 2 - 1;
+      my = (e.clientY / window.innerHeight) * 2 - 1;
+    }, { passive: true });
+  }
+
+  /* pause when the hero scrolls offscreen */
+  let onScreen = true;
+  if ('IntersectionObserver' in window) {
+    new IntersectionObserver((en) => { onScreen = en[0].isIntersecting; }, { threshold: 0 }).observe(heroCanvas);
+  }
+
+  function draw(time) {
+    cx += (mx - cx) * 0.05;
+    cy += (my - cy) * 0.05;
+    camera.position.x = cx * 6.5;
+    camera.position.y = cy * -3.0;
+    camera.lookAt(0, -10, 0);
+    mat.uniforms.uTime.value = time;
+    renderer.render(scene, camera);
+  }
+  function render(time) {
+    if (document.hidden || !onScreen) return;
+    draw(time);
+  }
+
+  draw(12.5); /* paint a first frame immediately */
+
+  if (heroReduced) {
+    window.addEventListener('resize', () => { size(); draw(12.5); });
+  } else {
+    if (window.gsap) {
+      gsap.ticker.add(render); /* consolidated loop */
+    } else {
+      const loop = (t) => { render(t / 1000); requestAnimationFrame(loop); };
+      requestAnimationFrame(loop);
+    }
+    window.addEventListener('resize', size);
+  }
+  heroEl.classList.add('webgl-ready');
+}
+
+if (heroEl && heroCanvas) {
+  initHeroRidge().catch(() => heroEl.classList.add('no-webgl'));
+}
+</script>
+
+<!-- ============ HERO 3D MARK (Devan's GLB via logo3d.js) ============ -->
+<script type="module">
+  const heroLogoStage = document.getElementById('heroLogo3d');
+  if (heroLogoStage && getComputedStyle(heroLogoStage).display !== 'none') {
+    import('{{ 'ip-logo3d.js' | asset_url }}')
+      .then((m) => m.initLogo3D(heroLogoStage, { spinSpeed: 0.5 }))
+      .catch(() => { /* module/WebGL unavailable — the static mark stays */ });
+  }
+</script>
+
+<!-- ============ THE VAULT — email gate ============ -->
+<script>
+(function () {
+  /* Lead capture — GoHighLevel is the primary CRM (inbound-webhook workflow;
+     automations key off `source`). HubSpot kept as a dual-write backstop during
+     the transition — delete the HubSpot entry in `sends` (and PORTAL/FORM) to
+     cut over fully. HubSpot payload stays email-only: that form rejects the
+     whole submission if it receives a field it doesn't have. */
+  var GHL_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/99eVuuXW11CRRtiGwcXE/webhook-trigger/257e637f-23dd-4c1c-9f31-e34e268ac3ad';
+  var PORTAL = '246087675';
+  var FORM = '227f991a-f1ea-478d-992f-c1b4efcf4959';
+  var KEY = 'ip_vault_unlock';
+
+  var grid = document.getElementById('vaultGrid');
+  var gate = document.getElementById('vaultGate');
+  var form = document.getElementById('vaultForm');
+  var email = document.getElementById('vaultEmail');
+  var success = document.getElementById('vaultSuccess');
+  if (!grid || !gate || !form || !email) return;
+
+  function saved() { try { return localStorage.getItem(KEY) === '1'; } catch (e) { return false; } }
+  function save() { try { localStorage.setItem(KEY, '1'); } catch (e) { /* private mode — session-only unlock */ } }
+
+  function unlock(returning) {
+    grid.classList.remove('locked');
+    grid.removeAttribute('inert');
+    grid.removeAttribute('aria-hidden');
+    gate.classList.add('gone');
+    gate.setAttribute('aria-hidden', 'true');
+    if (!returning && success) success.classList.add('show');
+  }
+
+  if (saved()) { unlock(true); return; }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!email.checkValidity()) { email.reportValidity(); return; }
+    var btn = form.querySelector('button');
+    btn.disabled = true;
+    btn.textContent = 'Unlocking…';
+    var SOURCE = 'IronPeak Dealer Vault — Sales Modules';
+    var sends = [
+      fetch(GHL_WEBHOOK, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email.value, source: SOURCE })
+      }),
+      fetch('https://api.hsforms.com/submissions/v3/integration/submit/' + PORTAL + '/' + FORM, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          fields: [{ name: 'email', value: email.value }],
+          context: { pageName: SOURCE }
+        })
+      })
+    ];
+    /* unlock regardless of network outcome — never punish a visitor for our errors */
+    Promise.all(sends.map(function (p) { return p.catch(function () {}); }))
+      .then(function () { save(); unlock(false); });
+  });
+})();
+</script>
+
+</body>
+</html>

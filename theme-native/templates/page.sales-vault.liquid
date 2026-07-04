@@ -1,0 +1,528 @@
+{% layout none %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>IronPeak Dealer Vault — The Full Sales Library</title>
+<meta name="description" content="The IronPeak dealer sales vault: buyer types, phone scripts, closing frameworks, objection handling, program Q&A, and the guardrails. Free — unlocked with an email.">
+<meta name="theme-color" content="#0a0c10">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="IronPeak Lighting Systems">
+<meta property="og:title" content="The IronPeak Dealer Vault — The Sales Playbook Other Brands Charge For">
+<meta property="og:description" content="Buyer types, phone scripts, closing frameworks, objection handling, and the do-nots — the whole field playbook, free behind an email.">
+<meta property="og:image" content="https://cdn.shopify.com/s/files/1/0753/7088/9387/files/Black_Product_kit_upscaled_d302d626-f324-4dcc-adc7-363580b6e76b.jpg?v=1774153606">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="{{ 'ip-hq-logo.svg' | asset_url }}" type="image/svg+xml">
+<script
+  src="https://link.msgsndr.com/js/external-tracking.js"
+  data-tracking-id="tk_0627744ee53e47fe9991a91ef1cbbdd0">
+</script>
+<script>
+/* When framed by the Shopify wrapper pages, absolute links escape the iframe */
+if (window.self !== window.top) {
+  document.addEventListener('click', function (e) {
+    var a = e.target.closest && e.target.closest('a[href^="http"]');
+    if (a) a.target = '_top';
+  });
+}
+</script>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tomorrow:wght@500;600;700&family=Archivo:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0a0c10; --bg-2:#0d1016; --bg-3:#10141c;
+    --ink:#ffffff; --body:#aab2bf; --dim:#6b7585;
+    --blue:#1E7FFF; --blue-deep:#155BF2; --ice:#b9d9ff; --ice-2:#7db8ff;
+    --silver:#c9d4e4; --line:#353535; --line-soft:#23272e;
+    --steel-1:#cfd6e2; --steel-3:#7087a5;
+    --disp:"Tomorrow",sans-serif; --txt:"Archivo",sans-serif;
+    --header-h:74px;
+  }
+  *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{ background:var(--bg); color:var(--body); font-family:var(--txt); font-size:17px; line-height:1.6; -webkit-font-smoothing:antialiased; }
+  a{ color:var(--ice-2); }
+  .wrap{ max-width:1060px; margin:0 auto; padding:0 28px; }
+
+  .site-header{ position:sticky; top:0; z-index:1000; background:rgba(10,12,16,.9); backdrop-filter:blur(10px); border-bottom:1px solid var(--line-soft); }
+  .header-in{ max-width:1060px; margin:0 auto; padding:0 28px; height:var(--header-h); display:flex; align-items:center; justify-content:space-between; gap:1rem; }
+  .brand{ display:flex; align-items:center; gap:.7rem; text-decoration:none; }
+  .brand-name{ font-family:var(--disp); font-weight:700; font-size:1.05rem; letter-spacing:.06em; }
+  .brand-name .iron{ color:var(--ink); } .brand-name .peak{ color:var(--blue); }
+  .brand-sub{ display:block; font-size:.6rem; letter-spacing:.3em; text-transform:uppercase; color:var(--dim); }
+  .site-header nav ul{ display:flex; align-items:center; gap:1.4rem; list-style:none; }
+  .site-header nav a{ color:var(--body); text-decoration:none; font-size:.85rem; letter-spacing:.08em; text-transform:uppercase; font-family:var(--disp); }
+  .site-header nav a:hover{ color:var(--ink); }
+  .btn{ display:inline-flex; align-items:center; gap:.5rem; font-family:var(--disp); font-weight:600; letter-spacing:.06em; text-transform:uppercase; text-decoration:none; cursor:pointer; border:0; }
+  .btn-primary{ background:linear-gradient(135deg, var(--blue), var(--blue-deep)); color:#fff; padding:.8rem 1.4rem; font-size:.85rem; }
+  .btn-primary:hover{ filter:brightness(1.1); }
+  .btn-sm{ padding:.55rem 1rem; font-size:.75rem; }
+
+  .page-head{ padding:4.5rem 0 2rem; }
+  .kicker{ font-family:var(--disp); font-size:.7rem; letter-spacing:.32em; text-transform:uppercase; color:var(--blue); }
+  h1{ font-family:var(--disp); color:var(--ink); font-size:clamp(2rem,5vw,3.4rem); font-weight:600; line-height:1.08; margin:.8rem 0 1rem; }
+  .lede{ max-width:62ch; }
+  .lede b{ color:var(--steel-1); }
+
+  .chips{ position:sticky; top:var(--header-h); z-index:900; background:rgba(10,12,16,.92); backdrop-filter:blur(10px); border-bottom:1px solid var(--line-soft); padding:.7rem 0; margin-top:2rem; }
+  .chips-in{ max-width:1060px; margin:0 auto; padding:0 28px; display:flex; gap:.5rem; overflow-x:auto; scrollbar-width:none; }
+  .chips-in::-webkit-scrollbar{ display:none; }
+  .chip{ flex:0 0 auto; font-family:var(--disp); font-size:.72rem; letter-spacing:.1em; text-transform:uppercase; color:var(--body); text-decoration:none; border:1px solid var(--line-soft); border-radius:99px; padding:.45rem 1rem; white-space:nowrap; }
+  .chip:hover, .chip:focus-visible{ border-color:var(--blue); color:var(--ink); outline:none; }
+  .skip{ position:absolute; left:-9999px; top:0; z-index:2000; background:var(--blue); color:#fff; padding:.7rem 1.2rem; font-family:var(--disp); }
+  .skip:focus{ left:0; }
+
+  .lib{ position:relative; padding:2.5rem 0 5rem; }
+  .lib-grid{ transition:filter .6s ease, opacity .6s ease; }
+  .lib-grid.locked{ filter:blur(15px) saturate(.55); opacity:.5; pointer-events:none; user-select:none; min-height:70vh; overflow:hidden; }
+
+  .cat{ padding-top:2.2rem; scroll-margin-top:calc(var(--header-h) + 64px); }
+  .sec-label{ display:flex; align-items:center; gap:1rem; font-family:var(--disp); font-size:.72rem; letter-spacing:.28em; text-transform:uppercase; color:var(--steel-3); margin-bottom:1rem; }
+  .sec-label::after{ content:""; flex:1; height:1px; background:var(--line-soft); }
+  .sec-label .lab-n{ color:var(--blue); }
+  .cat h2{ font-family:var(--disp); color:var(--ink); font-size:clamp(1.3rem,2.6vw,1.9rem); font-weight:600; margin-bottom:.4rem; }
+  .cat-sub{ font-size:.95rem; color:var(--dim); max-width:60ch; margin-bottom:1.4rem; }
+
+  .qa{ border:1px solid var(--line-soft); background:linear-gradient(180deg, var(--bg-3), var(--bg-2)); margin-bottom:.7rem; transition:border-color .3s; }
+  .qa[open], .qa:hover{ border-color:var(--blue); }
+  .qa summary{ list-style:none; cursor:pointer; display:flex; align-items:baseline; gap:1rem; padding:1.1rem 1.3rem; }
+  .qa summary::-webkit-details-marker{ display:none; }
+  .qa summary:focus-visible{ outline:2px solid var(--blue); outline-offset:-2px; }
+  .q-t{ font-family:var(--disp); font-weight:600; color:var(--ink); font-size:1.02rem; letter-spacing:.01em; }
+  .q-x{ margin-left:auto; font-family:var(--disp); color:var(--blue); font-size:1.2rem; }
+  .qa[open] .q-x::before{ content:"−"; } .qa:not([open]) .q-x::before{ content:"+"; }
+  .qa-body{ padding:.1rem 1.3rem 1.3rem; border-top:1px solid var(--line-soft); font-size:.95rem; }
+  .qa-body p{ margin-top:.8rem; }
+  .qa-body ul, .qa-body ol{ margin:.8rem 0 0 1.2rem; display:grid; gap:.5rem; }
+  .qa-body b{ color:var(--steel-1); }
+  .script{ margin-top:.9rem; padding:.9rem 1.1rem; background:var(--bg); border-left:2px solid var(--blue); color:var(--silver); font-size:.92rem; line-height:1.65; }
+  .script i{ color:var(--dim); font-style:normal; font-size:.72rem; display:block; margin-bottom:.3rem; letter-spacing:.12em; text-transform:uppercase; font-family:var(--disp); }
+  .ph{ color:var(--ice-2); font-style:normal; }
+  .note{ margin-top:.8rem; font-size:.85rem; color:var(--dim); border:1px dashed var(--line); padding:.7rem .9rem; }
+  .note b{ color:var(--steel-1); }
+
+  .vault-gate{ position:absolute; inset:0; z-index:2; display:flex; align-items:flex-start; justify-content:center; padding:9rem 1.5rem 1.5rem; transition:opacity .45s ease; }
+  .vault-gate.gone{ opacity:0; pointer-events:none; }
+  .vg-card{ position:sticky; top:calc(var(--header-h) + 90px); background:rgba(13,16,22,.92); border:1px solid var(--line); padding:2.4rem 2.2rem; max-width:480px; width:100%; text-align:center; box-shadow:0 30px 80px -20px rgba(0,0,0,.7); backdrop-filter:blur(4px); }
+  .vg-card svg{ color:var(--blue); }
+  .vg-card h3{ font-family:var(--disp); color:var(--ink); font-size:1.4rem; font-weight:600; margin-top:.9rem; }
+  .vg-card p{ font-size:.95rem; margin-top:.7rem; }
+  .vg-form{ display:flex; gap:.6rem; margin-top:1.4rem; flex-wrap:wrap; }
+  .vg-form input{ flex:1 1 200px; min-width:0; background:var(--bg); border:1px solid var(--line); color:var(--ink); font-family:var(--txt); font-size:.95rem; padding:.85rem 1rem; }
+  .vg-form input:focus{ outline:2px solid var(--blue); outline-offset:1px; border-color:var(--blue); }
+  .vg-micro{ color:var(--dim); font-size:.78rem; margin-top:1rem; }
+
+  .site-footer{ border-top:1px solid var(--line-soft); padding:2rem 0 2.5rem; font-size:.85rem; color:var(--dim); }
+  .site-footer .wrap{ display:flex; justify-content:space-between; gap:1rem; flex-wrap:wrap; }
+  .site-footer a{ color:var(--body); text-decoration:none; }
+  .site-footer a:hover{ color:var(--ink); }
+
+  @media (max-width:680px){
+    .site-header nav ul{ gap: .9rem; }
+    .site-header nav li.hide-m{ display:none; }
+    .vg-card{ padding:1.8rem 1.4rem; }
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .lib-grid, .vault-gate{ transition:none; }
+  }
+</style>
+</head>
+<body>
+
+<a class="skip" href="#philosophy">Skip to content</a>
+
+<header class="site-header">
+  <div class="header-in">
+    <a class="brand" href="/pages/dealer-hq" aria-label="IronPeak Lighting Systems — home">
+      <img src="{{ 'ip-hq-logo.svg' | asset_url }}" alt="" width="34" height="31">
+      <span class="brand-text">
+        <span class="brand-name"><span class="iron">IRON</span><span class="peak">PEAK</span></span>
+        <span class="brand-sub">Dealer Vault</span>
+      </span>
+    </a>
+    <nav aria-label="Primary">
+      <ul>
+        <li class="hide-m"><a href="/pages/dealer-hq#program">Program</a></li>
+        <li><a href="/pages/sales-academy">Academy</a></li>
+        <li><a href="/pages/free-training">Training</a></li>
+        <li><a class="btn btn-primary btn-sm" href="https://ironpeaklighting.com/pages/dealer-program">Apply →</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <div class="wrap page-head">
+    <p class="kicker">▲ The Dealer Vault — Full Library</p>
+    <h1>Every answer you'll need in a driveway.</h1>
+    <p class="lede">The field-tested playbook behind IronPeak dealers' sales — <b>the philosophy, the buyer types, the scripts, the closes, and the do-nots</b> — organized so you can click straight to the situation you're standing in. Scripts are worked examples in the field voice: copy them word-for-word or rebuild them on the principle underneath. <b>The framework is the asset; the wording is the example.</b></p>
+  </div>
+
+  <nav class="chips" aria-label="Vault categories">
+    <div class="chips-in">
+      <a class="chip" href="#philosophy">01 · Philosophy</a>
+      <a class="chip" href="#buyers">02 · Know Your Buyer</a>
+      <a class="chip" href="#phone">03 · The Phone Call</a>
+      <a class="chip" href="#close">04 · The Visit &amp; Close</a>
+      <a class="chip" href="#objections">05 · Objections</a>
+      <a class="chip" href="#program">06 · Program Q&amp;A</a>
+      <a class="chip" href="#guardrails">07 · The Do-Nots</a>
+    </div>
+  </nav>
+
+  <div class="wrap lib">
+    <div class="lib-grid locked" id="vaultGrid" inert aria-hidden="true">
+
+      <!-- ============ 01 PHILOSOPHY ============ -->
+      <section class="cat" id="philosophy">
+        <p class="sec-label"><span class="lab-n">01</span> Start Here</p>
+        <h2>The philosophy — the spine under everything</h2>
+        <p class="cat-sub">If you only read one section, read this one. Every script below is just one of these principles wearing work clothes.</p>
+
+        <details class="qa"><summary><span class="q-t">Why do deals actually die?</span><span class="q-x" aria-hidden="true"></span></summary>
+          <div class="qa-body"><p>It's a <b>value problem, never a price problem</b>. Deals don't die because the number is too high — they die because the customer doesn't <em>see</em> the value. Cheap with no perceived value loses too. Your entire job on every call and every driveway is to make the value visible.</p></div>
+        </details>
+        <details class="qa"><summary><span class="q-t">What am I actually selling?</span><span class="q-x" aria-hidden="true"></span></summary>
+          <div class="qa-body"><p>Not lights. You're <b>solving a problem or making someone's vision real</b> — never hanging lights again, a house that stops the street, security lighting that doesn't need a trench. If you're solving a problem there's no reason to push; pushing is the tell of someone selling instead of helping.</p></div>
+        </details>
+        <details class="qa"><summary><span class="q-t">What's the single most important thing to find out?</span><span class="q-x" aria-hidden="true"></span></summary>
+          <div class="qa-body"><p><b>The why.</b> Clarifying questions → the real reason they called → and that reason dictates the entire direction of the sale. There's no way to help somebody if you don't know how you're helping them. Once you have the why, reflect their own words back at the pain point — that's your hot button for the rest of the conversation.</p></div>
+        </details>
+        <details class="qa"><summary><span class="q-t">How do I stop sounding like a salesperson?</span><span class="q-x" aria-hidden="true"></span></summary>
+          <div class="qa-body"><p>Lead with open-ended questions and reframe the customer's own words back to them, so they walk themselves to the finish line. The decision has to feel like <b>their idea, not your pitch</b>. And treat them like a person, not a number — customers can feel the difference, and it's the cause of most lost deals.</p></div>
+        </details>
+        <details class="qa"><summary><span class="q-t">What's the abundance posture?</span><span class="q-x" aria-hidden="true"></span></summary>
+          <div class="qa-body"><p>The mindset shift that changes everything: stop chasing "I need this sale," start asking "how can I bring more value?" Desperation has a smell, and homeowners catch it.</p>
+          <p class="script"><i>Said out loud, when it helps</i>"I don't have to have this sale. Of course I want to help you — but if my bills aren't paid, I've got plenty of places to go. If there's a way I can help you, I'd love to make what you're envisioning a reality."</p></div>
+        </details>
+        <details class="qa"><summary><span class="q-t">Does my tone really matter that much?</span><span class="q-x" aria-hidden="true"></span></summary>
+          <div class="qa-body"><p><b>Your voice sells before your words do.</b> Smile — it translates through the phone. Energy and tone build value before you've quoted a dollar. Who wants to spend thousands with somebody who sounds depressing or nervous? Treat every caller like family.</p></div>
+        </details>
+        <details class="qa"><summary><span class="q-t">How serious is an inbound call?</span><span class="q-x" aria-hidden="true"></span></summary>
+          <div class="qa-body"><p><b>They called you — that's a hot lead.</b> Like someone out shopping for cars in the rain: they went out of their way, so there's a reason. A homeowner who took the time to call is a serious buyer. Anything you say can mess it up — so show up with energy, let them talk, and dig for the why.</p></div>
+        </details>
+        <details class="qa"><summary><span class="q-t">Why does playing it straight win commercially?</span><span class="q-x" aria-hidden="true"></span></summary>
+          <div class="qa-body"><p><b>Ethics is the business model.</b> Never gouge the vulnerable — it kills your referrals, and referrals close almost every time because they already trust the price. The in-and-out operators who cut corners build a bad rep, and their customers end up calling you. The yard-sign test: when your name is on the sign out front, you want every installer who drives by to think "whoever did that did a great job." That wow factor sells more than any ad.</p></div>
+        </details>
+      </section>
+
+      <!-- ============ 02 BUYERS ============ -->
+      <section class="cat" id="buyers">
+        <p class="sec-label"><span class="lab-n">02</span> Diagnosis</p>
+        <h2>Know your buyer — tell, lever, why</h2>
+        <p class="cat-sub">The moment you assume is the moment you hurt the sale. Never pre-assign a buyer's type from their age, gender, or house — diagnose from what they <em>say</em>, then pull the matching lever.</p>
+
+        <details class="qa"><summary><span class="q-t">How do I figure out which buyer I've got?</span><span class="q-x" aria-hidden="true"></span></summary>
+          <div class="qa-body"><p>By ear, on the phone: their first questions are the tell. Price-first? Mentioning a neighbor's install? Asking what the app can do? Each maps to a different lever below. Diagnose by ear on the phone; <b>close with proof in person</b>.</p></div>
+        </details>
+        <details class="qa"><summary><span class="q-t">The price-first buyer — "what's your cheapest option?"</span><span class="q-x" aria-hidden="true"></span></summary>
+          <div class="qa-body"><p><b>Lever:</b> build value, "you get what you pay for," lean hard on safety — this goes on their house permanently, it has to be done right — and make it their idea:</p>
+          <p class="script"><i>The reframe</i>"You're sharp, you've done well, you've got a beautiful house — you already know you get what you pay for, or you'd have bought a cheaper house."</p>
+          <p><b>Why it works:</b> a price-shopper isn't moved by more features; they're moved by reframing cheap as risky and quality as smart.</p></div>
+        </details>
+        <details class="qa"><summary><span class="q-t">The status buyer — keeping up with the neighbors</span><span class="q-x" aria-hidden="true"></span></summary>
+          <div class="qa-body"><p><b>Tell:</b> references a neighbor's or competitor's install; not focused on price. Often the easiest high-ticket close. <b>Lever:</b> comparison — show photos of an even, clean line versus a patchy one, and frame the install as protecting their biggest asset. <b>Why:</b> it's a competition for them; you win by being the visibly superior option. <em>Keep the comparison to what they can see in photos — never put a competitor's name next to a quality or safety claim in writing (see the Do-Nots).</em></p></div>
+        </details>
+        <details class="qa"><summary><span class="q-t">The holiday maximalist — already sold, needs a supplier</span><span class="q-x" aria-hidden="true"></span></summary>
+          <div class="qa-body"><p><b>Tell:</b> already researched, knows what they want, expects it won't be cheap. <b>Lever:</b> don't push — detail the quality, the app, the scenes, the ecosystem. <b>Why:</b> the want is already there; your job is to confirm you're the premium option, not to convince them of the category.</p></div>
+        </details>
+        <details class="qa"><summary><span class="q-t">The tech buyer — "what can the controller do?"</span><span class="q-x" aria-hidden="true"></span></summary>
+          <div class="qa-body"><p><b>Lever:</b> demo it live — individually addressable nodes (turn one blue and its neighbor red, right in front of them), chase patterns, static scenes, voice-assistant integration. "The options are limitless." <b>Why:</b> for this buyer the product <em>is</em> the pitch; capability is the value.</p></div>
+        </details>
+        <details class="qa"><summary><span class="q-t">The new-build owner — best timing in the business</span><span class="q-x" aria-hidden="true"></span></summary>
+          <div class="qa-body"><p><b>Tell:</b> just built, money decisions fresh on the brain, little or no existing exterior lighting. <b>Lever:</b> the security-and-accent angle — permanent roofline lighting doubles as designed security lighting with no trenching, plus every holiday and game day for free. <b>Why:</b> you're not adding a holiday toy; you're finishing the lighting plan on a house they just poured money into.</p></div>
+        </details>
+        <details class="qa"><summary><span class="q-t">"I need to talk to my spouse first."</span><span class="q-x" aria-hidden="true"></span></summary>
+          <div class="qa-body"><p><b>Do not close on the phone.</b> Book the in-person visit with <em>both</em> decision-makers present — you don't announce that's why; you just set the appointment on their terms. Pushing for a same-call close here turns people off. In person: a look/quality-driven spouse responds to value and product comparison; a practical spouse responds to the problem solved — no more ladders, one-time cost, phone control, never think about it again.</p></div>
+        </details>
+        <details class="qa"><summary><span class="q-t">Who is NOT a buyer — and how fast do I move on?</span><span class="q-x" aria-hidden="true"></span></summary>
+          <div class="qa-body"><p><b>Tells:</b> a grunt or "oh my goodness" at the number; going quiet and distracted (nine times out of ten they've checked out and are just letting you finish). Distinguish two cases:</p>
+          <ul>
+            <li><b>Sticker-shock from inexperience</b> — they've simply never priced it. Recoverable; they often call back after shopping around and realizing you were fair. Don't kill these prematurely.</li>
+            <li><b>Genuinely can't or won't</b> — exit gracefully and leave the door open (script in section 05).</li>
+          </ul>
+          <p>Chasing a true non-buyer costs more than it returns: you might convert one in a hundred, and the time spent chasing the hundred isn't worth it.</p></div>
+        </details>
+      </section>
+
+      <!-- ============ 03 PHONE ============ -->
+      <section class="cat" id="phone">
+        <p class="sec-label"><span class="lab-n">03</span> First Contact</p>
+        <h2>The phone call — qualify, don't close</h2>
+        <p class="cat-sub">Rookie rule: <b>qualify on the phone, close in person.</b> Closing on the phone is an advanced move — it takes reading tonality in real time. The phone's job is to tell you who's in, so you don't drive to every house.</p>
+
+        <details class="qa"><summary><span class="q-t">What's the opener?</span><span class="q-x" aria-hidden="true"></span></summary>
+          <div class="qa-body">
+          <p class="script"><i>Phone opener</i>"Thanks for calling <span class="ph">[your company]</span>. We're known in our area for installing temporary and permanent Christmas lighting. Permanent can be used year-round — it also works as security lighting; the cost is higher, but it's a one-time cost. Temporary is yearly, and everybody's budget's different. <b>Have you ever looked into having either one of these done before?</b>"</p>
+          <p><b>Why that last question:</b> it tells you if they've researched. If they've called other companies, your range won't shock them. If they never have, it might — so you handle the number differently.</p></div>
+        </details>
+        <details class="qa"><summary><span class="q-t">Do I give a number on the phone?</span><span class="q-x" aria-hidden="true"></span></summary>
+          <div class="qa-body"><p>A <b>range — never an exact number, never per-foot.</b> The range's whole job is to <b>bypass the price question and put the conversation on their terms</b>: footage decides the number, so the range is deliberately wide. It qualifies them, the budget question forces an honest answer, and your per-foot rate stays your business.</p>
+          <p class="script"><i>The range + budget question</i>"The face of a house usually runs around <span class="ph">[your typical face-of-house figure]</span> and can go up to <span class="ph">[your full-wrap ceiling]</span> — it's all based on footage: the more footage, the more it costs. Everybody's budget's different — what's a lot to one person isn't to another. <b>Does that sound like what you were thinking, or do you have a budget in mind?</b> That way I can get you the most value for what you want."</p>
+          <p class="note"><b>Fill in your own numbers.</b> IronPeak doesn't set your install pricing — run your market through the <a href="https://ironpeaklighting.com/pages/profit-calculator">profit calculator</a> and set a range you can defend.</p></div>
+        </details>
+        <details class="qa"><summary><span class="q-t">How do I scope the job on the call?</span><span class="q-x" aria-hidden="true"></span></summary>
+          <div class="qa-body">
+          <p class="script"><i>Scoping</i>"Are you thinking just the front, the sides, or the whole house wrapped — what are you envisioning? Is there an install you've pictured, so I quote the right thing and there's no misunderstanding between us?"</p>
+          <p>Getting their picture in their words does two jobs: it sizes the quote, and it hands you the exact phrases to reflect back when you close.</p></div>
+        </details>
+        <details class="qa"><summary><span class="q-t">What happens between the call and the visit?</span><span class="q-x" aria-hidden="true"></span></summary>
+          <div class="qa-body"><p>Get the address → pull it up on an aerial map → <b>pre-measure the front, sides, and back → arrive with the math mostly done.</b> Never work out measurements while the customer stands over you: you'll rush and miss things, or they'll get impatient. Walking in prepared is half the professionalism pitch.</p></div>
+        </details>
+        <details class="qa"><summary><span class="q-t">What if they've clearly never priced this before?</span><span class="q-x" aria-hidden="true"></span></summary>
+          <div class="qa-body"><p>Expect sticker-shock and don't take it as a no. Give the range calmly, anchor it as a <b>one-time cost versus an every-year bill</b>, and leave the door open. These callers frequently come back after they shop around and realize your number was fair.</p></div>
+        </details>
+      </section>
+
+      <!-- ============ 04 CLOSE ============ -->
+      <section class="cat" id="close">
+        <p class="sec-label"><span class="lab-n">04</span> In Person</p>
+        <h2>The visit &amp; the close</h2>
+        <p class="cat-sub">This is where rookies close. You arrive pre-measured, you reiterate their vision, you give one number, and then you let silence do the heavy lifting.</p>
+
+        <details class="qa"><summary><span class="q-t">How do I open the in-person visit?</span><span class="q-x" aria-hidden="true"></span></summary>
+          <div class="qa-body"><p>Reiterate the scope back in their own words — "so you want the front, all the peaks and gables…" — before any numbers. It proves you listened, re-confirms the vision, and pre-empts the "that's not what I meant" objection after the quote.</p></div>
+        </details>
+        <details class="qa"><summary><span class="q-t">What do I do right after giving the number?</span><span class="q-x" aria-hidden="true"></span></summary>
+          <div class="qa-body"><p><b>Nothing. Go silent.</b> Give the quote and stop talking — their reaction tells you everything about where the deal stands. Talking first is how you negotiate against yourself.</p></div>
+        </details>
+        <details class="qa"><summary><span class="q-t">What's the standard close?</span><span class="q-x" aria-hidden="true"></span></summary>
+          <div class="qa-body"><p>The deposit-as-close. After a yes-signal ("yeah, that's about what we'd be interested in"):</p>
+          <p class="script"><i>Deposit-as-close</i>"Great — we take a 50% deposit and we order your material at that point. Would you like to do that on a card or a check?"</p>
+          <p>Then book the install date on your schedule <b>while you're standing there</b> — it shows professionalism and makes them a priority, not a maybe.</p>
+          <p><b>Why 50% is the suggested structure:</b> the deposit lets you order the material before you ever roll to the job site — and it puts skin in the game. A customer who's committed a deposit and whose material is already purchased <b>stops calling around for other quotes; in their head, it's done.</b> Same move that works in temporary lighting: close, deposit, off the market.</p>
+          <p class="note"><b>Suggested, not mandated.</b> 50% is IronPeak's recommended structure; the final terms are your business. The defensible version ties the deposit to material ordered on a signed agreement — see the Do-Nots before using "non-refundable" anywhere.</p></div>
+        </details>
+        <details class="qa"><summary><span class="q-t">They're on the fence — what's the ladder?</span><span class="q-x" aria-hidden="true"></span></summary>
+          <div class="qa-body"><p>Step down, don't push:</p>
+          <ul>
+            <li><b>Fence:</b> "If you're good with the numbers, we'll do the deposit to start getting everything ready and get you on the schedule; the balance is due when we complete the job. How does that sound?"</li>
+            <li><b>Qualified but cash-tight:</b> some dealers split the balance over a few months at no interest — a structure like deposit now, part on completion, the rest over the following months.</li>
+          </ul>
+          <p class="note"><b>Dealer-discretion move.</b> Offering payment terms is a business decision for operators who can absorb the risk — not a move for a brand-new business, and not IronPeak policy.</p></div>
+        </details>
+        <details class="qa"><summary><span class="q-t">How do I position the service itself?</span><span class="q-x" aria-hidden="true"></span></summary>
+          <div class="qa-body"><p>White-glove, one-stop shop — on essentially every call, and especially with higher-end homes:</p>
+          <p class="script"><i>White-glove positioning</i>"We consider this a luxury, white-glove service — we take everything off your hands. You don't order material, you don't buy lighting, you don't provide ladders. You pay, we do a premium install, we're in and out as fast as possible, and you get exactly the outcome you wanted."</p>
+          <p>Then agitate the problem they never put words to: the tangle of storage bins every January, the worry of some other crew scratching a gutter. Name it and it does the selling.</p></div>
+        </details>
+      </section>
+
+      <!-- ============ 05 OBJECTIONS ============ -->
+      <section class="cat" id="objections">
+        <p class="sec-label"><span class="lab-n">05</span> Price Talk</p>
+        <h2>Objections — the ones you'll actually hear</h2>
+        <p class="cat-sub">Every answer here is a value reframe, not a discount. If you find yourself reaching for a lower number, go back to section 01.</p>
+
+        <details class="qa"><summary><span class="q-t">"That's a lot more than Christmas lights."</span><span class="q-x" aria-hidden="true"></span></summary>
+          <div class="qa-body"><p>"It's the last lighting bill for this roofline. Seasonal installs charge you every single year — and you still own nothing in January. This goes up once, it's yours, and it works every holiday, every game day, all year."</p></div>
+        </details>
+        <details class="qa"><summary><span class="q-t">"Why so expensive? Why should you make that much?"</span><span class="q-x" aria-hidden="true"></span></summary>
+          <div class="qa-body">
+          <p class="script"><i>Insurance framing</i>"It's expensive to carry insurance for guys walking around on your roof — that's not cheap. My crew is risking their safety up there and I pay them well for it. That insurance protects <em>you</em>. It's part of what you're paying for."</p>
+          <p>Most homeowners never thought about it — and respect it once you say it.</p></div>
+        </details>
+        <details class="qa"><summary><span class="q-t">"You're charging me more because I have a nice house."</span><span class="q-x" aria-hidden="true"></span></summary>
+          <div class="qa-body">
+          <p class="script"><i>Footage framing</i>"We price strictly off footage — a longer house with more feet costs more. We're not charging more because your house is nice; it's purely the number of feet."</p></div>
+        </details>
+        <details class="qa"><summary><span class="q-t">"I'll just do it myself."</span><span class="q-x" aria-hidden="true"></span></summary>
+          <div class="qa-body"><p>Two levers, stacked:</p>
+          <ul>
+            <li><b>Time and risk:</b> "Your time is worth more than this install. If it took you a week at five hours a day, what did that cost you versus what you could've earned — before we even talk about a fall off a ladder and missed work? We do it faster and safer; we actually save you money."</li>
+            <li><b>The peak is the tell:</b> a big-box strip kit approximates the peak; the pre-built, pitch-matched Apex piece lands the LED dead-center — that's the difference you see from the driveway.</li>
+          </ul></div>
+        </details>
+        <details class="qa"><summary><span class="q-t">"What does it look like in the daytime?"</span><span class="q-x" aria-hidden="true"></span></summary>
+          <div class="qa-body"><p>Don't describe it — <b>show the daytime photo</b>: powder-coated, color-matched track in four colors, tight to the fascia, invisible from the curb. This objection dies on sight.</p></div>
+        </details>
+        <details class="qa"><summary><span class="q-t">"My HOA is strict."</span><span class="q-x" aria-hidden="true"></span></summary>
+          <div class="qa-body"><p>"The track matches your trim, and the lights are off until you turn them on. Bring the daytime photo to the board — that's usually the whole conversation." Never promise approval; offer the photo and let the board decide.</p></div>
+        </details>
+        <details class="qa"><summary><span class="q-t">"Let me think about it."</span><span class="q-x" aria-hidden="true"></span></summary>
+          <div class="qa-body"><p>"Take your time — the quote holds for <span class="ph">[your window, e.g. 30 days]</span>. While you decide, look me up in the IronPeak dealer directory." The badge and the directory do the trust work so you don't have to chase.</p></div>
+        </details>
+        <details class="qa"><summary><span class="q-t">How do I make luxury feel attainable?</span><span class="q-x" aria-hidden="true"></span></summary>
+          <div class="qa-body">
+          <p class="script"><i>The Rolls-Royce / Lexus frame</i>"Everybody wants a Rolls-Royce; not everybody buys one. But a Lexus still feels like luxury and costs a lot less. This is how you get the luxury look without the Rolls-Royce price."</p>
+          <p>It lets the customer place <em>themselves</em> into "I can have the premium thing."</p></div>
+        </details>
+        <details class="qa"><summary><span class="q-t">How do I walk away from a non-buyer without burning it?</span><span class="q-x" aria-hidden="true"></span></summary>
+          <div class="qa-body">
+          <p class="script"><i>Graceful disqualify</i>"It sounds like this might be a little more than you're looking to spend right now — and there's nothing wrong with that; everybody's budget is different. We'd love the chance to earn your business down the road, so call us anytime. Just know it's not as simple as a few seconds on a ladder — we provide the material and a premium install, and our pricing is based purely on footage, so you're never getting taken advantage of."</p></div>
+        </details>
+        <details class="qa"><summary><span class="q-t">Should I split labor and material on the invoice?</span><span class="q-x" aria-hidden="true"></span></summary>
+          <div class="qa-body"><p>The default is <b>one total number</b> — the breakdown is nobody's business, and one number is easier to defend. Some dealers successfully show the material line to price-conscious customers (the gutter analogy: nobody expects a gutter company to supply all the aluminum and install it for a few hundred bucks). It reframes the labor as reasonable. <b>Optional tactic — test it in your own market; it is not the default.</b></p></div>
+        </details>
+      </section>
+
+      <!-- ============ 06 PROGRAM ============ -->
+      <section class="cat" id="program">
+        <p class="sec-label"><span class="lab-n">06</span> The Program</p>
+        <h2>Program &amp; pricing Q&amp;A</h2>
+        <p class="cat-sub">How the dealer program actually works — the tier math, the windows, the badge, and what happens when life happens.</p>
+
+        <details class="qa"><summary><span class="q-t">How do the tiers work?</span><span class="q-x" aria-hidden="true"></span></summary>
+          <div class="qa-body"><p>Four tiers, and every discount is earned on a rolling 12-month window:</p>
+          <ul>
+            <li><b>Base Camp Dealer</b> — sign up + your first order. Badge, directory listing, free training. List pricing.</li>
+            <li><b>Authorized Dealer</b> — $5,000 in purchases over your last 12 months. 5% off everything.</li>
+            <li><b>Certified Pro</b> — $10,000 + the free certification. 10% off everything.</li>
+            <li><b>Summit Partner</b> — $35,000 (certification included on the way). 15% off everything.</li>
+          </ul></div>
+        </details>
+        <details class="qa"><summary><span class="q-t">Why doesn't day one come with a discount?</span><span class="q-x" aria-hidden="true"></span></summary>
+          <div class="qa-body"><p>Because a day-one discount is a coupon, not a program. The first 5% lands at $5,000 — about three jobs — so every badge on a truck means the dealer behind it actually does this work. That's what makes the credential worth putting on your quote.</p></div>
+        </details>
+        <details class="qa"><summary><span class="q-t">How is my volume counted?</span><span class="q-x" aria-hidden="true"></span></summary>
+          <div class="qa-body"><p>Net product spend — what you actually paid for product after your discount, excluding tax and shipping — across your trailing 365 days. Refunds subtract when they're processed. No calendar-year reset: January means nothing; your last 12 months always count.</p></div>
+        </details>
+        <details class="qa"><summary><span class="q-t">When does a promotion kick in?</span><span class="q-x" aria-hidden="true"></span></summary>
+          <div class="qa-body"><p>The moment you qualify — no month-end batch, no paperwork. The order that pushes you across a line is priced at your current tier; your <em>next</em> order gets the new discount.</p></div>
+        </details>
+        <details class="qa"><summary><span class="q-t">What if my volume dips?</span><span class="q-x" aria-hidden="true"></span></summary>
+          <div class="qa-body"><p>Your tier doesn't vanish overnight. Tiers are reviewed monthly, and if you've slipped under a threshold you get a <b>90-day grace window</b> — full benefits the whole time — with the exact volume needed to requalify. Recover at any point and the grace clears instantly.</p></div>
+        </details>
+        <details class="qa"><summary><span class="q-t">What if I stop ordering for a while?</span><span class="q-x" aria-hidden="true"></span></summary>
+          <div class="qa-body"><p>After 12 months with no orders the account goes dormant — paused, never deleted. Your history and your certification are kept. Any paid order instantly reactivates you at Base Camp standing, no re-application, no fee; higher tiers are re-earned through the rolling window.</p></div>
+        </details>
+        <details class="qa"><summary><span class="q-t">Do tier discounts stack with sales and promos?</span><span class="q-x" aria-hidden="true"></span></summary>
+          <div class="qa-body"><p>You automatically pay the <b>better of the two</b> — tier price or public promo price — never both stacked. Shipping promotions are the exception: they always combine with your tier discount. Clearance prices are already final.</p></div>
+        </details>
+        <details class="qa"><summary><span class="q-t">Where can I use the badge?</span><span class="q-x" aria-hidden="true"></span></summary>
+          <div class="qa-body"><p>Your website, vehicle wrap, yard signs, uniforms, printed quotes, social profiles, and local ads — for your current tier. Use the artwork as supplied (scale it, don't restyle it), and never imply you work for IronPeak, hold an exclusive area, or hold a tier you don't. Upgrade and the new badge is yours immediately.</p></div>
+        </details>
+        <details class="qa"><summary><span class="q-t">What does a kit cost me?</span><span class="q-x" aria-hidden="true"></span></summary>
+          <div class="qa-body"><p>Straight off the store, list: <b>100 ft — $1,299 · 150 ft — $1,762.50 · 200 ft — $2,399 · 300 ft full-perimeter — $3,499</b>, plus add-on segments (25 ft/$299, 50 ft/$499, no extra power supply) and TrueCenter Apex peaks (single $60 / 2-pack $120 / 3-pack $180). Your tier discount comes off all of it, automatically.</p>
+          <p><b>Why the smaller kit runs more per foot:</b> every kit includes the power supply box and the controller — we don't sell them as separate line items. On a 100 ft kit those electronics are a bigger share of the box; on a 300 ft kit they spread across three times the footage. Add-on segments run off the power supply you already installed, which is why they're the cheapest feet in the lineup.</p></div>
+        </details>
+        <details class="qa"><summary><span class="q-t">What's the warranty story — and which parts do I tell the homeowner?</span><span class="q-x" aria-hidden="true"></span></summary>
+          <div class="qa-body"><p><b>Tell the homeowner this one:</b></p>
+          <ul>
+            <li><b>5-year product warranty on the components</b> — the lights, the controller module, the power supply — covering product defects. It does not cover weather wear-and-tear, and your install workmanship is your own promise to the homeowner.</li>
+          </ul>
+          <p><b>These two are for YOU, dealer-to-IronPeak — don't pitch them to homeowners:</b></p>
+          <ul>
+            <li><b>30-Day Perfect Peak Guarantee</b> — if any Apex peak doesn't sit true and symmetrical out of the box, IronPeak replaces it free, shipping covered.</li>
+            <li><b>30-day first-kit return</b> — return the material and the 100 ft starter kit is refunded cash; larger kits are refunded as store credit once the material is back. IronPeak earns your business rather than locking you in — and as a bootstrapped, installer-owned company, it doesn't promise refund terms that would tie up the cash that keeps product on the shelf.</li>
+          </ul>
+          <p class="note"><b>Quote it straight.</b> Say what each layer covers and nothing more — the fastest way to lose a referral engine is a warranty promise the paperwork doesn't back.</p></div>
+        </details>
+        <details class="qa"><summary><span class="q-t">Does IronPeak set my install price?</span><span class="q-x" aria-hidden="true"></span></summary>
+          <div class="qa-body"><p><b>No — your price and your margin are yours.</b> IronPeak supplies the product and the support; the <a href="https://ironpeaklighting.com/pages/profit-calculator">profit calculator</a> exists so you can set a rate that works in your market, not so we can set it for you.</p></div>
+        </details>
+      </section>
+
+      <!-- ============ 07 GUARDRAILS ============ -->
+      <section class="cat" id="guardrails">
+        <p class="sec-label"><span class="lab-n">07</span> Guardrails</p>
+        <h2>The do-nots — non-negotiable</h2>
+        <p class="cat-sub">The short list that keeps you (and the brand on your truck) out of trouble. These aren't style suggestions.</p>
+
+        <details class="qa"><summary><span class="q-t">Can I name competitors in my marketing?</span><span class="q-x" aria-hidden="true"></span></summary>
+          <div class="qa-body"><p><b>Never put a competitor's name next to a safety or quality claim in anything written or published</b> — that's disparagement/legal territory. Teach the comparison as a principle, keep brand call-outs verbal and in-person, and let photos do the talking.</p></div>
+        </details>
+        <details class="qa"><summary><span class="q-t">Can I call my deposit non-refundable?</span><span class="q-x" aria-hidden="true"></span></summary>
+          <div class="qa-body"><p>Not automatically — in many places you can't simply declare a deposit non-refundable. The defensible structure: the deposit pays for material ordered immediately on a signed agreement. <b>Verify your own state and local law before using "non-refundable" anywhere.</b> IronPeak is a national brand and gives no one-size legal advice here.</p></div>
+        </details>
+        <details class="qa"><summary><span class="q-t">Should I offer financing?</span><span class="q-x" aria-hidden="true"></span></summary>
+          <div class="qa-body"><p>Only once your business can absorb the risk — it's a dealer-discretion business decision, not IronPeak policy, and it's not a move for a brand-new operation. If you do it, put it in writing with the schedule spelled out.</p></div>
+        </details>
+        <details class="qa"><summary><span class="q-t">What can't the badge do?</span><span class="q-x" aria-hidden="true"></span></summary>
+          <div class="qa-body"><p>It can't imply you're an IronPeak employee, that you hold an exclusive or protected area, or that you hold a tier you don't currently have. And the artwork ships final: scale it proportionally, never recolor, stretch, crop, or restyle it.</p></div>
+        </details>
+        <details class="qa"><summary><span class="q-t">What claims should I avoid in my own ads?</span><span class="q-x" aria-hidden="true"></span></summary>
+          <div class="qa-body"><p>Anything you can't back: made-up spec numbers, guaranteed HOA approval, promises about another company's work. Quote what you can show — photos, the directory listing, your real reviews. The whole program is built on the badge meaning something; keep it that way.</p></div>
+        </details>
+      </section>
+
+    </div>
+
+    <div class="vault-gate" id="vaultGate">
+      <div class="vg-card">
+        <svg width="34" height="34" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4.5" y="10" width="15" height="10.5" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M8 10V7.5a4 4 0 0 1 8 0V10" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="15.2" r="1.6" fill="currentColor"/></svg>
+        <h3>Unlock the full vault</h3>
+        <p>Seven sections, the whole field playbook. Other brands sell this as a "dealer package" — we ask for an email. It opens once and stays open on this device.</p>
+        <form class="vg-form" id="vaultForm">
+          <input type="email" id="vaultEmail" name="email" autocomplete="email" required placeholder="you@yourcompany.com" aria-label="Email address">
+          <button class="btn btn-primary" type="submit">Unlock →</button>
+        </form>
+        <p class="vg-micro">Dealer resources and program updates only. No spam, unsubscribe anytime.</p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>© 2026 IronPeak Lighting Systems. Built by installers, priced for installers.</span>
+    <span><a href="/pages/dealer-hq">Home</a> · <a href="/pages/free-training">Training</a> · <a href="https://ironpeaklighting.com/pages/dealer-program">Apply</a></span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  /* Lead capture — GoHighLevel primary (inbound-webhook workflow; automations
+     key off `source`), HubSpot as dual-write backstop during the transition —
+     delete the HubSpot entry in `sends` to cut over. HubSpot payload stays
+     email-only (that form rejects unknown fields). Unlock is shared with the
+     homepage vault section via the same localStorage key. */
+  var GHL_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/99eVuuXW11CRRtiGwcXE/webhook-trigger/257e637f-23dd-4c1c-9f31-e34e268ac3ad';
+  var PORTAL = '246087675';
+  var FORM = '227f991a-f1ea-478d-992f-c1b4efcf4959';
+  var KEY = 'ip_vault_unlock';
+
+  var grid = document.getElementById('vaultGrid');
+  var gate = document.getElementById('vaultGate');
+  var form = document.getElementById('vaultForm');
+  var email = document.getElementById('vaultEmail');
+  if (!grid || !gate || !form || !email) return;
+
+  function saved() { try { return localStorage.getItem(KEY) === '1'; } catch (e) { return false; } }
+  function save() { try { localStorage.setItem(KEY, '1'); } catch (e) { /* private mode — session-only unlock */ } }
+
+  function unlock() {
+    grid.classList.remove('locked');
+    grid.removeAttribute('inert');
+    grid.removeAttribute('aria-hidden');
+    gate.classList.add('gone');
+    gate.setAttribute('aria-hidden', 'true');
+  }
+
+  if (saved()) { unlock(); return; }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!email.checkValidity()) { email.reportValidity(); return; }
+    var btn = form.querySelector('button');
+    btn.disabled = true;
+    btn.textContent = 'Unlocking…';
+    var SOURCE = 'IronPeak Dealer Vault — Full Library';
+    var sends = [
+      fetch(GHL_WEBHOOK, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email.value, source: SOURCE })
+      }),
+      fetch('https://api.hsforms.com/submissions/v3/integration/submit/' + PORTAL + '/' + FORM, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          fields: [{ name: 'email', value: email.value }],
+          context: { pageName: SOURCE }
+        })
+      })
+    ];
+    /* unlock regardless of network outcome — never punish a visitor for our errors */
+    Promise.all(sends.map(function (p) { return p.catch(function () {}); }))
+      .then(function () { save(); unlock(); });
+  });
+})();
+</script>
+
+</body>
+</html>

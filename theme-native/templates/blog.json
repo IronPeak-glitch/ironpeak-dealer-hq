@@ -1,0 +1,13 @@
+{
+  "sections": {
+    "main-blog": {
+      "type": "main-blog",
+      "settings": {
+        "margin_top": "no-indent",
+        "margin_bottom": "m",
+        "description": "Installer playbooks, pricing math, and permanent-lighting know-how — straight from the field."
+      }
+    }
+  },
+  "order": ["main-blog"]
+}

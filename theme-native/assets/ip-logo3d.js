@@ -67,7 +67,9 @@ export function initLogo3D(container, opts = {}) {
 
   const canvas = renderer.domElement;
   // Overlay the poster <img> (if any) rather than stacking below it.
-  if (!container.style.position) container.style.position = 'relative';
+  // Respect stylesheet positioning (e.g. position:absolute on the hero mark);
+  // only add relative when the computed position is static.
+  if (getComputedStyle(container).position === 'static') container.style.position = 'relative';
   canvas.style.cssText = 'display:block;position:absolute;inset:0;width:100%;height:100%;';
   container.appendChild(canvas);
 

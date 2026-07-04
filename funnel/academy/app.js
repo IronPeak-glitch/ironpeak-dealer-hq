@@ -1726,7 +1726,7 @@
      HubSpot kept as a dual-write backstop during the transition — delete its fetch
      to cut over. HubSpot payload stays email-only (that form rejects unknown
      fields). Progress, name, and certificate still live only on this device. */
-  var GHL_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/99eVuuXW11CRRtiGwcXE/webhook-trigger/257e637f-23dd-4c1c-9f31-e34e268ac3ad';
+  var GHL_WEBHOOK = 'https://services.leadconnectorhq.com/hooks/99eVuuXW11CRRtiGwcXE/webhook-trigger/5b7b3d77-8087-4f57-999f-a13bf0580e0c';
   var HS_PORTAL = '246087675';
   var HS_FORM = '227f991a-f1ea-478d-992f-c1b4efcf4959';
   var LEAD_KEY = 'ip_vault_unlock'; // shared lead state with the vault pages

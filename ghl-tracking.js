@@ -10,7 +10,7 @@
     s.setAttribute('data-tracking-id', 'tk_0627744ee53e47fe9991a91ef1cbbdd0');
     document.head.appendChild(s);
   }
-  var GHL = 'https://services.leadconnectorhq.com/hooks/99eVuuXW11CRRtiGwcXE/webhook-trigger/257e637f-23dd-4c1c-9f31-e34e268ac3ad';
+  var GHL = 'https://services.leadconnectorhq.com/hooks/99eVuuXW11CRRtiGwcXE/webhook-trigger/5b7b3d77-8087-4f57-999f-a13bf0580e0c';
   document.addEventListener('submit', function (e) {
     var f = e.target;
     if (!f || f.id !== 'ip-leadForm') return;

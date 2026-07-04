@@ -1,0 +1,106 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "ironpeak_home": {
+      "type": "ironpeak-home",
+      "settings": {
+        "hero_bg": "shopify://shop_images/web_hero.jpg",
+        "hero_eyebrow": "Built by an installer, for installers",
+        "hero_h1": "Permanent lighting <em>without the $20,000 gate.</em>",
+        "hero_sub": "Most brands make you buy $10–20k of inventory just to become a dealer. That's what you do when you don't believe in your product. We believe in ours — so it costs you $0 to start, the training's free, and we'll show you the exact math before you spend a dime.",
+        "hero_cta1": "See what you could make →",
+        "hero_cta2": "How the dealer program works",
+        "chip1": "Patent-pending Apex Track",
+        "chip2": "$0 buy-in · free training",
+        "chip3": "Built by an installer",
+        "chip4": "30-day Perfect-Peak Guarantee",
+        "calc_url": "",
+        "dealer_url": "",
+        "story_url": "",
+        "allproducts_url": "",
+        "belief_eyebrow": "Why we built it this way",
+        "belief_quote": "The only reason to lock installers behind a $10–20k buy-in is <em>if you don't believe your product can win on its own.</em>",
+        "belief_body": "So we did the opposite. No buy-in. Free training. If you're not sure permanent lighting is for you, it costs you nothing to find out. No barrier means no lock-in — which means we have to keep earning you with a better product, every single year. That's the whole strategy: bring more value, win on volume, never on a tollbooth.",
+        "belief_link": "Read the full IronPeak story →",
+        "gal_eyebrow": "See it on a real roof",
+        "gal_h2": "The product, doing the work.",
+        "gal_lead": "Clean rooflines, the Apex Track on a peak, a finished home lit up at night.",
+        "gal_video": "",
+        "gal_1": "shopify://shop_images/IMG_7219.jpg",
+        "gal_2": "shopify://shop_images/IMG_6056.jpg",
+        "gal_3": "shopify://shop_images/topaz_enhance_of_lighting_image.jpg",
+        "calc_eyebrow": "Free · No catch",
+        "calc_h2": "How much can permanent lighting actually make you?",
+        "calc_body": "Plug in your roofline footage and what you charge per foot. See your profit per job, your margin, and your annual earning potential — in about 15 seconds.",
+        "calc_free": "Free to use · your numbers, not ours",
+        "calc_cta": "Run the profit calculator →",
+        "why_eyebrow": "What you're actually buying into",
+        "why_h2": "A business you can run — not just a box of parts.",
+        "why_lead": "Every decision in IronPeak traces back to a real install headache. We removed the parts of the job that cost you time, callbacks, and capital.",
+        "c1_h": "TrueCenter Apex Track",
+        "c1_p": "Pre-made, pitch-matched peak components. A perfect, symmetrical peak goes up in under 5 minutes instead of 25+ minutes of cutting and guessing on a ladder.",
+        "c1_tag": "Patent-pending",
+        "c2_h": "Plug-and-play, no splicing",
+        "c2_p": "Pre-built kits matched to your roof pitch and color. Less cutting, Less mitering, no data splits — fewer ways for a job to go wrong, fewer callbacks.",
+        "c3_h": "Free training",
+        "c3_p": "The install knowledge other companies paywall for $700–$1,000, we give away. Get your crew producing without paying a tuition first.",
+        "c4_h": "$0 buy-in, pricing that grows",
+        "c4_p": "Start with one kit. As you sell more, you climb dealer tiers and your pricing drops. No five-figure inventory bet to \"unlock\" being a dealer.",
+        "dealer_eyebrow": "The dealer program",
+        "dealer_h2": "Buy more, earn more — starting at $0.",
+        "dealer_lead": "Our dealer program is tiered. The more you sell through us, the higher your tier and the bigger your discount. You're never locked in, and you never pay to get in.",
+        "dealer_cta": "Apply to become a dealer →",
+        "t1_name": "Starter",
+        "t1_disc": "$0 to join",
+        "t1_req": "Begin with one kit",
+        "t2_name": "Pro",
+        "t2_disc": "Bigger discount",
+        "t2_req": "After 3,000 Ft Purchased",
+        "t3_name": "Elite",
+        "t3_disc": "Deeper pricing",
+        "t3_req": "After 6,000 Ft Purchased",
+        "t4_name": "Partner",
+        "t4_disc": "Best pricing",
+        "t4_req": "After 12,000 Ft Purchased",
+        "testi_quote": "",
+        "testi_who": "— Name, company, city",
+        "kits_eyebrow": "Ready to look at gear?",
+        "kits_h2": "Browse kits by roofline length.",
+        "kits_lead": "Not sure how much you need? The calculator sizes it for you. Otherwise — pick your footage and go.",
+        "kits_all": "See all products — kits, Apex Track, add-ons →",
+        "kit1_ft": "100 ft",
+        "kit1_d": "Small single-story or one section",
+        "kit1_pr": "$1,299",
+        "kit1_url": "",
+        "kit2_ft": "150 ft",
+        "kit2_d": "Average residential roofline",
+        "kit2_pr": "$1,762",
+        "kit2_url": "",
+        "kit3_ft": "200 ft",
+        "kit3_d": "Larger home",
+        "kit3_pr": "$2,399",
+        "kit3_url": "",
+        "kit4_ft": "300 ft",
+        "kit4_d": "Full perimeter",
+        "kit4_pr": "$3,499",
+        "kit4_url": "",
+        "founder_photo": "shopify://shop_images/Founder_headshot.png",
+        "founder_eyebrow": "From the founder",
+        "founder_quote": "After having a Christmas lighting company for many years, we kept having customers ask about permanent lighting. After deciding to start offering permanent lighting, we realized that the quality permanent lighting company that we desired was not out there. We noticed all other brands that we had done research on seemed to have been building their ecosystem around what was profiting them as a business the most, instead of what actually made the installer's life easier. SO WE DECIDED TO BUILD OUR OWN FOR INSTALLERS!",
+        "founder_name": "— Devan Williams, founder of IronPeak Lighting",
+        "founder_link": "Read the full story →"
+      }
+    }
+  },
+  "order": [
+    "ironpeak_home"
+  ]
+}

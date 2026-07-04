@@ -1,0 +1,9 @@
+{
+  "layout": "flagship",
+  "sections": {
+    "main": {
+      "type": "ip-empty"
+    }
+  },
+  "order": ["main"]
+}

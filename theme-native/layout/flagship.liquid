@@ -9,6 +9,7 @@
 <link rel="canonical" href="https://ironpeaklighting.com/">
 <meta property="og:url" content="https://ironpeaklighting.com/">
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"Organization","name":"IronPeak Lighting Systems","url":"https://ironpeaklighting.com/","logo":"https://cdn.shopify.com/s/files/1/0753/7088/9387/files/IronPeak_Lighting_Systems_high_res_logo_design.png?v=1769908591","sameAs":["https://www.instagram.com/ironpeaklighting","https://www.facebook.com/ironpeaklighting","https://www.youtube.com/@ironpeaklighting"]},{"@type":"WebSite","name":"IronPeak Lighting Systems","url":"https://ironpeaklighting.com/"}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How long does an IronPeak permanent lighting kit take to install?","acceptedAnswer":{"@type":"Answer","text":"IronPeak kits are pre-built and pitch-matched, so a perfect, symmetrical peak goes up in under 5 minutes instead of 25+ minutes of cutting and fitting on a ladder. Most homes install dramatically faster than traditional permanent lighting, with no cutting or splicing on the roof."}},{"@type":"Question","name":"Is there a dealer buy-in or franchise fee to sell IronPeak?","acceptedAnswer":{"@type":"Answer","text":"No. IronPeak has a $0 buy-in dealer program — no $10,000–$20,000 inventory requirement and no paywalled training. You can start with a single kit and earn better pricing as your volume grows over a rolling 12-month window."}},{"@type":"Question","name":"Which roof pitch do I choose for my Apex Track?","acceptedAnswer":{"@type":"Answer","text":"Pick the pitch closest to your roof: 4/12 (low slope, covers 3/12–5/12), 6/12 (standard, the most common American pitch, covers 5/12–7/12), 9/12 (steep, covers 8/12–10/12), or 12/12 (very steep, covers 11/12–12/12). Your pre-built Apex peak is matched to the pitch you select."}},{"@type":"Question","name":"What is the IronPeak guarantee and warranty?","acceptedAnswer":{"@type":"Answer","text":"Every Apex peak is covered by the Perfect-Peak Guarantee: if a peak arrives not true and symmetrical, IronPeak replaces it free and covers shipping. New customers get a 30-day money-back guarantee (cash refund up to the price of one standard kit; store credit beyond that). LEDs, controllers, and power supplies carry a 5-year warranty."}},{"@type":"Question","name":"What is included in an IronPeak roofline lighting kit?","acceptedAnswer":{"@type":"Answer","text":"Each kit includes powder-coated aluminum track, RGBW LED strands, one or more pre-built TrueCenter Apex Track peaks matched to your roof pitch and color, a 600W power supply with multi-layer surge protection, an app-enabled RGBW controller, color-matched mounting hardware, spare data cables, an install guide, and free access to IronPeak install training."}}]}</script>
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="IronPeak Lighting Systems">
 <meta property="og:title" content="IronPeak — Permanent Lighting Without the $20,000 Gate">
@@ -196,6 +197,24 @@ if (window.self !== window.top) {
   .nav-links a:not(.btn):hover{ color:var(--ink); }
   .btn-sm{ padding:.72rem 1.25rem; font-size:.8rem; }
   @media (max-width:900px){ .nav-links li:not(.nav-cta){ display:none; } }
+  .nav-burger{ display:none; background:none; border:0; padding:.6rem .2rem .6rem .8rem; cursor:pointer; }
+  .nav-burger span{ display:block; width:22px; height:2px; background:var(--ink); margin:5px 0; transition:transform .25s ease, opacity .25s ease; }
+  .nav-burger:focus-visible{ outline:2px solid var(--blue); outline-offset:2px; }
+  @media (max-width:900px){
+    .nav-burger{ display:block; }
+    body.nav-open .nav-links{
+      position:fixed; top:var(--header-h); left:0; right:0; z-index:60;
+      display:flex; flex-direction:column; align-items:flex-start; gap:0;
+      background:rgba(7,9,13,.98); border-bottom:1px solid rgba(159,180,216,.16);
+      padding:.4rem 1.4rem 1.2rem;
+    }
+    body.nav-open .nav-links li{ display:block !important; width:100%; }
+    body.nav-open .nav-links a:not(.btn){ display:block; padding:.85rem 0; font-size:.95rem; }
+    body.nav-open .nav-links .nav-cta{ margin-top:.6rem; }
+    body.nav-open .nav-burger span:nth-child(1){ transform:translateY(7px) rotate(45deg); }
+    body.nav-open .nav-burger span:nth-child(2){ opacity:0; }
+    body.nav-open .nav-burger span:nth-child(3){ transform:translateY(-7px) rotate(-45deg); }
+  }
 
   /* ============ HERO ============ */
   .hero{
@@ -1027,7 +1046,7 @@ if (window.self !== window.top) {
       </span>
     </a>
     <nav aria-label="Primary">
-      <ul class="nav-links">
+      <ul class="nav-links" id="ipNavLinks">
         <li><a href="#proof">Proof</a></li>
         <li><a href="#math">The Math</a></li>
         <li><a href="#program">Program</a></li>
@@ -1037,6 +1056,9 @@ if (window.self !== window.top) {
         <li class="nav-cta"><a class="btn btn-primary btn-sm" href="https://ironpeaklighting.com/pages/dealer-program">Apply <span class="arr">→</span></a></li>
       </ul>
     </nav>
+    <button class="nav-burger" aria-expanded="false" aria-controls="ipNavLinks" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </header>
 
@@ -2451,6 +2473,20 @@ if (heroEl && heroCanvas) {
 }
 </script>
 
+<script>
+(function(){
+  var b = document.querySelector('.nav-burger');
+  if (!b) return;
+  function close(){ document.body.classList.remove('nav-open'); b.setAttribute('aria-expanded','false'); b.setAttribute('aria-label','Open menu'); }
+  b.addEventListener('click', function(){
+    var open = document.body.classList.toggle('nav-open');
+    b.setAttribute('aria-expanded', open ? 'true' : 'false');
+    b.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+  });
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') close(); });
+  document.querySelectorAll('.nav-links a').forEach(function(a){ a.addEventListener('click', close); });
+})();
+</script>
 <!-- ============ HERO 3D MARK (Devan's GLB via logo3d.js) ============ -->
 <script type="module">
   const heroLogoStage = document.getElementById('heroLogo3d');

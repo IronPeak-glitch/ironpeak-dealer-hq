@@ -44,6 +44,12 @@
   }
   function clampPct (n) { return Math.max(0, Math.min(100, Math.round(n))); }
 
+  /* Shopify's theme-asset minifier (esbuild) rewrites a bare dynamic import()
+     into a CommonJS require() that doesn't exist in browsers, silently killing
+     the module load. Building the import in a Function keeps it out of reach.
+     Resolution semantics are identical (document base URL + the importmap). */
+  var dynImport = new Function('u', 'return import(u)');
+
   var ICON = {
     check: '<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>',
     arr: '<span class="arr" aria-hidden="true">→</span>',
@@ -164,7 +170,7 @@
     var cfg = window.IP_SUPABASE;
     if (!cfg || !cfg.url || !cfg.anon) return Promise.resolve(null);
     // Same dynamic-import pattern as ip-logo3d: the academy boots fine without it.
-    var load = import('https://esm.sh/@supabase/supabase-js@2').then(function (mod) {
+    var load = dynImport('https://esm.sh/@supabase/supabase-js@2').then(function (mod) {
       sb = mod.createClient(cfg.url, cfg.anon);
       return sb.auth.getSession().then(function (r) {
         var session = r && r.data && r.data.session;
@@ -1774,7 +1780,7 @@
     if (routeName === 'home') {
       var stage = $('#logo-stage');
       if (stage) {
-        import('./ip-logo3d.js').then(function (mod) {
+        dynImport('./ip-logo3d.js').then(function (mod) {
           if ($('#logo-stage') !== stage) return; // view changed
           try { logoHandle = mod.initLogo3D(stage, { spinSpeed: 0.55, fill: 3.35 }); } catch (e) {}
         }).catch(function () { /* module/WebGL unavailable — static logo stays */ });
@@ -1855,7 +1861,7 @@
     var hero = $('#homeHero'); var canvas = $('#heroParticles');
     if (!hero || !canvas) return;
     if (reduced) { return; } // reduced motion: keep the static gradient hero
-    import('three').then(function (THREE) {
+    dynImport('three').then(function (THREE) {
       if ($('#heroParticles') !== canvas) return;
       var renderer;
       try { renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: false, powerPreference: 'high-performance' }); }

@@ -6,6 +6,8 @@
    This file is the ENGINE: router, views, lesson renderer (multi-modal),
    interactives, localStorage tracking, quizzes, exam, certificate, manager
    dashboard, and motion. Self-contained; no build step. Zero console errors.
+   Supabase (email OTP + events) is the cross-device source of truth;
+   localStorage remains the offline cache — see the SUPABASE SYNC section.
    ========================================================================== */
 (function () {
   'use strict';
@@ -125,23 +127,210 @@
 
   /* ----------------------------------------------------------------------------
      THE EVENTS WRITE SEAM (see ACADEMY-BACKEND.md §4, "Seam 1 — writeProgress").
-     Every meaningful learner action (lesson_completed, quiz_passed, quiz_attempted,
-     certified) flows through this ONE function. Demo: persists locally (the caller
-     already wrote `store` + saveStore()). Production: POST the event to the backend
-     and keep localStorage as an offline cache — a one-function change.
+     Every meaningful learner action flows through this ONE function. localStorage
+     stays the offline cache + optimistic layer; Supabase is the source of truth.
+     Events land in a localStorage queue and flush to the `events` table (a unique
+     index on user_id/kind/ref makes replays idempotent server-side).
      event = { type, ref, mode?, score?, total?, passed?, occurredAt }
   ---------------------------------------------------------------------------- */
   function writeProgress (event) {
-    // DEMO: state is already in `store` (the caller mutated + saved it). No-op here.
-    // PRODUCTION — uncomment to emit to the backend; the rest of the app is unchanged:
-    // try {
-    //   fetch((window.ACADEMY_API || (location.origin + '/apps/academy')) + '/events', {
-    //     method: 'POST', credentials: 'include',
-    //     headers: { 'Content-Type': 'application/json' },
-    //     body: JSON.stringify(Object.assign({ eventId: (crypto.randomUUID ? crypto.randomUUID() : String(Date.now())) }, event))
-    //   }).catch(function () { /* offline-safe: localStorage is the cache, replay later */ });
-    // } catch (e) {}
+    try {
+      var kind = null, ref = '';
+      if (event.type === 'lesson_completed') { kind = 'lesson_completed'; ref = event.ref; }
+      else if (event.type === 'quiz_passed' && event.ref === 'exam') {
+        kind = 'exam_passed';
+        ref = String(event.total ? Math.round((event.score / event.total) * 100) : 0);
+      }
+      else if (event.type === 'quiz_passed') { kind = 'quiz_passed'; ref = event.ref; }
+      else if (event.type === 'certified') { kind = 'certified'; ref = event.ref; }
+      if (kind) queueEvent(kind, ref);
+    } catch (e) { /* sync must never break the app */ }
     return event;
+  }
+
+  /* ============================================================ SUPABASE SYNC
+     Cross-device progress + real auth (email OTP) per FABLE5-BUILD-SPEC.
+     Offline-first: if supabase-js can't load or the network is down, everything
+     below no-ops and the academy behaves exactly as the local-only build. */
+  var sb = null;          // supabase client (null → local-only mode)
+  var sbUser = null;      // { id, email } once a session exists
+  var sbProfile = null;   // own row from `profiles` (role drives the live roster)
+  var liveRoster = null;  // cached mapped roster rows for the manager dashboard
+  var flushing = false;
+  var EVT_QUEUE_KEY = 'ip_evt_queue';
+  var SB_KINDS = ['lesson_completed', 'quiz_passed', 'exam_passed', 'certified'];
+
+  var sbReady = (function () {
+    var cfg = window.IP_SUPABASE;
+    if (!cfg || !cfg.url || !cfg.anon) return Promise.resolve(null);
+    // Same dynamic-import pattern as ip-logo3d: the academy boots fine without it.
+    var load = import('https://esm.sh/@supabase/supabase-js@2').then(function (mod) {
+      sb = mod.createClient(cfg.url, cfg.anon);
+      return sb.auth.getSession().then(function (r) {
+        var session = r && r.data && r.data.session;
+        if (session && session.user) sbUser = { id: session.user.id, email: session.user.email };
+        return session || null;
+      });
+    }).catch(function () { return null; });
+    // Don't hold the gate hostage on a slow CDN; late resolution still sets `sb`.
+    var timeout = new Promise(function (res) { setTimeout(function () { res(null); }, 4000); });
+    return Promise.race([load, timeout]);
+  })();
+
+  function queueEventNoFlush (kind, ref) {
+    try {
+      var q = JSON.parse(localStorage.getItem(EVT_QUEUE_KEY) || '[]');
+      q.push({ kind: kind, ref: String(ref || '') });
+      localStorage.setItem(EVT_QUEUE_KEY, JSON.stringify(q));
+    } catch (e) { /* private mode — server sync limited to this session */ }
+  }
+  function queueEvent (kind, ref) { queueEventNoFlush(kind, ref); flushQueue(); }
+
+  function flushQueue () {
+    if (!sb || !sbUser || flushing) return;
+    var q;
+    try { q = JSON.parse(localStorage.getItem(EVT_QUEUE_KEY) || '[]'); } catch (e) { q = []; }
+    q = q.filter(function (ev) { return ev && SB_KINDS.indexOf(ev.kind) >= 0; });
+    if (!q.length) return;
+    var n = q.length;
+    var rows = q.map(function (ev) { return { user_id: sbUser.id, kind: ev.kind, ref: String(ev.ref || '') }; });
+    flushing = true;
+    // ignoreDuplicates → INSERT ... ON CONFLICT DO NOTHING: the dedupe index eats replays.
+    sb.from('events').upsert(rows, { onConflict: 'user_id,kind,ref', ignoreDuplicates: true }).then(function (res) {
+      flushing = false;
+      if (res && res.error) return; // keep queue, retry on next boot/online/push
+      try {
+        var cur = JSON.parse(localStorage.getItem(EVT_QUEUE_KEY) || '[]');
+        localStorage.setItem(EVT_QUEUE_KEY, JSON.stringify(cur.slice(n))); // drop only what we sent
+      } catch (e) { /* ignore */ }
+    }, function () { flushing = false; });
+  }
+
+  /* Server → local merge. Union: local completions are never removed. */
+  function mergeServerEvents (rows) {
+    var changed = false;
+    rows.forEach(function (ev) {
+      var ts = Date.parse(ev.created_at) || Date.now();
+      if (ev.kind === 'lesson_completed' && LESSON_BY_ID[ev.ref]) {
+        if (!lessonDone(ev.ref)) { store.progress[ev.ref] = { completed: true, completedAt: ts, mode: 'read' }; changed = true; }
+      } else if (ev.kind === 'quiz_passed' && MODULE_BY_ID[ev.ref]) {
+        var qz = store.quiz[ev.ref];
+        if (!qz || !qz.passedAt) {
+          store.quiz[ev.ref] = { best: (qz && qz.best) || 0, total: (qz && qz.total) || 0, attempts: (qz && qz.attempts) || 0, passedAt: ts };
+          changed = true;
+        }
+      } else if (ev.kind === 'exam_passed') {
+        if (!store.exam.passedAt) {
+          var pct = parseInt(ev.ref, 10);
+          store.exam = { best: isFinite(pct) ? pct : (store.exam.best || 0), total: isFinite(pct) ? 100 : (store.exam.total || 0), passedAt: ts };
+          changed = true;
+        }
+      } else if (ev.kind === 'certified') {
+        if (!store.cert.issued) {
+          store.cert = { issued: true, issuedAt: ts, name: store.user.name || 'IronPeak Dealer', serial: ev.ref };
+          changed = true;
+        }
+      }
+    });
+    return changed;
+  }
+
+  /* One-time migration: local completions with an empty server → replay everything.
+     The dedupe index makes this idempotent even if it fires twice. */
+  function replayLocalToQueue () {
+    Object.keys(store.progress).forEach(function (id) {
+      if (store.progress[id] && store.progress[id].completed) queueEventNoFlush('lesson_completed', id);
+    });
+    Object.keys(store.quiz).forEach(function (mid) {
+      if (store.quiz[mid] && store.quiz[mid].passedAt) queueEventNoFlush('quiz_passed', mid);
+    });
+    if (store.exam.passedAt) queueEventNoFlush('exam_passed', String(store.exam.total ? Math.round((store.exam.best / store.exam.total) * 100) : 0));
+    if (store.cert.issued) queueEventNoFlush('certified', store.cert.serial || ('IPA-' + (store.cert.issuedAt || Date.now()).toString(36).toUpperCase().slice(-6)));
+  }
+
+  /* Post-login hydration: profile round-trip, event read-merge, migration, flush.
+     Resolves with `true` when the merge changed local state (caller re-renders). */
+  function syncFromServer () {
+    if (!sb || !sbUser) return Promise.resolve(false);
+    return sb.from('profiles').select('name, company, role').eq('id', sbUser.id).maybeSingle()
+      .then(function (pr) {
+        sbProfile = (pr && pr.data) || null;
+        if (sbProfile) { // fresh device: adopt server identity into local blanks
+          if (!store.user.name && sbProfile.name) store.user.name = sbProfile.name;
+          if (!store.user.company && sbProfile.company) store.user.company = sbProfile.company;
+        }
+        store.user.email = store.user.email || sbUser.email;
+        var patch = { id: sbUser.id, email: sbUser.email }; // only non-empty fields — never blank server values
+        if (store.user.name) patch.name = store.user.name;
+        if (store.user.company) patch.company = store.user.company;
+        return sb.from('profiles').upsert(patch);
+      })
+      .then(function () {
+        if (sbProfile) return null;
+        return sb.from('profiles').select('name, company, role').eq('id', sbUser.id).maybeSingle()
+          .then(function (pr2) { sbProfile = (pr2 && pr2.data) || null; });
+      })
+      .then(function () { return sb.from('events').select('kind, ref, created_at').eq('user_id', sbUser.id); })
+      .then(function (res) {
+        var rows = (res && res.data) || [];
+        var changed = mergeServerEvents(rows);
+        if (!rows.length) replayLocalToQueue();
+        flushQueue();
+        saveStore();
+        return changed;
+      })
+      .catch(function () { return false; });
+  }
+
+  /* Manager dashboard: roster view + per-module heat from real events. */
+  function fetchLiveRoster () {
+    if (!sb || !sbUser) return Promise.resolve(null);
+    return Promise.all([
+      sb.from('roster').select('*'),
+      sb.from('events').select('user_id, ref').eq('kind', 'lesson_completed')
+    ]).then(function (res) {
+      var rows = res[0] && res[0].data;
+      if (!rows || !rows.length) return null;
+      var modsBy = {};
+      ((res[1] && res[1].data) || []).forEach(function (ev) {
+        var l = LESSON_BY_ID[ev.ref]; if (!l) return;
+        var u = modsBy[ev.user_id] = modsBy[ev.user_id] || {};
+        u[l._moduleId] = (u[l._moduleId] || 0) + 1;
+      });
+      var total = ALL_LESSONS.length || 1;
+      return rows.map(function (r) {
+        var mods = {};
+        MODULES.forEach(function (m) {
+          var done = (modsBy[r.id] && modsBy[r.id][m.id]) || 0;
+          mods[m.id] = (m.lessons && m.lessons.length) ? clampPct((done / m.lessons.length) * 100) : 0;
+        });
+        return {
+          id: r.id, name: r.name || 'Dealer', company: r.company || '',
+          overall: clampPct(((r.lessons_done || 0) / total) * 100),
+          examPct: r.exam_pct || 0, certified: !!r.certified,
+          lastActive: Date.parse(r.last_active) || Date.now(),
+          modules: mods, isLocal: !!(sbUser && r.id === sbUser.id)
+        };
+      });
+    }).catch(function () { return null; });
+  }
+
+  /* Returning local-only users get a quiet path into the OTP flow. */
+  function maybeShowSyncPill () {
+    if (!sb || sbUser || !store.user.startedAt) return;
+    try { if (sessionStorage.getItem('ip_sync_dismissed')) return; } catch (e) {}
+    var pill = el(
+      '<div style="position:fixed;bottom:18px;left:18px;z-index:80;display:flex;align-items:center;gap:.6rem;background:#12151a;border:1px solid rgba(30,127,255,.45);border-radius:999px;padding:.55rem .5rem .55rem 1rem;box-shadow:0 10px 30px rgba(0,0,0,.5)">' +
+        '<button type="button" id="syncPillGo" style="background:none;border:0;cursor:pointer;color:#dfe7f2;font:inherit;font-size:.85rem">⇅ Sync progress across devices</button>' +
+        '<button type="button" id="syncPillX" aria-label="Dismiss" style="background:none;border:0;cursor:pointer;color:#7087a5;font-size:1rem;line-height:1;padding:.2rem .5rem">×</button>' +
+      '</div>'
+    );
+    document.body.appendChild(pill);
+    $('#syncPillGo', pill).addEventListener('click', function () { pill.remove(); showGate({ syncOnly: true }); });
+    $('#syncPillX', pill).addEventListener('click', function () {
+      pill.remove();
+      try { sessionStorage.setItem('ip_sync_dismissed', '1'); } catch (e) {}
+    });
   }
 
   /* ============================================================ DATA */
@@ -1267,9 +1456,11 @@
   /* ============================================================ CERTIFICATE */
   function maybeIssueCert () {
     if (certEarned() && !store.cert.issued) {
-      store.cert = { issued: true, issuedAt: Date.now(), name: store.user.name || 'IronPeak Dealer' };
+      var issuedAt = Date.now();
+      var serial = 'IPA-' + issuedAt.toString(36).toUpperCase().slice(-6);
+      store.cert = { issued: true, issuedAt: issuedAt, name: store.user.name || 'IronPeak Dealer', serial: serial };
       saveStore();
-      writeProgress({ type: 'certified', ref: 'cert', score: store.exam.best, total: store.exam.total, occurredAt: Date.now() });
+      writeProgress({ type: 'certified', ref: serial, score: store.exam.best, total: store.exam.total, occurredAt: issuedAt });
     }
   }
   ROUTES.certificate = function () {
@@ -1301,7 +1492,7 @@
     var name = store.cert.name || store.user.name || 'IronPeak Dealer';
     var company = store.user.company || '';
     var dateStr = new Date(store.cert.issuedAt || Date.now()).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
-    var certId = 'IPA-' + (store.cert.issuedAt || Date.now()).toString(36).toUpperCase().slice(-6);
+    var certId = store.cert.serial || ('IPA-' + (store.cert.issuedAt || Date.now()).toString(36).toUpperCase().slice(-6));
 
     var wrap = el('<div class="cert-wrap"></div>');
     wrap.appendChild(el('<p class="sec-label" style="justify-content:center"><span class="lab-n">★</span> Certified</p>'));
@@ -1363,12 +1554,25 @@
   ROUTES.dashboard = function () {
     // Switching to dashboard implies a manager wants to see it
     if (store.user.role !== 'manager') { store.user.role = 'manager'; saveStore(); syncHeader(); }
-    var roster = getRoster();
+    // Real managers (profiles.role = 'manager' in Supabase) get the live roster;
+    // everyone else keeps the labeled demo data.
+    var isRealManager = !!(sb && sbUser && sbProfile && sbProfile.role === 'manager');
+    if (isRealManager && !liveRoster) {
+      fetchLiveRoster().then(function (rows) {
+        if (rows) { liveRoster = rows; if (parseHash().name === 'dashboard') render(); }
+      });
+    }
+    var live = !!(isRealManager && liveRoster);
+    var roster = live ? liveRoster : getRoster();
     var view = el('<div class="view wrap pad-top pad-bottom"></div>');
     view.appendChild(crumbs([['#/', 'Academy'], [null, 'Manager Dashboard']]));
     view.appendChild(el('<p class="sec-label"><span class="lab-n">MD</span> Manager Dashboard</p>'));
-    view.appendChild(el('<h1 class="mod-h1">The team, <span class="accent">at a glance.</span></h1>'));
-    view.appendChild(el('<p class="lead" style="margin-top:1rem">Roster of your dealers with per-module progress, quiz scores, certification status, and last activity. The local learner (you) is live; the rest is sample team data.</p>'));
+    view.appendChild(el('<h1 class="mod-h1">The team, <span class="accent">at a glance.</span>' +
+      (live ? ' <span style="display:inline-block;margin-left:.5rem;font-size:.32em;vertical-align:middle;color:#35d39b;border:1px solid rgba(53,211,155,.45);padding:.2em .7em;border-radius:999px;letter-spacing:.12em;font-weight:600">● LIVE</span>' : '') +
+      '</h1>'));
+    view.appendChild(el('<p class="lead" style="margin-top:1rem">' + (live
+      ? 'Live roster from the Academy backend — per-module progress, exam scores, certification status, and last activity for every enrolled dealer.'
+      : 'Roster of your dealers with per-module progress, quiz scores, certification status, and last activity. The local learner (you) is live; the rest is sample team data.') + '</p>'));
 
     /* rollups */
     var avg = Math.round(roster.reduce(function (a, r) { return a + r.overall; }, 0) / roster.length);
@@ -1468,20 +1672,22 @@
     });
     drawTable();
 
-    view.appendChild(el(
-      '<div class="dash-blueprint" style="border-color:rgba(30,127,255,.45)">' +
-        '<h4>Heads up: the roster above is sample data</h4>' +
-        '<p>Real academy leads land in <b>GoHighLevel</b> the moment they pass the email gate (source \u201cIronPeak Sales Academy\u201d), and their progress pings the contact timeline at 25 / 50 / 75 / 100% complete. Open GHL \u2192 Contacts for the real roster today.</p>' +
-      '</div>'
-    ));
+    if (!live) {
+      view.appendChild(el(
+        '<div class="dash-blueprint" style="border-color:rgba(30,127,255,.45)">' +
+          '<h4>Heads up: the roster above is sample data</h4>' +
+          '<p>Real academy leads land in <b>GoHighLevel</b> the moment they pass the email gate (source \u201cIronPeak Sales Academy\u201d), and their progress pings the contact timeline at 25 / 50 / 75 / 100% complete. Open GHL \u2192 Contacts for the real roster today.</p>' +
+        '</div>'
+      ));
 
-    /* backend blueprint */
-    view.appendChild(el(
-      '<div class="dash-blueprint">' +
-        '<h4>Demo roster — your real data lives in GoHighLevel</h4>' +
-        '<p>This roster is served by a single function — <code>getRoster()</code> in <code>app.js</code>. Swapping in a real backend is a one-function change: point it at Shopify customer metafields or a lightweight store (e.g. Supabase) that records <code>lesson_completed</code>, <code>quiz_passed</code>, and <code>certified</code> events per authenticated dealer. The rollups, heat map, sort and filter all read from whatever <code>getRoster()</code> returns. See <code>ACADEMY-BACKEND.md</code> for the full auth/role + events-API blueprint.</p>' +
-      '</div>'
-    ));
+      /* backend blueprint */
+      view.appendChild(el(
+        '<div class="dash-blueprint">' +
+          '<h4>Demo roster — your real data lives in GoHighLevel</h4>' +
+          '<p>This roster is served by a single function — <code>getRoster()</code> in <code>app.js</code>. Swapping in a real backend is a one-function change: point it at Shopify customer metafields or a lightweight store (e.g. Supabase) that records <code>lesson_completed</code>, <code>quiz_passed</code>, and <code>certified</code> events per authenticated dealer. The rollups, heat map, sort and filter all read from whatever <code>getRoster()</code> returns. See <code>ACADEMY-BACKEND.md</code> for the full auth/role + events-API blueprint.</p>' +
+        '</div>'
+      ));
+    }
     return view;
   };
 
@@ -1763,17 +1969,23 @@
   var HS_FORM = '227f991a-f1ea-478d-992f-c1b4efcf4959';
   var LEAD_KEY = 'ip_vault_unlock'; // shared lead state with the vault pages
 
-  function showGate () {
+  function showGate (opts) {
+    opts = opts || {};
+    var step = 1;           // 1 = identity form, 2 = OTP code entry
+    var otpEmail = '';
+    var canOtp = !!sb;      // gate always shows after sbReady settles, so this is accurate
     var overlay = el(
       '<div class="gate-overlay" role="dialog" aria-modal="true" aria-labelledby="gateTitle">' +
         '<form class="gate-card" id="gateForm">' +
           '<img src="' + ((window.IP_ASSETS && window.IP_ASSETS.logo) || './ip-hq-logo.svg') + '" alt="" aria-hidden="true">' +
-          '<h2 id="gateTitle">Welcome to the Academy</h2>' +
-          '<p>The whole program is free — the price is an email. Your progress and certificate stay on this device; your email gets dealer resources and course updates.</p>' +
+          '<h2 id="gateTitle">' + (opts.syncOnly ? 'Sync your progress' : 'Welcome to the Academy') + '</h2>' +
+          '<p>' + (canOtp
+            ? 'The whole program is free — the price is an email. We’ll send you a 6-digit code so your progress and certificate follow you across devices.'
+            : 'The whole program is free — the price is an email. Your progress and certificate stay on this device; your email gets dealer resources and course updates.') + '</p>' +
           '<div class="gate-field"><label for="gateEmail">Email</label><input id="gateEmail" type="email" autocomplete="email" placeholder="you@yourcompany.com" required></div>' +
           '<div class="gate-field"><label for="gateName">Your name</label><input id="gateName" type="text" autocomplete="name" placeholder="e.g. Jordan Avery" required></div>' +
           '<div class="gate-field"><label for="gateCompany">Company (optional)</label><input id="gateCompany" type="text" autocomplete="organization" placeholder="e.g. Avery Exteriors"></div>' +
-          '<button class="btn btn-primary gate-go mag" type="submit">Enter the Academy →</button>' +
+          '<button class="btn btn-primary gate-go mag" type="submit">' + (opts.syncOnly ? 'Send my code →' : 'Enter the Academy →') + '</button>' +
         '</form>' +
       '</div>'
     );
@@ -1782,12 +1994,15 @@
     try {
       var IPL = JSON.parse(localStorage.getItem('ip_lead') || 'null') || {};
       var IPC = window.IP_CUSTOMER || {};
-      if (IPC.email || IPL.email) emailInput.value = IPC.email || IPL.email;
-      if (IPC.name || IPL.name) $('#gateName', overlay).value = IPC.name || IPL.name;
-      if (IPL.company) $('#gateCompany', overlay).value = IPL.company;
+      if (store.user.email || IPC.email || IPL.email) emailInput.value = store.user.email || IPC.email || IPL.email;
+      if (store.user.name || IPC.name || IPL.name) $('#gateName', overlay).value = store.user.name || IPC.name || IPL.name;
+      if (store.user.company || IPL.company) $('#gateCompany', overlay).value = store.user.company || IPL.company;
     } catch (err) { /* ignore */ }
     setTimeout(function () { emailInput.focus(); }, 50);
-    function finish (email, name, company) {
+
+    /* Lead capture — identical to the original gate, and runs on step-1 submit no
+       matter what the OTP network does: capture must never depend on Supabase. */
+    function captureLead (email, name, company) {
       store.user.name = (name || '').trim();
       store.user.company = (company || '').trim();
       store.user.email = (email || '').trim();
@@ -1798,6 +2013,7 @@
           localStorage.setItem(LEAD_KEY, '1');
           localStorage.setItem('ip_lead', JSON.stringify({ email: store.user.email, name: store.user.name, company: store.user.company, ts: Date.now() }));
         } catch (err) { /* private mode */ }
+        if (opts.syncOnly) return; // already captured on first entry — don't re-fire CRM
         // fire-and-forget — never block entry on the network
         try {
           fetch(GHL_WEBHOOK, {
@@ -1820,18 +2036,81 @@
           }).catch(function () {});
         } catch (err) { /* ignore */ }
       }
-      // Remove via a setTimeout (event-loop, not rAF) so the gate ALWAYS clears even
-      // if GSAP's ticker is stalled (e.g. backgrounded tab). The fade is cosmetic only.
+    }
+    // Remove via a setTimeout (event-loop, not rAF) so the gate ALWAYS clears even
+    // if GSAP's ticker is stalled (e.g. backgrounded tab). The fade is cosmetic only.
+    function closeGate () {
       var done = function () { if (overlay && overlay.parentNode) overlay.remove(); };
       if (hasGsap && !reduced) { gsap.to(overlay, { autoAlpha: 0, duration: 0.35 }); setTimeout(done, 380); }
       else done();
       syncHeader();
       render();
     }
+
+    function showCodeStep () {
+      step = 2;
+      var card = $('.gate-card', overlay);
+      card.innerHTML =
+        '<img src="' + ((window.IP_ASSETS && window.IP_ASSETS.logo) || './ip-hq-logo.svg') + '" alt="" aria-hidden="true">' +
+        '<h2 id="gateTitle">Check your email</h2>' +
+        '<p>We sent a 6-digit code to <b>' + esc(otpEmail) + '</b>. Enter it below and your progress will sync across devices.</p>' +
+        '<div class="gate-field"><label for="gateCode">6-digit code</label><input id="gateCode" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]{6}" placeholder="123456" required></div>' +
+        '<p id="gateErr" hidden style="color:#ff8b8b;font-size:.85rem;margin:.5rem 0 0">Wrong or expired code — try again or resend.</p>' +
+        '<button class="btn btn-primary gate-go mag" type="submit">Verify &amp; enter →</button>' +
+        '<p style="margin-top:1rem;font-size:.82rem;color:#7087a5">' +
+          '<button type="button" id="gateResend" style="background:none;border:0;padding:0;cursor:pointer;color:inherit;font:inherit;text-decoration:underline">Resend code</button>' +
+          ' · ' +
+          '<button type="button" id="gateSkip" style="background:none;border:0;padding:0;cursor:pointer;color:inherit;font:inherit;text-decoration:underline">Continue without syncing</button>' +
+        '</p>';
+      setTimeout(function () { var c = $('#gateCode', overlay); if (c) c.focus(); }, 50);
+      $('#gateSkip', overlay).addEventListener('click', closeGate);
+      var resend = $('#gateResend', overlay);
+      var cooldown = 0, cdTimer = null;
+      resend.addEventListener('click', function () {
+        if (cooldown > 0 || !sb) return;
+        sb.auth.signInWithOtp({ email: otpEmail, options: { shouldCreateUser: true } }).catch(function () {});
+        cooldown = 60;
+        resend.disabled = true;
+        cdTimer = setInterval(function () {
+          cooldown--;
+          resend.textContent = cooldown > 0 ? 'Resend code (' + cooldown + 's)' : 'Resend code';
+          if (cooldown <= 0) { clearInterval(cdTimer); resend.disabled = false; }
+        }, 1000);
+      });
+    }
+
     $('#gateForm', overlay).addEventListener('submit', function (e) {
       e.preventDefault();
-      if (!emailInput.checkValidity()) { emailInput.reportValidity(); return; }
-      finish(emailInput.value, $('#gateName', overlay).value, $('#gateCompany', overlay).value);
+      if (step === 1) {
+        if (!emailInput.checkValidity()) { emailInput.reportValidity(); return; }
+        otpEmail = emailInput.value.trim();
+        captureLead(emailInput.value, $('#gateName', overlay).value, $('#gateCompany', overlay).value);
+        if (!sb) { closeGate(); return; } // Supabase unreachable — original local-only entry
+        var go = $('.gate-go', overlay);
+        go.disabled = true; go.textContent = 'Sending code…';
+        sb.auth.signInWithOtp({ email: otpEmail, options: { shouldCreateUser: true } }).then(function (res) {
+          if (res && res.error) { closeGate(); return; } // rate-limited/down — never block entry
+          showCodeStep();
+        }, function () { closeGate(); });
+        return;
+      }
+      // step 2: verify the code
+      var codeInput = $('#gateCode', overlay);
+      var code = (codeInput.value || '').trim();
+      if (!/^[0-9]{6}$/.test(code)) { codeInput.reportValidity(); return; }
+      var btn = $('.gate-go', overlay);
+      btn.disabled = true; btn.textContent = 'Verifying…';
+      sb.auth.verifyOtp({ email: otpEmail, token: code, type: 'email' }).then(function (res) {
+        if (res && res.error) {
+          btn.disabled = false; btn.innerHTML = 'Verify &amp; enter →';
+          $('#gateErr', overlay).hidden = false;
+          return;
+        }
+        var u = res && res.data && res.data.session && res.data.session.user;
+        if (u) sbUser = { id: u.id, email: u.email };
+        btn.textContent = 'Syncing…';
+        syncFromServer().then(function () { toast('Progress synced to ' + otpEmail); closeGate(); }, closeGate);
+      }, function () { closeGate(); });
     });
   }
 
@@ -1870,12 +2149,32 @@
       } catch (e) { /* private mode */ }
       syncHeader();
     }
-    // first-visit name gate (after first paint so the home view is behind it)
+    // Flush any offline-queued events whenever connectivity returns.
+    window.addEventListener('online', flushQueue);
+    // first-visit name gate (after first paint so the home view is behind it).
+    // The gate decision waits for the Supabase session check (≤4s, usually instant):
+    // an existing session skips the gate entirely and hydrates from the server.
     if (!store.user.startedAt && !store.user.name) {
-      setTimeout(showGate, 350);
+      sbReady.then(function (session) {
+        if (session && sbUser) {
+          store.user.email = store.user.email || sbUser.email;
+          store.user.startedAt = store.user.startedAt || Date.now();
+          saveStore();
+          syncFromServer().then(function (changed) { if (changed || parseHash().name === 'dashboard') { render(); } syncHeader(); });
+        } else {
+          setTimeout(showGate, 150);
+        }
+      });
     } else {
       store.user.startedAt = store.user.startedAt || Date.now();
       saveStore();
+      sbReady.then(function (session) {
+        if (session && sbUser) {
+          syncFromServer().then(function (changed) { if (changed || parseHash().name === 'dashboard') { render(); } syncHeader(); });
+        } else {
+          maybeShowSyncPill();
+        }
+      });
     }
   }
 

@@ -638,6 +638,7 @@ if (window.self !== window.top) {
 <body>
 {% if customer %}<script>window.IP_CUSTOMER = { email: {{ customer.email | json }}, name: {{ customer.first_name | json }} };</script>{% endif %}
 <script>window.IP_ASSETS = { logo: {{ 'ip-hq-logo.svg' | asset_url | json }} };</script>
+<script>window.IP_SUPABASE = { url: 'https://eesijbpteffibjuvbobg.supabase.co', anon: 'sb_publishable_IzyhfV_W9CU94ivtBTmy2g_jDLLXKvZ' };</script>
 
 <a class="skip" href="#main">Skip to content</a>
 

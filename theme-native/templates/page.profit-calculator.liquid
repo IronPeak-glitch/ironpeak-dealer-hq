@@ -1,0 +1,252 @@
+<style>
+#ipcalc{--bg:#0a0e16;--card:#141b28;--card2:#1C232C;--line:#243040;--text:#E6E8EB;--muted:#8B949E;--accent:#1e7fff;--accent2:#6FB1FF;--soft:rgba(30,127,255,.14);--green:#3FB950;--red:#F85149;max-width:980px;margin:0 auto;padding:8px 16px 12px;color:var(--text)}
+#ipcalc *{box-sizing:border-box}
+#ipcalc .ip-hero{text-align:center;margin:0 auto 26px;max-width:680px}
+#ipcalc h1{font-size:clamp(26px,4vw,38px);font-weight:800;letter-spacing:0;line-height:1.12;margin:0 0 14px}
+#ipcalc .ip-hero p{color:var(--muted);font-size:16px;line-height:1.6;margin:0}
+#ipcalc .ip-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+#ipcalc .ip-card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:26px}
+#ipcalc .ip-card h2{font-size:12px;text-transform:uppercase;letter-spacing:.12em;color:var(--muted);margin:0 0 22px;font-weight:700}
+#ipcalc .ip-field{margin-bottom:24px}
+#ipcalc .ip-field:last-child{margin-bottom:0}
+#ipcalc .ip-row{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:11px;gap:12px}
+#ipcalc .ip-field label{font-size:15px;font-weight:600;margin:0}
+#ipcalc .ip-val{font-size:18px;font-weight:700;color:var(--accent2);white-space:nowrap}
+#ipcalc .ip-range{appearance:none;width:100%;height:6px;border-radius:999px;background:var(--card2);outline:none;margin:0}
+#ipcalc .ip-range::-webkit-slider-thumb{-webkit-appearance:none;width:22px;height:22px;border-radius:50%;background:var(--accent);cursor:pointer;border:3px solid var(--bg);box-shadow:0 0 0 1px var(--accent)}
+#ipcalc .ip-range::-moz-range-thumb{width:22px;height:22px;border-radius:50%;background:var(--accent);cursor:pointer;border:3px solid var(--bg)}
+#ipcalc .ip-hint{font-size:12.5px;color:var(--muted);margin-top:9px}
+#ipcalc .ip-kit{margin-top:9px;font-size:13px;color:var(--muted)}
+#ipcalc .ip-kit b{color:var(--text);font-weight:700}
+#ipcalc .ip-results{background:linear-gradient(160deg,#141b28,#0f1520);position:relative;overflow:hidden;min-height:420px}
+#ipcalc .ip-big{margin-bottom:20px}
+#ipcalc .ip-label{font-size:12px;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;margin-bottom:6px}
+#ipcalc .ip-num{font-size:46px;font-weight:800;letter-spacing:0;color:var(--green)}
+#ipcalc .ip-lines{border-top:1px solid var(--line);padding-top:6px}
+#ipcalc .ip-lineitem{display:flex;justify-content:space-between;font-size:15px;padding:8px 0;gap:14px}
+#ipcalc .ip-lineitem .ip-k{color:var(--muted)}
+#ipcalc .ip-lineitem .ip-v{font-weight:600;text-align:right}
+#ipcalc .ip-total{border-top:1px solid var(--line);margin-top:6px;padding-top:14px;font-size:16px}
+#ipcalc .ip-total .ip-v{color:var(--green)}
+#ipcalc .ip-annual{margin-top:20px;background:var(--soft);border:1px solid rgba(30,127,255,.35);border-radius:12px;padding:18px}
+#ipcalc .ip-annual .ip-label{color:var(--accent2);font-weight:700}
+#ipcalc .ip-annual .ip-num{font-size:32px}
+#ipcalc .ip-note{font-size:11.5px;color:var(--muted);margin-top:10px}
+#ipcalc .ip-overlay{position:absolute;inset:0;border-radius:16px;background:rgba(10,14,22,.88);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px 24px;text-align:center;z-index:10;transition:opacity .3s}
+#ipcalc .ip-overlay.ip-hidden{opacity:0;pointer-events:none}
+#ipcalc .ip-brand{width:44px;height:40px;margin-bottom:12px;filter:drop-shadow(0 0 16px rgba(30,127,255,.5))}
+#ipcalc .ip-overlay h3{font-size:20px;font-weight:700;margin:0 0 8px;line-height:1.2}
+#ipcalc .ip-overlay p{color:var(--muted);font-size:14px;margin:0 0 18px;max-width:300px}
+#ipcalc .ip-form{display:flex;flex-direction:column;gap:10px;width:100%;max-width:320px}
+#ipcalc .ip-form input{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:13px 15px;color:var(--text);font-size:15px;text-align:center;font-family:inherit}
+#ipcalc .ip-form input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(30,127,255,.18)}
+#ipcalc .ip-btn{background:var(--accent);color:#fff;border:none;border-radius:10px;padding:14px 20px;font-size:15px;font-weight:700;cursor:pointer;width:100%;font-family:inherit}
+#ipcalc .ip-btn:hover{filter:brightness(1.08)}
+#ipcalc .ip-btn:disabled{opacity:.7;cursor:default}
+#ipcalc .ip-status{min-height:18px;font-size:12.5px;color:var(--muted);margin-top:8px}
+#ipcalc .ip-status[data-state=error]{color:var(--red)}
+#ipcalc .ip-acct{font-size:12.5px;color:var(--muted);margin-top:12px}
+#ipcalc .ip-acct a{color:var(--accent2);font-weight:600;text-decoration:none}
+#ipcalc .ip-acct a:hover{text-decoration:underline}
+#ipcalc .ip-disclaimer{text-align:center;color:var(--muted);font-size:12px;margin:22px auto 0;max-width:680px;line-height:1.6}
+#ipcalc .ip-sections{max-width:760px;margin:44px auto 0;padding:0 16px}
+#ipcalc .ip-sections h2{font-size:clamp(20px,3vw,26px);font-weight:800;margin:0 0 14px}
+#ipcalc .ip-sections ul{margin:0 0 8px;padding-left:1.1em}
+#ipcalc .ip-sections li{margin-bottom:10px;line-height:1.55}
+#ipcalc .ip-sections p{line-height:1.6;color:var(--text)}
+#ipcalc .ip-ctas{display:flex;flex-wrap:wrap;gap:18px;margin-top:14px}
+#ipcalc .ip-ctalink{color:var(--accent2);font-weight:700;text-decoration:none}
+#ipcalc .ip-ctalink:hover{text-decoration:underline}
+@media(max-width:760px){#ipcalc .ip-grid{grid-template-columns:1fr}#ipcalc .ip-card{padding:22px}#ipcalc .ip-num{font-size:38px}}
+</style>
+
+{% if customer %}<script>window.IP_CUSTOMER = { email: {{ customer.email | json }}, name: {{ customer.first_name | json }} };</script>{% endif %}
+
+<div id="ipcalc">
+  <div class="ip-hero">
+    <h1>See Exactly What You'll Make on Every Permanent Lighting Job</h1>
+    <p>Most lighting companies make you sign a $10,000&ndash;$20,000 dealer agreement before they'll show you a single margin number. We don't. Plug in your roofline footage and your rate &mdash; see your profit in 30 seconds, for free, no strings attached.</p>
+  </div>
+
+  <div class="ip-grid">
+    <div class="ip-card">
+      <h2>Your Numbers</h2>
+      <div class="ip-field">
+        <div class="ip-row"><label for="ip-ft">Roofline length</label><span class="ip-val"><span id="ip-ftVal">150</span> ft</span></div>
+        <input class="ip-range" type="range" id="ip-ft" min="50" max="300" step="10" value="150">
+        <div class="ip-kit">Recommended kit: <b id="ip-kitName">150 ft</b> &middot; materials <b id="ip-kitCost">$1,762.50</b></div>
+      </div>
+      <div class="ip-field">
+        <div class="ip-row"><label for="ip-rate">Your price to the homeowner</label><span class="ip-val">$<span id="ip-rateVal">30</span>/ft</span></div>
+        <input class="ip-range" type="range" id="ip-rate" min="20" max="45" step="1" value="30">
+        <div class="ip-hint">Industry average is around $30/ft installed. Set your local rate.</div>
+      </div>
+      <div class="ip-field">
+        <div class="ip-row"><label for="ip-labor">Other costs per job</label><span class="ip-val">$<span id="ip-laborVal">0</span></span></div>
+        <input class="ip-range" type="range" id="ip-labor" min="0" max="800" step="50" value="0">
+        <div class="ip-hint">Labor, fuel, etc. Leave at $0 for materials-only margin.</div>
+      </div>
+      <div class="ip-field">
+        <div class="ip-row"><label for="ip-jobs">Jobs per month</label><span class="ip-val"><span id="ip-jobsVal">4</span></span></div>
+        <input class="ip-range" type="range" id="ip-jobs" min="1" max="20" step="1" value="4">
+      </div>
+    </div>
+
+    <div class="ip-card ip-results" id="ip-resultsCard">
+      <div class="ip-overlay" id="ip-overlay">
+        <img class="ip-brand" src="{{ 'ip-hq-logo.svg' | asset_url }}" alt="" aria-hidden="true">
+        <h3>Unlock your profit numbers</h3>
+        <p>Enter your email and see your exact margin, revenue, and annual earning potential &mdash; free.</p>
+        <form class="ip-form" id="ip-leadForm" novalidate>
+          <input type="email" id="ip-email" placeholder="you@yourcompany.com" required autocomplete="email" aria-label="Your email">
+          <button class="ip-btn" id="ip-submit" type="submit">Show my numbers &rarr;</button>
+        </form>
+        <div class="ip-note">No buy-in. No sales call. Unsubscribe any time.</div>
+        <div class="ip-acct">Tired of re-entering it? <a href="/account/register">Create a free account</a> or <a href="/account/login">log in</a> &mdash; every gate on this site remembers you.</div>
+        <div class="ip-status" id="ip-status" aria-live="polite"></div>
+      </div>
+
+      <h2>Your Profit</h2>
+      <div class="ip-big">
+        <div class="ip-label">Profit per job</div>
+        <div class="ip-num" id="ip-profitJob">Locked</div>
+      </div>
+      <div class="ip-lines">
+        <div class="ip-lineitem"><span class="ip-k">Revenue (price &times; ft)</span><span class="ip-v" id="ip-revenue">Locked</span></div>
+        <div class="ip-lineitem"><span class="ip-k">IronPeak materials</span><span class="ip-v" id="ip-matCost">Locked</span></div>
+        <div class="ip-lineitem"><span class="ip-k">Your other costs</span><span class="ip-v" id="ip-otherCost">Locked</span></div>
+        <div class="ip-lineitem ip-total"><span class="ip-k">Profit per job</span><span class="ip-v" id="ip-profitJob2">Locked</span></div>
+        <div class="ip-lineitem"><span class="ip-k">Margin</span><span class="ip-v" id="ip-margin">Locked</span></div>
+      </div>
+      <div class="ip-hint" style="margin-top:14px">Materials shown at public B2B pricing &mdash; dealer volume pricing is lower.</div>
+      <div class="ip-annual">
+        <div class="ip-label">Projected annual profit</div>
+        <div class="ip-num" id="ip-annual">Locked</div>
+        <div class="ip-note" id="ip-annualNote">Submit your email to unlock results.</div>
+      </div>
+    </div>
+  </div>
+
+  <p class="ip-disclaimer">Estimates are for illustration using the numbers you enter. Actual profit depends on your local pricing, labor, and job specifics. Materials reflect current published IronPeak kit pricing; dealer pricing is lower.</p>
+
+  <div class="ip-sections">
+    <h2>How Installers Use This Calculator</h2>
+    <ul>
+      <li><strong>Before quoting a job:</strong> Plug in the footage and your target rate to build a confident, margin-aware bid &mdash; not a guess.</li>
+      <li><strong>When upselling a client:</strong> Show the revenue difference between a standard kit and the full Apex Peak package in real time.</li>
+      <li><strong>Planning your season:</strong> Set your monthly jobs goal and see exactly what annual earnings goal looks like at different price points.</li>
+    </ul>
+    <h2 style="margin-top:32px">Ready to Add Permanent Lighting to Your Business?</h2>
+    <p>No buy-in. No franchise fee. No $20,000 handshake deal. Just the kits, free installation resources, and the margin you just calculated.</p>
+    <div class="ip-ctas">
+      <a class="ip-ctalink" href="/collections/all">Shop Permanent Lighting Kits &rarr;</a>
+      <a class="ip-ctalink" href="/pages/dealer-program">Dealer Program &rarr;</a>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  var KITS=[{ft:100,cost:1299},{ft:150,cost:1762.5},{ft:200,cost:2399},{ft:300,cost:3499}];
+  var PORTAL='246087675';
+  var FORM='227f991a-f1ea-478d-992f-c1b4efcf4959';
+  var GHL='https://services.leadconnectorhq.com/hooks/99eVuuXW11CRRtiGwcXE/webhook-trigger/5b7b3d77-8087-4f57-999f-a13bf0580e0c';
+  var KEY='ip_vault_unlock'; /* shared with the vault + academy gates */
+  var unlocked=false;
+  var data={};
+  function $(id){return document.getElementById(id);}
+  function money(n){var abs=Math.abs(n);var cents=abs%1!==0;return (n<0?'-$':'$')+abs.toLocaleString('en-US',{minimumFractionDigits:cents?2:0,maximumFractionDigits:cents?2:0});}
+  function kitFor(ft){for(var i=0;i<KITS.length;i++){if(KITS[i].ft>=ft)return KITS[i];}return KITS[KITS.length-1];}
+  function cookie(name){try{var m=document.cookie.match(new RegExp('(?:^|; )'+name.replace(/[.$?*|{}()[\]\\/+^]/g,'\\$&')+'=([^;]*)'));return m?decodeURIComponent(m[1]):'';}catch(err){return '';}}
+  function setStatus(text,state){var el=$('ip-status');if(!el)return;el.textContent=text||'';if(state){el.setAttribute('data-state',state);}else{el.removeAttribute('data-state');}}
+  function saveLead(em){try{localStorage.setItem(KEY,'1');if(em)localStorage.setItem('ip_lead',JSON.stringify({email:em,ts:Date.now()}));}catch(e){/* private mode */}}
+  function leadEmail(){try{var L=JSON.parse(localStorage.getItem('ip_lead')||'null');return (L&&L.email)||'';}catch(e){return '';}}
+  function setResults(values){
+    $('ip-revenue').textContent=money(values.revenue);
+    $('ip-matCost').textContent=money(-values.kit.cost);
+    $('ip-otherCost').textContent=money(-values.labor);
+    $('ip-profitJob').textContent=money(values.profit);
+    $('ip-profitJob').style.color=values.profit>=0?'var(--green)':'var(--red)';
+    $('ip-profitJob2').textContent=money(values.profit);
+    $('ip-margin').textContent=values.margin+'%';
+    $('ip-annual').textContent=money(values.annual);
+    $('ip-annualNote').textContent='At '+values.jobs+' job'+(values.jobs>1?'s':'')+'/month, 12 months';
+  }
+  function calc(){
+    var ft=+$('ip-ft').value,rate=+$('ip-rate').value,labor=+$('ip-labor').value,jobs=+$('ip-jobs').value;
+    var kit=kitFor(ft),revenue=rate*ft,profit=revenue-kit.cost-labor,margin=revenue>0?Math.round(profit/revenue*100):0,annual=profit*jobs*12;
+    data={ft:ft,rate:rate,labor:labor,jobs:jobs,kit:kit,revenue:revenue,profit:profit,margin:margin,annual:annual};
+    $('ip-ftVal').textContent=ft;
+    $('ip-rateVal').textContent=rate;
+    $('ip-laborVal').textContent=labor.toLocaleString('en-US');
+    $('ip-jobsVal').textContent=jobs;
+    $('ip-kitName').textContent=kit.ft+' ft';
+    $('ip-kitCost').textContent=money(kit.cost);
+    if(unlocked){setResults(data);}
+  }
+  function track(){
+    try{if(typeof window.fbq==='function'){window.fbq('track','Lead',{content_name:'Installer Profit Calculator',value:Math.round(data.annual||0),currency:'USD'});}}catch(e){}
+    try{if(window.Shopify&&window.Shopify.analytics&&typeof window.Shopify.analytics.publish==='function'){window.Shopify.analytics.publish('lead_captured',{source:'profit_calculator',roofline_ft:data.ft,price_per_ft:data.rate,projected_profit_per_job:Math.round(data.profit||0),projected_annual_profit:Math.round(data.annual||0)});}}catch(e){}
+  }
+  function submitHubSpot(fields,timeoutMs){
+    var controller=new AbortController();
+    var timer=setTimeout(function(){controller.abort();},timeoutMs||10000);
+    var payload={fields:fields,context:{hutk:cookie('hubspotutk')||undefined,pageName:'IronPeak Profit Calculator',pageUri:location.href},skipValidation:true};
+    return fetch('https://api.hsforms.com/submissions/v3/integration/submit/'+PORTAL+'/'+FORM,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload),signal:controller.signal}).then(function(res){
+      clearTimeout(timer);
+      if(!res.ok){throw new Error('HubSpot submit failed with status '+res.status);}
+      return res;
+    })['catch'](function(err){clearTimeout(timer);throw err;});
+  }
+  function unlock(returning){
+    unlocked=true;
+    setResults(data);
+    $('ip-overlay').classList.add('ip-hidden');
+    if(!returning){track();}
+    setTimeout(function(){$('ip-overlay').style.display='none';},350);
+  }
+  ['ip-ft','ip-rate','ip-labor','ip-jobs'].forEach(function(id){$(id).addEventListener('input',calc);});
+  calc();
+
+  /* Logged-in Shopify customer: no form, ever. One CRM ping the first time. */
+  if(window.IP_CUSTOMER&&window.IP_CUSTOMER.email){
+    saveLead(window.IP_CUSTOMER.email);
+    if(!localStorage.getItem('ip_calc_acct_sent')){
+      try{localStorage.setItem('ip_calc_acct_sent','1');fetch(GHL,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:window.IP_CUSTOMER.email,name:window.IP_CUSTOMER.name||'',source:'IronPeak Profit Calculator'})})['catch'](function(){});}catch(e){}
+    }
+    unlock(true);
+  }else{
+    /* Returning lead on this device: numbers stay unlocked, no re-entry. */
+    var stored=false;
+    try{stored=localStorage.getItem(KEY)==='1';}catch(e){}
+    if(stored){unlock(true);}
+    else if(leadEmail()){$('ip-email').value=leadEmail();}
+  }
+
+  $('ip-leadForm').addEventListener('submit',function(e){
+    e.preventDefault();
+    var email=$('ip-email').value.trim();
+    if(!email||email.indexOf('@')<1){$('ip-email').focus();setStatus('Enter a valid email to unlock the calculator.','error');return;}
+    /* Unlock instantly — the visitor never waits on a CRM. The GHL webhook fires
+       via the site-wide ghl-tracking.js submit listener; HubSpot is a background
+       backstop (enriched first, email-only retry, log-only failure). */
+    saveLead(email);
+    unlock(false);
+    var enriched=[
+      {name:'email',value:email},
+      {name:'roofline_footage',value:String(data.ft)},
+      {name:'price_per_ft',value:String(data.rate)},
+      {name:'projected_profit_per_job',value:String(Math.round(data.profit))},
+      {name:'projected_annual_profit',value:String(Math.round(data.annual))},
+      {name:'message',value:'Calculator lead. Roofline: '+data.ft+' ft. Rate: $'+data.rate+'/ft. Other costs: $'+data.labor+'. Jobs/month: '+data.jobs+'. Projected profit/job: '+money(data.profit)+'. Projected annual profit: '+money(data.annual)+'.'}
+    ];
+    submitHubSpot(enriched,10000)['catch'](function(firstErr){
+      return submitHubSpot([{name:'email',value:email}],10000);
+    })['catch'](function(err){
+      console.warn('[IronPeak calculator] HubSpot backstop failed (lead already in GHL)',{timestamp:new Date().toISOString(),error:err.message});
+    });
+  });
+})();
+</script>
+
+<!-- ip-calc-v2-20260705: shared unlock + identity, instant unlock, account links, brand mark -->

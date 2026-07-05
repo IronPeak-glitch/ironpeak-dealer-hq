@@ -1031,6 +1031,7 @@ if (window.self !== window.top) {
 </style>
 </head>
 <body>
+{% if customer %}<script>window.IP_CUSTOMER = { email: {{ customer.email | json }}, name: {{ customer.first_name | json }} };</script>{% endif %}
 
 <a class="skip" href="#main">Skip to content</a>
 <div class="cursor" aria-hidden="true"></div>
@@ -1245,12 +1246,12 @@ if (window.self !== window.top) {
 <!-- ============ 4. SPOTLIGHT REVEAL ============ -->
 <section class="spot-section" id="spotSection" aria-label="Night reveal">
   <div class="spot-stage" id="spotStage">
-    <div class="spot-dark" aria-hidden="true"><img src="{{ 'ip-hq-hero-roofline.jpg' | asset_url }}" alt=""></div>
+    <div class="spot-dark" aria-hidden="true"><img src="{{ 'ip-hq-hero-roofline.jpg' | asset_url }}" alt="" loading="lazy" decoding="async"></div>
     <div class="spot-mask" id="spotMask">
-      <img id="spotImg" src="{{ 'ip-hq-hero-roofline.jpg' | asset_url }}" alt="A large home at dusk, every roofline traced in blue-white permanent LED lighting">
+      <img id="spotImg" src="{{ 'ip-hq-hero-roofline.jpg' | asset_url }}" alt="A large home at dusk, every roofline traced in blue-white permanent LED lighting" loading="lazy" decoding="async">
     </div>
     <div class="spot-glow" id="spotGlow" aria-hidden="true"></div>
-    <div class="spot-bloom" id="spotBloom" aria-hidden="true"><img src="{{ 'ip-hq-hero-roofline.jpg' | asset_url }}" alt=""></div>
+    <div class="spot-bloom" id="spotBloom" aria-hidden="true"><img src="{{ 'ip-hq-hero-roofline.jpg' | asset_url }}" alt="" loading="lazy" decoding="async"></div>
     <div class="spot-copy" id="spotCopy">
       <h3>This is what the <span class="accent">street sees.</span></h3>
       <p>Every install lights up your next three leads — it sells the whole street.</p>
@@ -1510,6 +1511,7 @@ if (window.self !== window.top) {
 
       <div class="vault-gate" id="vaultGate">
         <div class="vg-card">
+          <img src="{{ 'ip-hq-logo.svg' | asset_url }}" alt="" width="40" height="36" style="display:block;margin:0 auto .5rem" loading="lazy">
           <svg width="34" height="34" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="4.5" y="10" width="15" height="10.5" rx="2" stroke="currentColor" stroke-width="1.8"/><path d="M8 10V7.5a4 4 0 0 1 8 0V10" stroke="currentColor" stroke-width="1.8"/><circle cx="12" cy="15.2" r="1.6" fill="currentColor"/></svg>
           <h3 id="vaultGateH">Unlock the vault</h3>
           <p>Other brands sell this playbook as a "dealer package." We ask for an email. That's the whole gate — it opens once and stays open on this device.</p>
@@ -1518,6 +1520,7 @@ if (window.self !== window.top) {
             <button class="btn btn-primary" type="submit">Unlock <span class="arr">→</span></button>
           </form>
           <p class="vg-micro">Dealer resources and program updates only. No spam, unsubscribe anytime.</p>
+          <p class="vg-micro">Tired of re-entering it? <a href="/account/register" style="color:var(--blue)">Create a free account</a> or <a href="/account/login" style="color:var(--blue)">log in</a> and every gate on this site remembers you.</p>
         </div>
       </div>
 
@@ -2325,7 +2328,7 @@ async function initHeroRidge() {
     renderer = new THREE.WebGLRenderer({ canvas: heroCanvas, alpha: true, antialias: false, powerPreference: 'high-performance' });
   } catch (e) { heroEl.classList.add('no-webgl'); return; }
 
-  const PR = Math.min(window.devicePixelRatio || 1, 2);
+  const PR = Math.min(window.devicePixelRatio || 1, 1.5);
   renderer.setPixelRatio(PR);
 
   const scene = new THREE.Scene();
@@ -2518,7 +2521,7 @@ if (heroEl && heroCanvas) {
   if (!grid || !gate || !form || !email) return;
 
   function saved() { try { return localStorage.getItem(KEY) === '1'; } catch (e) { return false; } }
-  function save() { try { localStorage.setItem(KEY, '1'); } catch (e) { /* private mode — session-only unlock */ } }
+  function save(em) { try { localStorage.setItem(KEY, '1'); if (em) localStorage.setItem('ip_lead', JSON.stringify({ email: em, ts: Date.now() })); } catch (e) { /* private mode — session-only unlock */ } }
 
   function unlock(returning) {
     grid.classList.remove('locked');
@@ -2529,7 +2532,9 @@ if (heroEl && heroCanvas) {
     if (!returning && success) success.classList.add('show');
   }
 
+  if (window.IP_CUSTOMER && window.IP_CUSTOMER.email) { save(window.IP_CUSTOMER.email); unlock(true); return; }
   if (saved()) { unlock(true); return; }
+  try { var IPL = JSON.parse(localStorage.getItem('ip_lead') || 'null'); if (IPL && IPL.email) email.value = IPL.email; } catch (e) { /* ignore */ }
 
   form.addEventListener('submit', function (e) {
     e.preventDefault();
@@ -2555,7 +2560,7 @@ if (heroEl && heroCanvas) {
     ];
     /* unlock regardless of network outcome — never punish a visitor for our errors */
     Promise.all(sends.map(function (p) { return p.catch(function () {}); }))
-      .then(function () { save(); unlock(false); });
+      .then(function () { save(email.value); unlock(false); });
   });
 })();
 </script>

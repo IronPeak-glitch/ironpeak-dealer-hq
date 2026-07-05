@@ -96,6 +96,31 @@
   function saveStore () {
     try { localStorage.setItem(LS_KEY, JSON.stringify(store)); }
     catch (e) { /* storage full / private mode — app still works in-session */ }
+    reportProgressMilestones();
+  }
+
+  /* Progress milestones fire once each to GoHighLevel so real learner progress
+     shows on the contact timeline (source: "IronPeak Academy Progress"). */
+  function reportProgressMilestones () {
+    try {
+      if (!store.user || !store.user.email || !ALL_LESSONS.length) return;
+      var done = 0;
+      for (var i = 0; i < ALL_LESSONS.length; i++) { if (lessonDone(ALL_LESSONS[i].id)) done++; }
+      var pct = Math.floor(done / ALL_LESSONS.length * 100);
+      var sent;
+      try { sent = JSON.parse(localStorage.getItem('ip_progress_sent') || '[]'); } catch (e) { sent = []; }
+      var fired = false;
+      [25, 50, 75, 100].forEach(function (m) {
+        if (pct >= m && sent.indexOf(m) === -1) {
+          sent.push(m); fired = true;
+          fetch('https://services.leadconnectorhq.com/hooks/99eVuuXW11CRRtiGwcXE/webhook-trigger/5b7b3d77-8087-4f57-999f-a13bf0580e0c', {
+            method: 'POST', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ email: store.user.email, name: store.user.name || '', source: 'IronPeak Academy Progress', academy_percent: String(m), academy_lessons_done: String(done) })
+          }).catch(function () {});
+        }
+      });
+      if (fired) { try { localStorage.setItem('ip_progress_sent', JSON.stringify(sent)); } catch (e) { /* ignore */ } }
+    } catch (e) { /* a progress ping must never break the app */ }
   }
 
   /* ----------------------------------------------------------------------------
@@ -1443,10 +1468,17 @@
     });
     drawTable();
 
+    view.appendChild(el(
+      '<div class="dash-blueprint" style="border-color:rgba(30,127,255,.45)">' +
+        '<h4>Heads up: the roster above is sample data</h4>' +
+        '<p>Real academy leads land in <b>GoHighLevel</b> the moment they pass the email gate (source \u201cIronPeak Sales Academy\u201d), and their progress pings the contact timeline at 25 / 50 / 75 / 100% complete. Open GHL \u2192 Contacts for the real roster today.</p>' +
+      '</div>'
+    ));
+
     /* backend blueprint */
     view.appendChild(el(
       '<div class="dash-blueprint">' +
-        '<h4>From demo to 2,000 dealers</h4>' +
+        '<h4>Demo roster — your real data lives in GoHighLevel</h4>' +
         '<p>This roster is served by a single function — <code>getRoster()</code> in <code>app.js</code>. Swapping in a real backend is a one-function change: point it at Shopify customer metafields or a lightweight store (e.g. Supabase) that records <code>lesson_completed</code>, <code>quiz_passed</code>, and <code>certified</code> events per authenticated dealer. The rollups, heat map, sort and filter all read from whatever <code>getRoster()</code> returns. See <code>ACADEMY-BACKEND.md</code> for the full auth/role + events-API blueprint.</p>' +
       '</div>'
     ));
@@ -1538,7 +1570,7 @@
       if (stage) {
         import('./ip-logo3d.js').then(function (mod) {
           if ($('#logo-stage') !== stage) return; // view changed
-          try { logoHandle = mod.initLogo3D(stage, { spinSpeed: 0.55 }); } catch (e) {}
+          try { logoHandle = mod.initLogo3D(stage, { spinSpeed: 0.55, fill: 3.35 }); } catch (e) {}
         }).catch(function () { /* module/WebGL unavailable — static logo stays */ });
       }
       mountHeroParticles();
@@ -1735,7 +1767,7 @@
     var overlay = el(
       '<div class="gate-overlay" role="dialog" aria-modal="true" aria-labelledby="gateTitle">' +
         '<form class="gate-card" id="gateForm">' +
-          '<img src="./ip-hq-logo.svg" alt="" aria-hidden="true">' +
+          '<img src="' + ((window.IP_ASSETS && window.IP_ASSETS.logo) || './ip-hq-logo.svg') + '" alt="" aria-hidden="true">' +
           '<h2 id="gateTitle">Welcome to the Academy</h2>' +
           '<p>The whole program is free — the price is an email. Your progress and certificate stay on this device; your email gets dealer resources and course updates.</p>' +
           '<div class="gate-field"><label for="gateEmail">Email</label><input id="gateEmail" type="email" autocomplete="email" placeholder="you@yourcompany.com" required></div>' +
@@ -1747,6 +1779,13 @@
     );
     document.body.appendChild(overlay);
     var emailInput = $('#gateEmail', overlay);
+    try {
+      var IPL = JSON.parse(localStorage.getItem('ip_lead') || 'null') || {};
+      var IPC = window.IP_CUSTOMER || {};
+      if (IPC.email || IPL.email) emailInput.value = IPC.email || IPL.email;
+      if (IPC.name || IPL.name) $('#gateName', overlay).value = IPC.name || IPL.name;
+      if (IPL.company) $('#gateCompany', overlay).value = IPL.company;
+    } catch (err) { /* ignore */ }
     setTimeout(function () { emailInput.focus(); }, 50);
     function finish (email, name, company) {
       store.user.name = (name || '').trim();
@@ -1755,7 +1794,10 @@
       store.user.startedAt = store.user.startedAt || Date.now();
       saveStore();
       if (store.user.email) {
-        try { localStorage.setItem(LEAD_KEY, '1'); } catch (err) { /* private mode */ }
+        try {
+          localStorage.setItem(LEAD_KEY, '1');
+          localStorage.setItem('ip_lead', JSON.stringify({ email: store.user.email, name: store.user.name, company: store.user.company, ts: Date.now() }));
+        } catch (err) { /* private mode */ }
         // fire-and-forget — never block entry on the network
         try {
           fetch(GHL_WEBHOOK, {
@@ -1811,6 +1853,23 @@
     syncHeader();
     window.addEventListener('hashchange', render);
     render();
+    // Logged-in Shopify customers walk straight in — no form, one CRM ping.
+    var IPC0 = window.IP_CUSTOMER;
+    if (IPC0 && IPC0.email && !store.user.name) {
+      store.user.email = IPC0.email;
+      store.user.name = IPC0.name || '';
+      store.user.startedAt = store.user.startedAt || Date.now();
+      saveStore();
+      try {
+        localStorage.setItem(LEAD_KEY, '1');
+        localStorage.setItem('ip_lead', JSON.stringify({ email: IPC0.email, name: IPC0.name || '', ts: Date.now() }));
+        if (!localStorage.getItem('ip_acct_ghl_sent')) {
+          localStorage.setItem('ip_acct_ghl_sent', '1');
+          fetch(GHL_WEBHOOK, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: IPC0.email, name: IPC0.name || '', source: 'IronPeak Sales Academy' }) }).catch(function () {});
+        }
+      } catch (e) { /* private mode */ }
+      syncHeader();
+    }
     // first-visit name gate (after first paint so the home view is behind it)
     if (!store.user.startedAt && !store.user.name) {
       setTimeout(showGate, 350);

@@ -29,6 +29,7 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 const DEFAULTS = {
   accent: 0x1e7fff,  // brand blue (rim light from behind)
   spinSpeed: 0.6,    // constant Y auto-spin, rad/s
+  fill: 2.6,         // model scale relative to camera framing (bigger = fills more of the stage)
 };
 
 // Resolve the GLB relative to THIS module, regardless of host page URL.
@@ -125,7 +126,8 @@ export function initLogo3D(container, opts = {}) {
       box.getSize(size);
       mark.position.sub(center);
       const maxDim = Math.max(size.x, size.y, size.z) || 1;
-      model.scale.setScalar(2.6 / maxDim);
+      var fill = Number.isFinite(settings.fill) ? settings.fill : 2.6;
+      model.scale.setScalar(fill / maxDim);
 
       model.add(mark);
 

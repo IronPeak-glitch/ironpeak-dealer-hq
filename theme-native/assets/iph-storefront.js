@@ -61,6 +61,24 @@
     }
   }
 
+  /* ── Store header: Apply CTA (parity with the flagship nav) ───────── */
+  var headerWrap = document.querySelector('.header__first-level-wrapper');
+  if (headerWrap && !document.querySelector('.iph-nav-apply')) {
+    var applyBtn = document.createElement('a');
+    applyBtn.className = 'iph-nav-apply';
+    applyBtn.href = '/pages/dealer-program';
+    applyBtn.innerHTML = 'Apply <span aria-hidden="true">\u2192</span>';
+    applyBtn.style.cssText =
+      'background:#1e7fff;color:#fff;text-decoration:none;padding:.62rem 1.15rem;' +
+      'border-radius:2px;font-weight:600;font-size:.78rem;letter-spacing:.1em;' +
+      'text-transform:uppercase;white-space:nowrap;margin-left:1rem;flex:0 0 auto;align-self:center;';
+    headerWrap.appendChild(applyBtn);
+    var mq = window.matchMedia('(max-width: 990px)');
+    var syncApply = function () { applyBtn.style.display = mq.matches ? 'none' : 'inline-block'; };
+    if (mq.addEventListener) mq.addEventListener('change', syncApply); else if (mq.addListener) mq.addListener(syncApply);
+    syncApply();
+  }
+
   /* ── Homepage calculator band ─────────────────────────────────────── */
   var isHome =
     body.classList.contains('template-index') ||

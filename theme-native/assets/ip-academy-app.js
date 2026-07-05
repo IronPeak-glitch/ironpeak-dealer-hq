@@ -335,7 +335,7 @@
             '</p>' +
           '</div>' +
           '<div class="hero-stage">' +
-            '<div id="logo-stage" role="img" aria-label="The IronPeak mark"><img src="./ip-hq-logo.svg" alt="" style="width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 18px 50px rgba(30,127,255,.28))" loading="eager" decoding="async"></div>' +
+            '<div id="logo-stage" role="img" aria-label="The IronPeak mark"><img src="' + ((window.IP_ASSETS && window.IP_ASSETS.logo) || './ip-hq-logo.svg') + '" alt="" style="width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 18px 50px rgba(30,127,255,.28))" loading="eager" decoding="async"></div>' +
             '<div class="ring-wrap">' +
               '<svg viewBox="0 0 120 120" aria-hidden="true">' +
                 '<circle cx="60" cy="60" r="52" fill="none" stroke="#23272e" stroke-width="6"/>' +
@@ -1307,7 +1307,7 @@
     wrap.appendChild(el('<p class="sec-label" style="justify-content:center"><span class="lab-n">★</span> Certified</p>'));
     var cert = el(
       '<div class="certificate" id="certCard">' +
-        '<img class="cert-mark" src="./ip-hq-logo.svg" alt="" aria-hidden="true">' +
+        '<img class="cert-mark" src="' + ((window.IP_ASSETS && window.IP_ASSETS.logo) || './ip-hq-logo.svg') + '" alt="" aria-hidden="true">' +
         '<p class="cert-kicker">IronPeak Sales Academy</p>' +
         '<h2 class="cert-title">Certificate of Completion</h2>' +
         '<p class="cert-presented">This certifies that</p>' +

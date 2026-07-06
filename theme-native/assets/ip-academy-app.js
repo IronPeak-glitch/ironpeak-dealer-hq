@@ -172,6 +172,19 @@
     // Same dynamic-import pattern as ip-logo3d: the academy boots fine without it.
     var load = dynImport('https://esm.sh/@supabase/supabase-js@2').then(function (mod) {
       sb = mod.createClient(cfg.url, cfg.anon);
+      // Login can also complete via the emailed link (another tab or a redirect
+      // back to this page). When the session lands, sync and clear any open gate.
+      sb.auth.onAuthStateChange(function (event, session) {
+        if (event === 'SIGNED_IN' && session && session.user && !sbUser) {
+          sbUser = { id: session.user.id, email: session.user.email };
+          store.user.email = store.user.email || sbUser.email;
+          syncFromServer().then(function () {
+            var ov = $('.gate-overlay');
+            if (ov && ov.parentNode) ov.remove();
+            render(); syncHeader();
+          });
+        }
+      });
       return sb.auth.getSession().then(function (r) {
         var session = r && r.data && r.data.session;
         if (session && session.user) sbUser = { id: session.user.id, email: session.user.email };
@@ -2059,7 +2072,7 @@
       card.innerHTML =
         '<img src="' + ((window.IP_ASSETS && window.IP_ASSETS.logo) || './ip-hq-logo.svg') + '" alt="" aria-hidden="true">' +
         '<h2 id="gateTitle">Check your email</h2>' +
-        '<p>We sent a 6-digit code to <b>' + esc(otpEmail) + '</b>. Enter it below and your progress will sync across devices.</p>' +
+        '<p>We emailed <b>' + esc(otpEmail) + '</b>. Click the link in that email — or if it shows a 6-digit code, enter it below — and your progress will sync across devices.</p>' +
         '<div class="gate-field"><label for="gateCode">6-digit code</label><input id="gateCode" inputmode="numeric" autocomplete="one-time-code" maxlength="6" pattern="[0-9]{6}" placeholder="123456" required></div>' +
         '<p id="gateErr" hidden style="color:#ff8b8b;font-size:.85rem;margin:.5rem 0 0">Wrong or expired code — try again or resend.</p>' +
         '<button class="btn btn-primary gate-go mag" type="submit">Verify &amp; enter →</button>' +
@@ -2074,7 +2087,7 @@
       var cooldown = 0, cdTimer = null;
       resend.addEventListener('click', function () {
         if (cooldown > 0 || !sb) return;
-        sb.auth.signInWithOtp({ email: otpEmail, options: { shouldCreateUser: true } }).catch(function () {});
+        sb.auth.signInWithOtp({ email: otpEmail, options: { shouldCreateUser: true, emailRedirectTo: location.origin + location.pathname } }).catch(function () {});
         cooldown = 60;
         resend.disabled = true;
         cdTimer = setInterval(function () {
@@ -2094,7 +2107,7 @@
         if (!sb) { closeGate(); return; } // Supabase unreachable — original local-only entry
         var go = $('.gate-go', overlay);
         go.disabled = true; go.textContent = 'Sending code…';
-        sb.auth.signInWithOtp({ email: otpEmail, options: { shouldCreateUser: true } }).then(function (res) {
+        sb.auth.signInWithOtp({ email: otpEmail, options: { shouldCreateUser: true, emailRedirectTo: location.origin + location.pathname } }).then(function (res) {
           if (res && res.error) { closeGate(); return; } // rate-limited/down — never block entry
           showCodeStep();
         }, function () { closeGate(); });

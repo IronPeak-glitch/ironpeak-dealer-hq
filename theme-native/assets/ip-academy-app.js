@@ -221,6 +221,7 @@
       try {
         var cur = JSON.parse(localStorage.getItem(EVT_QUEUE_KEY) || '[]');
         localStorage.setItem(EVT_QUEUE_KEY, JSON.stringify(cur.slice(n))); // drop only what we sent
+        if (cur.length > n) flushQueue(); // events queued while this flush was in flight
       } catch (e) { /* ignore */ }
     }, function () { flushing = false; });
   }
